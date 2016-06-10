@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Userid:</strong>
+  <%= @indexed_activity.userId %>
+</p>
+
+<p>
+  <strong>Activityid:</strong>
+  <%= @indexed_activity.activityId %>
+</p>
+
+<%= link_to 'Edit', edit_indexed_activity_path(@indexed_activity) %> |
+<%= link_to 'Back', indexed_activities_path %>

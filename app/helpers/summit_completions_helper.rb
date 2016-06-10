@@ -1,0 +1,2 @@
+module SummitCompletionsHelper
+end

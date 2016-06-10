@@ -1,0 +1,25 @@
+<%= form_for(@indexed_activity) do |f| %>
+  <% if @indexed_activity.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@indexed_activity.errors.count, "error") %> prohibited this indexed_activity from being saved:</h2>
+
+      <ul>
+      <% @indexed_activity.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :userId %><br>
+    <%= f.number_field :userId %>
+  </div>
+  <div class="field">
+    <%= f.label :activityId %><br>
+    <%= f.number_field :activityId %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Summit:</strong>
+  <%= @summit_completion.summit %>
+</p>
+
+<p>
+  <strong>Userid:</strong>
+  <%= @summit_completion.userId %>
+</p>
+
+<%= link_to 'Edit', edit_summit_completion_path(@summit_completion) %> |
+<%= link_to 'Back', summit_completions_path %>

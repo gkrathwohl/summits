@@ -1,0 +1,25 @@
+<%= form_for(@summit_completion) do |f| %>
+  <% if @summit_completion.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@summit_completion.errors.count, "error") %> prohibited this summit_completion from being saved:</h2>
+
+      <ul>
+      <% @summit_completion.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :summit %><br>
+    <%= f.text_field :summit %>
+  </div>
+  <div class="field">
+    <%= f.label :userId %><br>
+    <%= f.number_field :userId %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
