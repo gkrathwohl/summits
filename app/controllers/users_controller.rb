@@ -44,7 +44,7 @@ class UsersController < ApplicationController
    
    @summits = @user.summit_completions
    @activities = StravaHelper.all_activities(@user.token)
-   @indexed_activities = IndexedActivity.where(:user_id == @user.id)
+   @indexed_activities = IndexedActivity.where(user_id: @user.id)
     
     # @client = Strava::Api::V3::Client.new(:access_token => @user.token)
     # @activities = @client.list_athlete_activities({'per_page' => 200})

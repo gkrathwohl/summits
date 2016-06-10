@@ -1,18 +1,13 @@
-<h3>User</h3>
-<p>Name: <%= @user.name if @user.name %></p>
-<p>Email: <%= @user.email if @user.email %></p>
-<p>Token: <%= @user.token ? @user.token : link_to("Connect", "https://www.strava.com/oauth/authorize?client_id=3764&response_type=code&redirect_uri=http://localhost:3000/users/connect&approval_prompt=force") %></p>
-
 <% if @user.token %>
   <p> You have <%= @activities.count %> activities on Strava, <%= @indexed_activities.count %> have been searched for summits </p>
 <% else %>
-  <p> Not connected to Strava </p>
+  <%= link_to(image_tag("ConnectWithStrava.png", size: "171x31", ), "https://www.strava.com/oauth/authorize?client_id=3764&response_type=code&redirect_uri=http://localhost:3000/users/connect&approval_prompt=force") %>
 <% end %>
 
 
 <div class="container">
   <div class="row">
-    <h3>Summits</h3>
+    <h3><%= @user.name if @user.name %>'s Summits</h3>
     <div class="column">
       <table class="table">
         <tbody>
@@ -26,6 +21,13 @@
               <td><%= summit.summit %></td>
               <td><%= summit.osm_summit_elevation %></td>
               <td><a href="https://www.strava.com/activities/<%= summit.activity_id %> " target='_blank'>Strava Activity</a></td>
+            </tr>
+          <% end %>
+          <% if !@user.token %>
+            <tr>
+              <td colspan="3">
+                Connect with Strava to load activities
+              </td>
             </tr>
           <% end %>
         </tbody>
