@@ -132,6 +132,7 @@ GEM
       diskcached
       httpi (~> 2.4.0)
       nokogiri
+    pg (0.18.4)
     polylines (0.3.0)
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
@@ -249,6 +250,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   overpass-api-ruby
+  pg
   polylines
   quiet_assets
   rails (= 4.2.5)
