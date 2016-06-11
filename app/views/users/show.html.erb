@@ -1,14 +1,30 @@
-<% if @user.token %>
-  <p> You have <%= @activities.count %> activities on Strava, <%= @indexed_activities.count %> have been searched for summits </p>
-<% else %>
-  <%= link_to(image_tag("ConnectWithStrava.png", size: "171x31", ), "https://www.strava.com/oauth/authorize?client_id=3764&response_type=code&redirect_uri=http://localhost:3000/users/connect&approval_prompt=force") %>
-<% end %>
 
 
-<div class="container">
+<style>
+.table th {
+   text-align: center;   
+}
+.center_table {
+  padding-top: 30px;
+}
+.content {
+  padding-top: 5%;
+}
+</style>
+
+<div class="container content">
   <div class="row">
-    <h3><%= @user.name if @user.name %>'s Summits</h3>
-    <div class="column">
+    <% if @user.token %>
+      <% if @activities.count == @indexed_activities.count %>
+        <p class="text-center" style="color: green" ><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Strava sync complete (<%= @activities.count %> activities)</p>
+      <% else %>
+        <p class="text-center" style="color: red"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Syncing <%= @activities.count - @indexed_activities.count %> activities. Refresh page to see progress.</p>
+      <% end %>
+    <% else %>
+      <%= link_to(image_tag("ConnectWithStrava.png", size: "171x31", ), "https://www.strava.com/oauth/authorize?client_id=3764&response_type=code&redirect_uri=http://localhost:3000/users/connect&approval_prompt=force") %>
+    <% end %>
+    <div class="column col-md-offset-3 center_table">
+      <h3>Summit Completions</h3>
       <table class="table">
         <tbody>
           <tr>
@@ -20,7 +36,7 @@
             <tr>
               <td><%= summit.summit %></td>
               <td><%= summit.osm_summit_elevation %></td>
-              <td><a href="https://www.strava.com/activities/<%= summit.activity_id %> " target='_blank'>Strava Activity</a></td>
+              <td><a href="https://www.strava.com/activities/<%= summit.activity_id %> " target='_blank'>Activity</a></td>
             </tr>
           <% end %>
           <% if !@user.token %>
