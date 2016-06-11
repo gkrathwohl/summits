@@ -1,7 +1,21 @@
 <% content_for :title do %>About<% end %>
-<h3>About the Website</h3>
-<p>
-This web application was created with
-<%= link_to('Rails Composer', 'http://railsapps.github.io/rails-composer/') %>
-from the <%= link_to('RailsApps project', 'http://railsapps.github.io/') %>.
-</p>
+
+<div class="container content">
+    <div class="row">
+        <div class="column col-md-offset-2">
+            <h3 class="text-left">Summits</h3>
+            <p>
+                Summits on Strava is a web application that connects to your Strava account to catalog all of the summits you've completed.
+            </p>
+            <p>
+                After you create an account and connect to Strava, we'll start checking all of your activities to see which mountains you've summited. There's a lot of mountains to check, so be patient.
+            </p>
+            <p>
+                It was built with Ruby on Rails. You can see the source code on <%= link_to  "GitHub", "https://github.com/gkrathwohl/summits/" %>. The summit data comes from <%= link_to "OpenStreetMap", "https://www.openstreetmap.org/about" %>.
+            </p>
+            <p>
+                - Greg Krathwohl
+            </p>
+        </div>
+    </div>
+</div>

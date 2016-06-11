@@ -10,6 +10,9 @@
 .content {
   padding-top: 5%;
 }
+.number-align{
+  text-align: right;
+}
 </style>
 
 <div class="container content">
@@ -18,7 +21,7 @@
       <% if @activities.count == @indexed_activities.count %>
         <p class="text-center" style="color: green" ><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Strava sync complete (<%= @activities.count %> activities)</p>
       <% else %>
-        <p class="text-center" style="color: red"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Syncing <%= @activities.count - @indexed_activities.count %> activities. Refresh page to see progress.</p>
+        <p class="text-center" style="color: red"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Syncing <%= @activities.count - @indexed_activities.count %> <%= "activity".pluralize(@activities.count - @indexed_activities.count)%>. Refresh page to see progress.</p>
       <% end %>
     <% else %>
       <%= link_to(image_tag("ConnectWithStrava.png", size: "171x31", ), "https://www.strava.com/oauth/authorize?client_id=3764&response_type=code&redirect_uri=http://localhost:3000/users/connect&approval_prompt=force") %>
@@ -29,14 +32,14 @@
         <tbody>
           <tr>
             <th>Name</th>
-            <th>Elevation (meters)</th>
+            <th>Elevation</th>
             <th>Strava Link</th>
           </tr>
           <% @user.summit_completions.each do |summit| %>
             <tr>
               <td><%= summit.summit %></td>
-              <td><%= summit.osm_summit_elevation %></td>
-              <td><a href="https://www.strava.com/activities/<%= summit.activity_id %> " target='_blank'>Activity</a></td>
+              <td class="number-align"><%= summit.osm_summit_elevation ? (summit.osm_summit_elevation * 3.28084).to_i : "-" %> ft</td>
+              <td class="text-center"><a href="https://www.strava.com/activities/<%= summit.activity_id %> " target='_blank'>Activity</a></td>
             </tr>
           <% end %>
           <% if !@user.token %>

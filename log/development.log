@@ -38552,3 +38552,875 @@ Processing by UsersController#show as HTML
   Rendered layouts/_nav_links_for_auth.html.erb (0.2ms)
   Rendered layouts/_navigation.html.erb (2.9ms)
 Completed 200 OK in 2767ms (Views: 130.2ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/users/3" for ::1 at 2016-06-11 00:38:02 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (1.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 3]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+  Rendered users/show.html.erb within layouts/application (2.8ms)
+Completed 500 Internal Server Error in 3141ms (ActiveRecord: 1.6ms)
+
+SyntaxError - syntax error, unexpected tSTRING_BEG, expecting ')'
+...t - @indexed_activities.count "activity".pluralize(@activiti...
+...                               ^:
+   () Users/gregkrathwohl/dev/summits/app/views/users/show.html.erb:21:in `'
+  actionview (4.2.5) lib/action_view/template.rb:296:in `compile'
+  actionview (4.2.5) lib/action_view/template.rb:245:in `block (2 levels) in compile!'
+  activesupport (4.2.5) lib/active_support/notifications.rb:166:in `instrument'
+  actionview (4.2.5) lib/action_view/template.rb:333:in `instrument'
+  actionview (4.2.5) lib/action_view/template.rb:244:in `block in compile!'
+  actionview (4.2.5) lib/action_view/template.rb:232:in `compile!'
+  actionview (4.2.5) lib/action_view/template.rb:144:in `block in render'
+  activesupport (4.2.5) lib/active_support/notifications.rb:166:in `instrument'
+  actionview (4.2.5) lib/action_view/template.rb:333:in `instrument'
+  actionview (4.2.5) lib/action_view/template.rb:143:in `render'
+  actionview (4.2.5) lib/action_view/renderer/template_renderer.rb:54:in `block (2 levels) in render_template'
+  actionview (4.2.5) lib/action_view/renderer/abstract_renderer.rb:39:in `block in instrument'
+  activesupport (4.2.5) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.5) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.5) lib/active_support/notifications.rb:164:in `instrument'
+  actionview (4.2.5) lib/action_view/renderer/abstract_renderer.rb:39:in `instrument'
+  actionview (4.2.5) lib/action_view/renderer/template_renderer.rb:53:in `block in render_template'
+  actionview (4.2.5) lib/action_view/renderer/template_renderer.rb:61:in `render_with_layout'
+  actionview (4.2.5) lib/action_view/renderer/template_renderer.rb:52:in `render_template'
+  actionview (4.2.5) lib/action_view/renderer/template_renderer.rb:14:in `render'
+  actionview (4.2.5) lib/action_view/renderer/renderer.rb:42:in `render_template'
+  actionview (4.2.5) lib/action_view/renderer/renderer.rb:23:in `render'
+  actionview (4.2.5) lib/action_view/rendering.rb:100:in `_render_template'
+  actionpack (4.2.5) lib/action_controller/metal/streaming.rb:217:in `_render_template'
+  actionview (4.2.5) lib/action_view/rendering.rb:83:in `render_to_body'
+  actionpack (4.2.5) lib/action_controller/metal/rendering.rb:32:in `render_to_body'
+  actionpack (4.2.5) lib/action_controller/metal/renderers.rb:37:in `render_to_body'
+  actionpack (4.2.5) lib/abstract_controller/rendering.rb:25:in `render'
+  actionpack (4.2.5) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:44:in `block (2 levels) in render'
+  activesupport (4.2.5) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+   () Users/gregkrathwohl/.rvm/rubies/ruby-2.2.3/lib/ruby/2.2.0/benchmark.rb:303:in `realtime'
+  activesupport (4.2.5) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:44:in `block in render'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:87:in `cleanup_view_runtime'
+  activerecord (4.2.5) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:43:in `render'
+  actionpack (4.2.5) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (4.2.5) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (4.2.5) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.5) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.5) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.5) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.5) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.5) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.5) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.5) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.5) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.5) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.5) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.5) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:76:in `dispatch'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:45:in `serve'
+  actionpack (4.2.5) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.5) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  warden (1.2.3) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.3) lib/warden/manager.rb:34:in `call'
+  rack (1.6.4) lib/rack/etag.rb:24:in `call'
+  rack (1.6.4) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.4) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.5) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.5) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.5) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.5) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.2.1) lib/web_console/middleware.rb:39:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.2.5) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.5) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+   () Users/gregkrathwohl/.rvm/rubies/ruby-2.2.3/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+   () Users/gregkrathwohl/.rvm/rubies/ruby-2.2.3/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+   () Users/gregkrathwohl/.rvm/rubies/ruby-2.2.3/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+
+Started POST "/__better_errors/75c761b1b044f243/variables" for ::1 at 2016-06-11 00:38:05 -0400
+  [1m[36mSummitCompletion Load (0.2ms)[0m  [1mSELECT "summit_completions".* FROM "summit_completions" WHERE "summit_completions"."user_id" = ?[0m  [["user_id", 3]]
+  [1m[35mIndexedActivity Load (1.6ms)[0m  SELECT "indexed_activities".* FROM "indexed_activities" WHERE "indexed_activities"."user_id" = ?  [["user_id", 3]]
+
+
+Started GET "/users/3" for ::1 at 2016-06-11 00:38:44 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 3]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "indexed_activities" WHERE "indexed_activities"."user_id" = ?[0m  [["user_id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "indexed_activities" WHERE "indexed_activities"."user_id" = ?  [["user_id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "indexed_activities" WHERE "indexed_activities"."user_id" = ?[0m  [["user_id", 3]]
+  [1m[35mSummitCompletion Load (0.3ms)[0m  SELECT "summit_completions".* FROM "summit_completions" WHERE "summit_completions"."user_id" = ?  [["user_id", 3]]
+  Rendered users/show.html.erb within layouts/application (6.2ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_nav_links_for_auth.html.erb (0.1ms)
+  Rendered layouts/_navigation.html.erb (2.8ms)
+Completed 200 OK in 2868ms (Views: 184.5ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/users/3" for ::1 at 2016-06-11 00:38:55 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 3]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "indexed_activities" WHERE "indexed_activities"."user_id" = ?[0m  [["user_id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "indexed_activities" WHERE "indexed_activities"."user_id" = ?  [["user_id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "indexed_activities" WHERE "indexed_activities"."user_id" = ?[0m  [["user_id", 3]]
+  [1m[35mSummitCompletion Load (0.5ms)[0m  SELECT "summit_completions".* FROM "summit_completions" WHERE "summit_completions"."user_id" = ?  [["user_id", 3]]
+  Rendered users/show.html.erb within layouts/application (5.9ms)
+  Rendered layouts/_navigation_links.html.erb (0.4ms)
+  Rendered layouts/_nav_links_for_auth.html.erb (0.2ms)
+  Rendered layouts/_navigation.html.erb (4.6ms)
+Completed 200 OK in 2925ms (Views: 146.4ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/pages/about" for ::1 at 2016-06-11 01:05:57 -0400
+Processing by HighVoltage::PagesController#show as HTML
+  Parameters: {"id"=>"about"}
+  Rendered pages/about.html.erb within layouts/application (1.3ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 3]]
+  Rendered layouts/_nav_links_for_auth.html.erb (1.4ms)
+  Rendered layouts/_navigation.html.erb (5.0ms)
+Completed 200 OK in 179ms (Views: 176.9ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/pages/about" for ::1 at 2016-06-11 01:07:22 -0400
+Processing by HighVoltage::PagesController#show as HTML
+  Parameters: {"id"=>"about"}
+  Rendered pages/about.html.erb within layouts/application (1.6ms)
+  Rendered layouts/_navigation_links.html.erb (0.4ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 3]]
+  Rendered layouts/_nav_links_for_auth.html.erb (3.2ms)
+  Rendered layouts/_navigation.html.erb (6.3ms)
+Completed 200 OK in 165ms (Views: 163.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/pages/about" for ::1 at 2016-06-11 01:07:40 -0400
+Processing by HighVoltage::PagesController#show as HTML
+  Parameters: {"id"=>"about"}
+  Rendered pages/about.html.erb within layouts/application (0.9ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 3]]
+  Rendered layouts/_nav_links_for_auth.html.erb (1.3ms)
+  Rendered layouts/_navigation.html.erb (4.2ms)
+Completed 200 OK in 178ms (Views: 177.4ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/pages/about" for ::1 at 2016-06-11 01:09:15 -0400
+Processing by HighVoltage::PagesController#show as HTML
+  Parameters: {"id"=>"about"}
+  Rendered pages/about.html.erb within layouts/application (0.8ms)
+  Rendered layouts/_navigation_links.html.erb (0.5ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 3]]
+  Rendered layouts/_nav_links_for_auth.html.erb (1.6ms)
+  Rendered layouts/_navigation.html.erb (5.8ms)
+Completed 200 OK in 156ms (Views: 155.5ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/pages/about" for ::1 at 2016-06-11 01:09:45 -0400
+Processing by HighVoltage::PagesController#show as HTML
+  Parameters: {"id"=>"about"}
+  Rendered pages/about.html.erb within layouts/application (0.9ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 3]]
+  Rendered layouts/_nav_links_for_auth.html.erb (1.4ms)
+  Rendered layouts/_navigation.html.erb (4.2ms)
+Completed 200 OK in 176ms (Views: 175.5ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/pages/about" for ::1 at 2016-06-11 01:10:08 -0400
+Processing by HighVoltage::PagesController#show as HTML
+  Parameters: {"id"=>"about"}
+  Rendered pages/about.html.erb within layouts/application (0.7ms)
+  Rendered layouts/_navigation_links.html.erb (0.4ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 3]]
+  Rendered layouts/_nav_links_for_auth.html.erb (1.7ms)
+  Rendered layouts/_navigation.html.erb (5.7ms)
+Completed 200 OK in 153ms (Views: 151.8ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/pages/about" for ::1 at 2016-06-11 01:10:32 -0400
+Processing by HighVoltage::PagesController#show as HTML
+  Parameters: {"id"=>"about"}
+  Rendered pages/about.html.erb within layouts/application (0.6ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 3]]
+  Rendered layouts/_nav_links_for_auth.html.erb (1.4ms)
+  Rendered layouts/_navigation.html.erb (5.3ms)
+Completed 200 OK in 125ms (Views: 124.6ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/pages/about" for ::1 at 2016-06-11 01:10:37 -0400
+Processing by HighVoltage::PagesController#show as HTML
+  Parameters: {"id"=>"about"}
+  Rendered pages/about.html.erb within layouts/application (0.9ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 3]]
+  Rendered layouts/_nav_links_for_auth.html.erb (1.0ms)
+  Rendered layouts/_navigation.html.erb (4.0ms)
+Completed 200 OK in 122ms (Views: 121.4ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/pages/about" for ::1 at 2016-06-11 01:10:54 -0400
+Processing by HighVoltage::PagesController#show as HTML
+  Parameters: {"id"=>"about"}
+  Rendered pages/about.html.erb within layouts/application (1.5ms)
+  Rendered layouts/_navigation_links.html.erb (0.2ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 3]]
+  Rendered layouts/_nav_links_for_auth.html.erb (1.1ms)
+  Rendered layouts/_navigation.html.erb (4.5ms)
+Completed 200 OK in 107ms (Views: 106.5ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/pages/about" for ::1 at 2016-06-11 01:11:10 -0400
+Processing by HighVoltage::PagesController#show as HTML
+  Parameters: {"id"=>"about"}
+  Rendered pages/about.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 3]]
+  Rendered layouts/_nav_links_for_auth.html.erb (1.1ms)
+  Rendered layouts/_navigation.html.erb (4.2ms)
+Completed 200 OK in 133ms (Views: 132.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/pages/about" for ::1 at 2016-06-11 01:13:14 -0400
+Processing by HighVoltage::PagesController#show as HTML
+  Parameters: {"id"=>"about"}
+  Rendered pages/about.html.erb within layouts/application (0.7ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 3]]
+  Rendered layouts/_nav_links_for_auth.html.erb (1.3ms)
+  Rendered layouts/_navigation.html.erb (4.0ms)
+Completed 200 OK in 136ms (Views: 134.9ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/pages/about" for ::1 at 2016-06-11 01:15:02 -0400
+Processing by HighVoltage::PagesController#show as HTML
+  Parameters: {"id"=>"about"}
+  Rendered pages/about.html.erb within layouts/application (0.4ms)
+  Rendered layouts/_navigation_links.html.erb (0.5ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 3]]
+  Rendered layouts/_nav_links_for_auth.html.erb (2.1ms)
+  Rendered layouts/_navigation.html.erb (6.1ms)
+Completed 200 OK in 2215ms (Views: 2213.0ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/" for ::1 at 2016-06-11 01:15:09 -0400
+Processing by UsersController#home as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 3]]
+Redirected to http://localhost:3000/users/3
+Completed 302 Found in 3ms (ActiveRecord: 0.1ms)
+
+
+Started GET "/users/3" for ::1 at 2016-06-11 01:15:09 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 3]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "indexed_activities" WHERE "indexed_activities"."user_id" = ?  [["user_id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "indexed_activities" WHERE "indexed_activities"."user_id" = ?[0m  [["user_id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "indexed_activities" WHERE "indexed_activities"."user_id" = ?  [["user_id", 3]]
+  [1m[36mSummitCompletion Load (0.2ms)[0m  [1mSELECT "summit_completions".* FROM "summit_completions" WHERE "summit_completions"."user_id" = ?[0m  [["user_id", 3]]
+  Rendered users/show.html.erb within layouts/application (4.6ms)
+  Rendered layouts/_navigation_links.html.erb (0.6ms)
+  Rendered layouts/_nav_links_for_auth.html.erb (0.2ms)
+  Rendered layouts/_navigation.html.erb (5.6ms)
+Completed 200 OK in 3732ms (Views: 129.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/users/3" for ::1 at 2016-06-11 01:16:57 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 3]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "indexed_activities" WHERE "indexed_activities"."user_id" = ?  [["user_id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "indexed_activities" WHERE "indexed_activities"."user_id" = ?[0m  [["user_id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "indexed_activities" WHERE "indexed_activities"."user_id" = ?  [["user_id", 3]]
+  [1m[36mSummitCompletion Load (0.2ms)[0m  [1mSELECT "summit_completions".* FROM "summit_completions" WHERE "summit_completions"."user_id" = ?[0m  [["user_id", 3]]
+  Rendered users/show.html.erb within layouts/application (9.3ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_nav_links_for_auth.html.erb (0.2ms)
+  Rendered layouts/_navigation.html.erb (3.1ms)
+Completed 200 OK in 3725ms (Views: 159.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/users/3" for ::1 at 2016-06-11 01:18:25 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 3]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "indexed_activities" WHERE "indexed_activities"."user_id" = ?  [["user_id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "indexed_activities" WHERE "indexed_activities"."user_id" = ?[0m  [["user_id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "indexed_activities" WHERE "indexed_activities"."user_id" = ?  [["user_id", 3]]
+  [1m[36mSummitCompletion Load (0.2ms)[0m  [1mSELECT "summit_completions".* FROM "summit_completions" WHERE "summit_completions"."user_id" = ?[0m  [["user_id", 3]]
+  Rendered users/show.html.erb within layouts/application (16.7ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_nav_links_for_auth.html.erb (0.2ms)
+  Rendered layouts/_navigation.html.erb (3.3ms)
+Completed 200 OK in 3966ms (Views: 162.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/users/3" for ::1 at 2016-06-11 01:20:14 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 3]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "indexed_activities" WHERE "indexed_activities"."user_id" = ?  [["user_id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "indexed_activities" WHERE "indexed_activities"."user_id" = ?[0m  [["user_id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "indexed_activities" WHERE "indexed_activities"."user_id" = ?  [["user_id", 3]]
+  [1m[36mSummitCompletion Load (0.2ms)[0m  [1mSELECT "summit_completions".* FROM "summit_completions" WHERE "summit_completions"."user_id" = ?[0m  [["user_id", 3]]
+  Rendered users/show.html.erb within layouts/application (4.8ms)
+  Rendered layouts/_navigation_links.html.erb (0.4ms)
+  Rendered layouts/_nav_links_for_auth.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (3.8ms)
+Completed 200 OK in 3233ms (Views: 144.5ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/pages/about" for ::1 at 2016-06-11 01:20:28 -0400
+Processing by HighVoltage::PagesController#show as HTML
+  Parameters: {"id"=>"about"}
+  Rendered pages/about.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_navigation_links.html.erb (0.2ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 3]]
+  Rendered layouts/_nav_links_for_auth.html.erb (0.9ms)
+  Rendered layouts/_navigation.html.erb (3.4ms)
+Completed 200 OK in 134ms (Views: 133.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/pages/about" for ::1 at 2016-06-11 01:21:29 -0400
+Processing by HighVoltage::PagesController#show as HTML
+  Parameters: {"id"=>"about"}
+  Rendered pages/about.html.erb within layouts/application (0.3ms)
+  Rendered layouts/_navigation_links.html.erb (0.4ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 3]]
+  Rendered layouts/_nav_links_for_auth.html.erb (1.1ms)
+  Rendered layouts/_navigation.html.erb (4.6ms)
+Completed 200 OK in 115ms (Views: 114.0ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/pages/about" for ::1 at 2016-06-11 01:22:34 -0400
+Processing by HighVoltage::PagesController#show as HTML
+  Parameters: {"id"=>"about"}
+  Rendered pages/about.html.erb within layouts/application (1.3ms)
+  Rendered layouts/_navigation_links.html.erb (0.2ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 3]]
+  Rendered layouts/_nav_links_for_auth.html.erb (1.0ms)
+  Rendered layouts/_navigation.html.erb (3.0ms)
+Completed 200 OK in 112ms (Views: 111.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/pages/about" for ::1 at 2016-06-11 01:22:45 -0400
+Processing by HighVoltage::PagesController#show as HTML
+  Parameters: {"id"=>"about"}
+  Rendered pages/about.html.erb within layouts/application (0.4ms)
+  Rendered layouts/_navigation_links.html.erb (0.4ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 3]]
+  Rendered layouts/_nav_links_for_auth.html.erb (1.0ms)
+  Rendered layouts/_navigation.html.erb (4.3ms)
+Completed 200 OK in 107ms (Views: 106.4ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/pages/about" for ::1 at 2016-06-11 01:23:03 -0400
+Processing by HighVoltage::PagesController#show as HTML
+  Parameters: {"id"=>"about"}
+  Rendered pages/about.html.erb within layouts/application (0.7ms)
+  Rendered layouts/_navigation_links.html.erb (0.4ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 3]]
+  Rendered layouts/_nav_links_for_auth.html.erb (1.5ms)
+  Rendered layouts/_navigation.html.erb (6.7ms)
+Completed 200 OK in 118ms (Views: 117.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/pages/about" for ::1 at 2016-06-11 01:23:10 -0400
+Processing by HighVoltage::PagesController#show as HTML
+  Parameters: {"id"=>"about"}
+  Rendered pages/about.html.erb within layouts/application (0.6ms)
+  Rendered layouts/_navigation_links.html.erb (0.2ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 3]]
+  Rendered layouts/_nav_links_for_auth.html.erb (1.2ms)
+  Rendered layouts/_navigation.html.erb (3.2ms)
+Completed 200 OK in 110ms (Views: 109.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/pages/about" for ::1 at 2016-06-11 01:27:10 -0400
+Processing by HighVoltage::PagesController#show as HTML
+  Parameters: {"id"=>"about"}
+  Rendered pages/about.html.erb within layouts/application (1.2ms)
+  Rendered layouts/_navigation_links.html.erb (0.2ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 3]]
+  Rendered layouts/_nav_links_for_auth.html.erb (1.4ms)
+  Rendered layouts/_navigation.html.erb (3.5ms)
+Completed 200 OK in 117ms (Views: 116.4ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/pages/about" for ::1 at 2016-06-11 01:27:43 -0400
+Processing by HighVoltage::PagesController#show as HTML
+  Parameters: {"id"=>"about"}
+  Rendered pages/about.html.erb within layouts/application (0.6ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 3]]
+  Rendered layouts/_nav_links_for_auth.html.erb (1.0ms)
+  Rendered layouts/_navigation.html.erb (3.2ms)
+Completed 200 OK in 108ms (Views: 107.9ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/pages/about" for ::1 at 2016-06-11 01:31:28 -0400
+Processing by HighVoltage::PagesController#show as HTML
+  Parameters: {"id"=>"about"}
+  Rendered pages/about.html.erb within layouts/application (0.6ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 3]]
+  Rendered layouts/_nav_links_for_auth.html.erb (0.9ms)
+  Rendered layouts/_navigation.html.erb (3.6ms)
+Completed 200 OK in 125ms (Views: 123.9ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/pages/about" for ::1 at 2016-06-11 01:31:40 -0400
+Processing by HighVoltage::PagesController#show as HTML
+  Parameters: {"id"=>"about"}
+  Rendered pages/about.html.erb within layouts/application (0.6ms)
+  Rendered layouts/_navigation_links.html.erb (0.2ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 3]]
+  Rendered layouts/_nav_links_for_auth.html.erb (1.0ms)
+  Rendered layouts/_navigation.html.erb (3.8ms)
+Completed 200 OK in 117ms (Views: 116.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/pages/about" for ::1 at 2016-06-11 01:32:26 -0400
+Processing by HighVoltage::PagesController#show as HTML
+  Parameters: {"id"=>"about"}
+  Rendered pages/about.html.erb within layouts/application (0.7ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 3]]
+  Rendered layouts/_nav_links_for_auth.html.erb (1.2ms)
+  Rendered layouts/_navigation.html.erb (4.4ms)
+Completed 200 OK in 119ms (Views: 117.9ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/" for ::1 at 2016-06-11 01:32:39 -0400
+Processing by UsersController#home as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 3]]
+Redirected to http://localhost:3000/users/3
+Completed 302 Found in 2ms (ActiveRecord: 0.1ms)
+
+
+Started GET "/users/3" for ::1 at 2016-06-11 01:32:39 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 3]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "indexed_activities" WHERE "indexed_activities"."user_id" = ?  [["user_id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "indexed_activities" WHERE "indexed_activities"."user_id" = ?[0m  [["user_id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "indexed_activities" WHERE "indexed_activities"."user_id" = ?  [["user_id", 3]]
+  [1m[36mSummitCompletion Load (0.2ms)[0m  [1mSELECT "summit_completions".* FROM "summit_completions" WHERE "summit_completions"."user_id" = ?[0m  [["user_id", 3]]
+  Rendered users/show.html.erb within layouts/application (14.0ms)
+  Rendered layouts/_navigation_links.html.erb (0.4ms)
+  Rendered layouts/_nav_links_for_auth.html.erb (0.2ms)
+  Rendered layouts/_navigation.html.erb (5.5ms)
+Completed 200 OK in 3424ms (Views: 127.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/users/3" for ::1 at 2016-06-11 01:34:09 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 3]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "indexed_activities" WHERE "indexed_activities"."user_id" = ?  [["user_id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "indexed_activities" WHERE "indexed_activities"."user_id" = ?[0m  [["user_id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "indexed_activities" WHERE "indexed_activities"."user_id" = ?  [["user_id", 3]]
+  [1m[36mSummitCompletion Load (0.3ms)[0m  [1mSELECT "summit_completions".* FROM "summit_completions" WHERE "summit_completions"."user_id" = ?[0m  [["user_id", 3]]
+  Rendered users/show.html.erb within layouts/application (7.1ms)
+Completed 500 Internal Server Error in 3380ms (ActiveRecord: 0.7ms)
+
+NoMethodError - undefined method `*' for nil:NilClass:
+   () Users/gregkrathwohl/dev/summits/app/views/users/show.html.erb:41:in `block in _app_views_users_show_html_erb__2156358258230021757_70111975988920'
+  activerecord (4.2.5) lib/active_record/relation/delegation.rb:46:in `each'
+   () Users/gregkrathwohl/dev/summits/app/views/users/show.html.erb:38:in `_app_views_users_show_html_erb__2156358258230021757_70111975988920'
+  actionview (4.2.5) lib/action_view/template.rb:145:in `block in render'
+  activesupport (4.2.5) lib/active_support/notifications.rb:166:in `instrument'
+  actionview (4.2.5) lib/action_view/template.rb:333:in `instrument'
+  actionview (4.2.5) lib/action_view/template.rb:143:in `render'
+  actionview (4.2.5) lib/action_view/renderer/template_renderer.rb:54:in `block (2 levels) in render_template'
+  actionview (4.2.5) lib/action_view/renderer/abstract_renderer.rb:39:in `block in instrument'
+  activesupport (4.2.5) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.5) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.5) lib/active_support/notifications.rb:164:in `instrument'
+  actionview (4.2.5) lib/action_view/renderer/abstract_renderer.rb:39:in `instrument'
+  actionview (4.2.5) lib/action_view/renderer/template_renderer.rb:53:in `block in render_template'
+  actionview (4.2.5) lib/action_view/renderer/template_renderer.rb:61:in `render_with_layout'
+  actionview (4.2.5) lib/action_view/renderer/template_renderer.rb:52:in `render_template'
+  actionview (4.2.5) lib/action_view/renderer/template_renderer.rb:14:in `render'
+  actionview (4.2.5) lib/action_view/renderer/renderer.rb:42:in `render_template'
+  actionview (4.2.5) lib/action_view/renderer/renderer.rb:23:in `render'
+  actionview (4.2.5) lib/action_view/rendering.rb:100:in `_render_template'
+  actionpack (4.2.5) lib/action_controller/metal/streaming.rb:217:in `_render_template'
+  actionview (4.2.5) lib/action_view/rendering.rb:83:in `render_to_body'
+  actionpack (4.2.5) lib/action_controller/metal/rendering.rb:32:in `render_to_body'
+  actionpack (4.2.5) lib/action_controller/metal/renderers.rb:37:in `render_to_body'
+  actionpack (4.2.5) lib/abstract_controller/rendering.rb:25:in `render'
+  actionpack (4.2.5) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:44:in `block (2 levels) in render'
+  activesupport (4.2.5) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+   () Users/gregkrathwohl/.rvm/rubies/ruby-2.2.3/lib/ruby/2.2.0/benchmark.rb:303:in `realtime'
+  activesupport (4.2.5) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:44:in `block in render'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:87:in `cleanup_view_runtime'
+  activerecord (4.2.5) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:43:in `render'
+  actionpack (4.2.5) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (4.2.5) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (4.2.5) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.5) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.5) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.5) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.5) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.5) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.5) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.5) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.5) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.5) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.5) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.5) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:76:in `dispatch'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:45:in `serve'
+  actionpack (4.2.5) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.5) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  warden (1.2.3) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.3) lib/warden/manager.rb:34:in `call'
+  rack (1.6.4) lib/rack/etag.rb:24:in `call'
+  rack (1.6.4) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.4) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.5) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.5) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.5) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.5) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.2.1) lib/web_console/middleware.rb:39:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.2.5) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.5) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+   () Users/gregkrathwohl/.rvm/rubies/ruby-2.2.3/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+   () Users/gregkrathwohl/.rvm/rubies/ruby-2.2.3/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+   () Users/gregkrathwohl/.rvm/rubies/ruby-2.2.3/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+
+Started POST "/__better_errors/10c3fb724599aae0/variables" for ::1 at 2016-06-11 01:34:13 -0400
+  [1m[35mIndexedActivity Load (9.1ms)[0m  SELECT "indexed_activities".* FROM "indexed_activities" WHERE "indexed_activities"."user_id" = ?  [["user_id", 3]]
+
+
+Started GET "/users/3" for ::1 at 2016-06-11 01:34:37 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 3]]
+  [1m[35mUser Load (1.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+  Rendered users/show.html.erb within layouts/application (1.8ms)
+Completed 500 Internal Server Error in 3160ms (ActiveRecord: 1.2ms)
+
+SyntaxError - syntax error, unexpected ':', expecting ')'
+...sm_summit_elevation * 3.28084 : "" );@output_buffer.safe_app...
+...                               ^:
+   () Users/gregkrathwohl/dev/summits/app/views/users/show.html.erb:41:in `'
+  actionview (4.2.5) lib/action_view/template.rb:296:in `compile'
+  actionview (4.2.5) lib/action_view/template.rb:245:in `block (2 levels) in compile!'
+  activesupport (4.2.5) lib/active_support/notifications.rb:166:in `instrument'
+  actionview (4.2.5) lib/action_view/template.rb:333:in `instrument'
+  actionview (4.2.5) lib/action_view/template.rb:244:in `block in compile!'
+  actionview (4.2.5) lib/action_view/template.rb:232:in `compile!'
+  actionview (4.2.5) lib/action_view/template.rb:144:in `block in render'
+  activesupport (4.2.5) lib/active_support/notifications.rb:166:in `instrument'
+  actionview (4.2.5) lib/action_view/template.rb:333:in `instrument'
+  actionview (4.2.5) lib/action_view/template.rb:143:in `render'
+  actionview (4.2.5) lib/action_view/renderer/template_renderer.rb:54:in `block (2 levels) in render_template'
+  actionview (4.2.5) lib/action_view/renderer/abstract_renderer.rb:39:in `block in instrument'
+  activesupport (4.2.5) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.5) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.5) lib/active_support/notifications.rb:164:in `instrument'
+  actionview (4.2.5) lib/action_view/renderer/abstract_renderer.rb:39:in `instrument'
+  actionview (4.2.5) lib/action_view/renderer/template_renderer.rb:53:in `block in render_template'
+  actionview (4.2.5) lib/action_view/renderer/template_renderer.rb:61:in `render_with_layout'
+  actionview (4.2.5) lib/action_view/renderer/template_renderer.rb:52:in `render_template'
+  actionview (4.2.5) lib/action_view/renderer/template_renderer.rb:14:in `render'
+  actionview (4.2.5) lib/action_view/renderer/renderer.rb:42:in `render_template'
+  actionview (4.2.5) lib/action_view/renderer/renderer.rb:23:in `render'
+  actionview (4.2.5) lib/action_view/rendering.rb:100:in `_render_template'
+  actionpack (4.2.5) lib/action_controller/metal/streaming.rb:217:in `_render_template'
+  actionview (4.2.5) lib/action_view/rendering.rb:83:in `render_to_body'
+  actionpack (4.2.5) lib/action_controller/metal/rendering.rb:32:in `render_to_body'
+  actionpack (4.2.5) lib/action_controller/metal/renderers.rb:37:in `render_to_body'
+  actionpack (4.2.5) lib/abstract_controller/rendering.rb:25:in `render'
+  actionpack (4.2.5) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:44:in `block (2 levels) in render'
+  activesupport (4.2.5) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+   () Users/gregkrathwohl/.rvm/rubies/ruby-2.2.3/lib/ruby/2.2.0/benchmark.rb:303:in `realtime'
+  activesupport (4.2.5) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:44:in `block in render'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:87:in `cleanup_view_runtime'
+  activerecord (4.2.5) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:43:in `render'
+  actionpack (4.2.5) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (4.2.5) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (4.2.5) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.5) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.5) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.5) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.5) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.5) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.5) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.5) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.5) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.5) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.5) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.5) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:76:in `dispatch'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:45:in `serve'
+  actionpack (4.2.5) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.5) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  warden (1.2.3) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.3) lib/warden/manager.rb:34:in `call'
+  rack (1.6.4) lib/rack/etag.rb:24:in `call'
+  rack (1.6.4) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.4) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.5) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.5) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.5) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.5) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.2.1) lib/web_console/middleware.rb:39:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.2.5) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.5) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+   () Users/gregkrathwohl/.rvm/rubies/ruby-2.2.3/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+   () Users/gregkrathwohl/.rvm/rubies/ruby-2.2.3/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+   () Users/gregkrathwohl/.rvm/rubies/ruby-2.2.3/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+
+Started POST "/__better_errors/0348d020fbd15c46/variables" for ::1 at 2016-06-11 01:34:40 -0400
+  [1m[36mSummitCompletion Load (0.2ms)[0m  [1mSELECT "summit_completions".* FROM "summit_completions" WHERE "summit_completions"."user_id" = ?[0m  [["user_id", 3]]
+  [1m[35mIndexedActivity Load (2.7ms)[0m  SELECT "indexed_activities".* FROM "indexed_activities" WHERE "indexed_activities"."user_id" = ?  [["user_id", 3]]
+
+
+Started GET "/users/3" for ::1 at 2016-06-11 01:34:49 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 3]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "indexed_activities" WHERE "indexed_activities"."user_id" = ?[0m  [["user_id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "indexed_activities" WHERE "indexed_activities"."user_id" = ?  [["user_id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "indexed_activities" WHERE "indexed_activities"."user_id" = ?[0m  [["user_id", 3]]
+  [1m[35mSummitCompletion Load (0.2ms)[0m  SELECT "summit_completions".* FROM "summit_completions" WHERE "summit_completions"."user_id" = ?  [["user_id", 3]]
+  Rendered users/show.html.erb within layouts/application (4.9ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_nav_links_for_auth.html.erb (0.2ms)
+  Rendered layouts/_navigation.html.erb (3.1ms)
+Completed 200 OK in 2998ms (Views: 127.6ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/users/3" for ::1 at 2016-06-11 01:35:33 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 3]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "indexed_activities" WHERE "indexed_activities"."user_id" = ?[0m  [["user_id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "indexed_activities" WHERE "indexed_activities"."user_id" = ?  [["user_id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "indexed_activities" WHERE "indexed_activities"."user_id" = ?[0m  [["user_id", 3]]
+  [1m[35mSummitCompletion Load (0.2ms)[0m  SELECT "summit_completions".* FROM "summit_completions" WHERE "summit_completions"."user_id" = ?  [["user_id", 3]]
+  Rendered users/show.html.erb within layouts/application (5.7ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_nav_links_for_auth.html.erb (0.2ms)
+  Rendered layouts/_navigation.html.erb (3.1ms)
+Completed 200 OK in 3267ms (Views: 144.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/users/3" for ::1 at 2016-06-11 01:36:01 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 3]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "indexed_activities" WHERE "indexed_activities"."user_id" = ?[0m  [["user_id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "indexed_activities" WHERE "indexed_activities"."user_id" = ?  [["user_id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "indexed_activities" WHERE "indexed_activities"."user_id" = ?[0m  [["user_id", 3]]
+  [1m[35mSummitCompletion Load (0.2ms)[0m  SELECT "summit_completions".* FROM "summit_completions" WHERE "summit_completions"."user_id" = ?  [["user_id", 3]]
+  Rendered users/show.html.erb within layouts/application (4.6ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_nav_links_for_auth.html.erb (0.1ms)
+  Rendered layouts/_navigation.html.erb (2.2ms)
+Completed 200 OK in 2953ms (Views: 128.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/users/3" for ::1 at 2016-06-11 01:36:13 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 3]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "indexed_activities" WHERE "indexed_activities"."user_id" = ?[0m  [["user_id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "indexed_activities" WHERE "indexed_activities"."user_id" = ?  [["user_id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "indexed_activities" WHERE "indexed_activities"."user_id" = ?[0m  [["user_id", 3]]
+  [1m[35mSummitCompletion Load (0.2ms)[0m  SELECT "summit_completions".* FROM "summit_completions" WHERE "summit_completions"."user_id" = ?  [["user_id", 3]]
+  Rendered users/show.html.erb within layouts/application (3.8ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_nav_links_for_auth.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (2.6ms)
+Completed 200 OK in 3172ms (Views: 145.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/users/3" for ::1 at 2016-06-11 01:36:30 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 3]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "indexed_activities" WHERE "indexed_activities"."user_id" = ?[0m  [["user_id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "indexed_activities" WHERE "indexed_activities"."user_id" = ?  [["user_id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "indexed_activities" WHERE "indexed_activities"."user_id" = ?[0m  [["user_id", 3]]
+  [1m[35mSummitCompletion Load (0.2ms)[0m  SELECT "summit_completions".* FROM "summit_completions" WHERE "summit_completions"."user_id" = ?  [["user_id", 3]]
+  Rendered users/show.html.erb within layouts/application (4.0ms)
+  Rendered layouts/_navigation_links.html.erb (0.2ms)
+  Rendered layouts/_nav_links_for_auth.html.erb (0.2ms)
+  Rendered layouts/_navigation.html.erb (2.0ms)
+Completed 200 OK in 2621ms (Views: 117.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/pages/about" for ::1 at 2016-06-11 01:39:15 -0400
+Processing by HighVoltage::PagesController#show as HTML
+  Parameters: {"id"=>"about"}
+  Rendered pages/about.html.erb within layouts/application (0.6ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 3]]
+  Rendered layouts/_nav_links_for_auth.html.erb (1.0ms)
+  Rendered layouts/_navigation.html.erb (5.0ms)
+Completed 200 OK in 129ms (Views: 128.3ms | ActiveRecord: 0.1ms)
