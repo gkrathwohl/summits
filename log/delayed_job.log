@@ -75,3 +75,4 @@ I, [2016-06-11T10:54:40.398350 #52086]  INFO -- : 2016-06-11T10:54:40-0400: [Wor
 I, [2016-06-11T10:54:40.401763 #52086]  INFO -- : 2016-06-11T10:54:40-0400: [Worker(host:Gregs-MBP.home pid:52086)] Job ActiveJob::QueueAdapters::DelayedJobAdapter::JobWrapper (id=17) RUNNING
 I, [2016-06-11T10:54:43.684444 #52086]  INFO -- : 2016-06-11T10:54:43-0400: [Worker(host:Gregs-MBP.home pid:52086)] Job ActiveJob::QueueAdapters::DelayedJobAdapter::JobWrapper (id=17) COMPLETED after 3.2825
 I, [2016-06-11T10:54:43.685862 #52086]  INFO -- : 2016-06-11T10:54:43-0400: [Worker(host:Gregs-MBP.home pid:52086)] 2 jobs processed at 0.2886 j/s, 0 failed
+I, [2016-06-11T11:16:46.568576 #52086]  INFO -- : 2016-06-11T11:16:46-0400: [Worker(host:Gregs-MBP.home pid:52086)] Exiting...
