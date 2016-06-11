@@ -24,7 +24,7 @@
         <p class="text-center" style="color: red"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Syncing <%= @activities.count - @indexed_activities.count %> <%= "activity".pluralize(@activities.count - @indexed_activities.count)%>. Refresh page to see progress.</p>
       <% end %>
     <% else %>
-      <%= link_to(image_tag("ConnectWithStrava.png", size: "171x31", ), "https://www.strava.com/oauth/authorize?client_id=3764&response_type=code&redirect_uri=http://localhost:3000/users/connect&approval_prompt=force") %>
+      <%= link_to(image_tag("ConnectWithStrava.png", size: "171x31", ), "https://www.strava.com/oauth/authorize?client_id=3764&response_type=code&redirect_uri=" + ENV['DOMAIN'] + "/users/connect&approval_prompt=force") %>
     <% end %>
     <div class="column col-md-offset-3 center_table">
       <h3>Summit Completions</h3>
