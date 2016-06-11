@@ -39673,3 +39673,1255 @@ Processing by UsersController#show as HTML
   Rendered layouts/_nav_links_for_auth.html.erb (1.1ms)
   Rendered layouts/_navigation.html.erb (4.9ms)
 Completed 200 OK in 4880ms (Views: 440.7ms | ActiveRecord: 2.1ms)
+
+
+Started DELETE "/users/sign_out" for ::1 at 2016-06-11 09:19:32 -0400
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"exyQGRlZEO3XwtPyQy/dXdw5aWrvolUvdEL6KvRwAir+QuzzuCb8mftKX61hG6Qr+jkSO1L9sIslhEq0n0uuxw=="}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 3]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  commit transaction
+Redirected to http://localhost:3000/
+Completed 302 Found in 311ms (ActiveRecord: 0.7ms)
+
+
+Started GET "/" for ::1 at 2016-06-11 09:19:33 -0400
+Processing by UsersController#home as HTML
+Completed 401 Unauthorized in 3ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for ::1 at 2016-06-11 09:19:33 -0400
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/sessions/new.html.erb within layouts/application (33.0ms)
+  Rendered layouts/_navigation_links.html.erb (0.4ms)
+  Rendered layouts/_nav_links_for_auth.html.erb (0.5ms)
+  Rendered layouts/_navigation.html.erb (3.5ms)
+Completed 200 OK in 132ms (Views: 129.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_up" for ::1 at 2016-06-11 09:19:38 -0400
+Processing by Devise::RegistrationsController#new as HTML
+  Rendered devise/registrations/new.html.erb within layouts/application (6.3ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_nav_links_for_auth.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (2.3ms)
+Completed 200 OK in 132ms (Views: 130.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for ::1 at 2016-06-11 09:19:51 -0400
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"/roLdB++bX2WTMfURYKDzMUgkEXfcflsjUVa2L0C/A2gnFo1sky3+Lc/hee+uaqjwuoyLBVT8J9XP0sM3YmiQw==", "user"=>{"name"=>"newUser", "email"=>"newUser@test.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'newuser@test.com' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("name", "email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "newUser"], ["email", "newuser@test.com"], ["encrypted_password", "$2a$10$NqBgw5M/KBmSxAChjvqVQ.FHQ9V613IwlEMmZyoU6K423vAiGZAa6"], ["created_at", "2016-06-11 13:19:51.469349"], ["updated_at", "2016-06-11 13:19:51.469349"]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  UPDATE "users" SET "last_sign_in_at" = ?, "current_sign_in_at" = ?, "last_sign_in_ip" = ?, "current_sign_in_ip" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["last_sign_in_at", "2016-06-11 13:19:51.472132"], ["current_sign_in_at", "2016-06-11 13:19:51.472132"], ["last_sign_in_ip", "::1"], ["current_sign_in_ip", "::1"], ["sign_in_count", 1], ["updated_at", "2016-06-11 13:19:51.472834"], ["id", 6]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 112ms (ActiveRecord: 2.2ms)
+
+
+Started GET "/" for ::1 at 2016-06-11 09:19:51 -0400
+Processing by UsersController#home as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 6]]
+Redirected to http://localhost:3000/users/6
+Completed 302 Found in 2ms (ActiveRecord: 0.1ms)
+
+
+Started GET "/users/6" for ::1 at 2016-06-11 09:19:51 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 6]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 6]]
+  Rendered users/show.html.erb within layouts/application (8.1ms)
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 0.2ms)
+
+TypeError - no implicit conversion of nil into String:
+   () Users/gregkrathwohl/dev/summits/app/views/users/show.html.erb:27:in `_app_views_users_show_html_erb___816283688198338512_70252138370320'
+  actionview (4.2.5) lib/action_view/template.rb:145:in `block in render'
+  activesupport (4.2.5) lib/active_support/notifications.rb:166:in `instrument'
+  actionview (4.2.5) lib/action_view/template.rb:333:in `instrument'
+  actionview (4.2.5) lib/action_view/template.rb:143:in `render'
+  actionview (4.2.5) lib/action_view/renderer/template_renderer.rb:54:in `block (2 levels) in render_template'
+  actionview (4.2.5) lib/action_view/renderer/abstract_renderer.rb:39:in `block in instrument'
+  activesupport (4.2.5) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.5) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.5) lib/active_support/notifications.rb:164:in `instrument'
+  actionview (4.2.5) lib/action_view/renderer/abstract_renderer.rb:39:in `instrument'
+  actionview (4.2.5) lib/action_view/renderer/template_renderer.rb:53:in `block in render_template'
+  actionview (4.2.5) lib/action_view/renderer/template_renderer.rb:61:in `render_with_layout'
+  actionview (4.2.5) lib/action_view/renderer/template_renderer.rb:52:in `render_template'
+  actionview (4.2.5) lib/action_view/renderer/template_renderer.rb:14:in `render'
+  actionview (4.2.5) lib/action_view/renderer/renderer.rb:42:in `render_template'
+  actionview (4.2.5) lib/action_view/renderer/renderer.rb:23:in `render'
+  actionview (4.2.5) lib/action_view/rendering.rb:100:in `_render_template'
+  actionpack (4.2.5) lib/action_controller/metal/streaming.rb:217:in `_render_template'
+  actionview (4.2.5) lib/action_view/rendering.rb:83:in `render_to_body'
+  actionpack (4.2.5) lib/action_controller/metal/rendering.rb:32:in `render_to_body'
+  actionpack (4.2.5) lib/action_controller/metal/renderers.rb:37:in `render_to_body'
+  actionpack (4.2.5) lib/abstract_controller/rendering.rb:25:in `render'
+  actionpack (4.2.5) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:44:in `block (2 levels) in render'
+  activesupport (4.2.5) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+   () Users/gregkrathwohl/.rvm/rubies/ruby-2.2.3/lib/ruby/2.2.0/benchmark.rb:303:in `realtime'
+  activesupport (4.2.5) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:44:in `block in render'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:87:in `cleanup_view_runtime'
+  activerecord (4.2.5) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:43:in `render'
+  actionpack (4.2.5) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (4.2.5) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (4.2.5) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.5) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.5) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.5) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.5) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.5) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.5) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.5) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.5) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.5) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.5) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.5) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:76:in `dispatch'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:45:in `serve'
+  actionpack (4.2.5) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.5) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  warden (1.2.3) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.3) lib/warden/manager.rb:34:in `call'
+  rack (1.6.4) lib/rack/etag.rb:24:in `call'
+  rack (1.6.4) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.4) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.5) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.5) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.5) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.5) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.2.1) lib/web_console/middleware.rb:39:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.2.5) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.5) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+   () Users/gregkrathwohl/.rvm/rubies/ruby-2.2.3/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+   () Users/gregkrathwohl/.rvm/rubies/ruby-2.2.3/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+   () Users/gregkrathwohl/.rvm/rubies/ruby-2.2.3/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+
+Started POST "/__better_errors/0b86374c15a86d0b/variables" for ::1 at 2016-06-11 09:19:51 -0400
+
+
+Started GET "/users/6" for ::1 at 2016-06-11 09:21:02 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 6]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 6]]
+  Rendered users/show.html.erb within layouts/application (133.3ms)
+Completed 500 Internal Server Error in 184ms (ActiveRecord: 0.8ms)
+
+TypeError - no implicit conversion of nil into String:
+   () Users/gregkrathwohl/dev/summits/app/views/users/show.html.erb:27:in `_app_views_users_show_html_erb__3661263120228519574_70365966042000'
+  actionview (4.2.5) lib/action_view/template.rb:145:in `block in render'
+  activesupport (4.2.5) lib/active_support/notifications.rb:166:in `instrument'
+  actionview (4.2.5) lib/action_view/template.rb:333:in `instrument'
+  actionview (4.2.5) lib/action_view/template.rb:143:in `render'
+  actionview (4.2.5) lib/action_view/renderer/template_renderer.rb:54:in `block (2 levels) in render_template'
+  actionview (4.2.5) lib/action_view/renderer/abstract_renderer.rb:39:in `block in instrument'
+  activesupport (4.2.5) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.5) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.5) lib/active_support/notifications.rb:164:in `instrument'
+  actionview (4.2.5) lib/action_view/renderer/abstract_renderer.rb:39:in `instrument'
+  actionview (4.2.5) lib/action_view/renderer/template_renderer.rb:53:in `block in render_template'
+  actionview (4.2.5) lib/action_view/renderer/template_renderer.rb:61:in `render_with_layout'
+  actionview (4.2.5) lib/action_view/renderer/template_renderer.rb:52:in `render_template'
+  actionview (4.2.5) lib/action_view/renderer/template_renderer.rb:14:in `render'
+  actionview (4.2.5) lib/action_view/renderer/renderer.rb:42:in `render_template'
+  actionview (4.2.5) lib/action_view/renderer/renderer.rb:23:in `render'
+  actionview (4.2.5) lib/action_view/rendering.rb:100:in `_render_template'
+  actionpack (4.2.5) lib/action_controller/metal/streaming.rb:217:in `_render_template'
+  actionview (4.2.5) lib/action_view/rendering.rb:83:in `render_to_body'
+  actionpack (4.2.5) lib/action_controller/metal/rendering.rb:32:in `render_to_body'
+  actionpack (4.2.5) lib/action_controller/metal/renderers.rb:37:in `render_to_body'
+  actionpack (4.2.5) lib/abstract_controller/rendering.rb:25:in `render'
+  actionpack (4.2.5) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:44:in `block (2 levels) in render'
+  activesupport (4.2.5) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+   () Users/gregkrathwohl/.rvm/rubies/ruby-2.2.3/lib/ruby/2.2.0/benchmark.rb:303:in `realtime'
+  activesupport (4.2.5) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:44:in `block in render'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:87:in `cleanup_view_runtime'
+  activerecord (4.2.5) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:43:in `render'
+  actionpack (4.2.5) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (4.2.5) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (4.2.5) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.5) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.5) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.5) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.5) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.5) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.5) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.5) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.5) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.5) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.5) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.5) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:76:in `dispatch'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:45:in `serve'
+  actionpack (4.2.5) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.5) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  warden (1.2.3) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.3) lib/warden/manager.rb:34:in `call'
+  rack (1.6.4) lib/rack/etag.rb:24:in `call'
+  rack (1.6.4) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.4) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.5) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.5) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.5) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.5) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.2.1) lib/web_console/middleware.rb:39:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.2.5) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.5) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+   () Users/gregkrathwohl/.rvm/rubies/ruby-2.2.3/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+   () Users/gregkrathwohl/.rvm/rubies/ruby-2.2.3/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+   () Users/gregkrathwohl/.rvm/rubies/ruby-2.2.3/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+
+Started POST "/__better_errors/0d535e3f8466dfde/variables" for ::1 at 2016-06-11 09:21:02 -0400
+
+
+Started GET "/users/6" for ::1 at 2016-06-11 09:21:04 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 6]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 6]]
+  Rendered users/show.html.erb within layouts/application (3.8ms)
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.2ms)
+
+TypeError - no implicit conversion of nil into String:
+   () Users/gregkrathwohl/dev/summits/app/views/users/show.html.erb:27:in `_app_views_users_show_html_erb__3661263120228519574_70365966042000'
+  actionview (4.2.5) lib/action_view/template.rb:145:in `block in render'
+  activesupport (4.2.5) lib/active_support/notifications.rb:166:in `instrument'
+  actionview (4.2.5) lib/action_view/template.rb:333:in `instrument'
+  actionview (4.2.5) lib/action_view/template.rb:143:in `render'
+  actionview (4.2.5) lib/action_view/renderer/template_renderer.rb:54:in `block (2 levels) in render_template'
+  actionview (4.2.5) lib/action_view/renderer/abstract_renderer.rb:39:in `block in instrument'
+  activesupport (4.2.5) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.5) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.5) lib/active_support/notifications.rb:164:in `instrument'
+  actionview (4.2.5) lib/action_view/renderer/abstract_renderer.rb:39:in `instrument'
+  actionview (4.2.5) lib/action_view/renderer/template_renderer.rb:53:in `block in render_template'
+  actionview (4.2.5) lib/action_view/renderer/template_renderer.rb:61:in `render_with_layout'
+  actionview (4.2.5) lib/action_view/renderer/template_renderer.rb:52:in `render_template'
+  actionview (4.2.5) lib/action_view/renderer/template_renderer.rb:14:in `render'
+  actionview (4.2.5) lib/action_view/renderer/renderer.rb:42:in `render_template'
+  actionview (4.2.5) lib/action_view/renderer/renderer.rb:23:in `render'
+  actionview (4.2.5) lib/action_view/rendering.rb:100:in `_render_template'
+  actionpack (4.2.5) lib/action_controller/metal/streaming.rb:217:in `_render_template'
+  actionview (4.2.5) lib/action_view/rendering.rb:83:in `render_to_body'
+  actionpack (4.2.5) lib/action_controller/metal/rendering.rb:32:in `render_to_body'
+  actionpack (4.2.5) lib/action_controller/metal/renderers.rb:37:in `render_to_body'
+  actionpack (4.2.5) lib/abstract_controller/rendering.rb:25:in `render'
+  actionpack (4.2.5) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:44:in `block (2 levels) in render'
+  activesupport (4.2.5) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+   () Users/gregkrathwohl/.rvm/rubies/ruby-2.2.3/lib/ruby/2.2.0/benchmark.rb:303:in `realtime'
+  activesupport (4.2.5) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:44:in `block in render'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:87:in `cleanup_view_runtime'
+  activerecord (4.2.5) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:43:in `render'
+  actionpack (4.2.5) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (4.2.5) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (4.2.5) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.5) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.5) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.5) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.5) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.5) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.5) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.5) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.5) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.5) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.5) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.5) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:76:in `dispatch'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:45:in `serve'
+  actionpack (4.2.5) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.5) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  warden (1.2.3) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.3) lib/warden/manager.rb:34:in `call'
+  rack (1.6.4) lib/rack/etag.rb:24:in `call'
+  rack (1.6.4) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.4) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.5) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.5) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.5) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.5) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.2.1) lib/web_console/middleware.rb:39:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.2.5) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.5) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+   () Users/gregkrathwohl/.rvm/rubies/ruby-2.2.3/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+   () Users/gregkrathwohl/.rvm/rubies/ruby-2.2.3/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+   () Users/gregkrathwohl/.rvm/rubies/ruby-2.2.3/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+
+Started POST "/__better_errors/b592878050b8f553/variables" for ::1 at 2016-06-11 09:21:04 -0400
+
+
+Started GET "/users/6" for ::1 at 2016-06-11 09:21:06 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 6]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 6]]
+  Rendered users/show.html.erb within layouts/application (3.6ms)
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.1ms)
+
+TypeError - no implicit conversion of nil into String:
+   () Users/gregkrathwohl/dev/summits/app/views/users/show.html.erb:27:in `_app_views_users_show_html_erb__3661263120228519574_70365966042000'
+  actionview (4.2.5) lib/action_view/template.rb:145:in `block in render'
+  activesupport (4.2.5) lib/active_support/notifications.rb:166:in `instrument'
+  actionview (4.2.5) lib/action_view/template.rb:333:in `instrument'
+  actionview (4.2.5) lib/action_view/template.rb:143:in `render'
+  actionview (4.2.5) lib/action_view/renderer/template_renderer.rb:54:in `block (2 levels) in render_template'
+  actionview (4.2.5) lib/action_view/renderer/abstract_renderer.rb:39:in `block in instrument'
+  activesupport (4.2.5) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.5) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.5) lib/active_support/notifications.rb:164:in `instrument'
+  actionview (4.2.5) lib/action_view/renderer/abstract_renderer.rb:39:in `instrument'
+  actionview (4.2.5) lib/action_view/renderer/template_renderer.rb:53:in `block in render_template'
+  actionview (4.2.5) lib/action_view/renderer/template_renderer.rb:61:in `render_with_layout'
+  actionview (4.2.5) lib/action_view/renderer/template_renderer.rb:52:in `render_template'
+  actionview (4.2.5) lib/action_view/renderer/template_renderer.rb:14:in `render'
+  actionview (4.2.5) lib/action_view/renderer/renderer.rb:42:in `render_template'
+  actionview (4.2.5) lib/action_view/renderer/renderer.rb:23:in `render'
+  actionview (4.2.5) lib/action_view/rendering.rb:100:in `_render_template'
+  actionpack (4.2.5) lib/action_controller/metal/streaming.rb:217:in `_render_template'
+  actionview (4.2.5) lib/action_view/rendering.rb:83:in `render_to_body'
+  actionpack (4.2.5) lib/action_controller/metal/rendering.rb:32:in `render_to_body'
+  actionpack (4.2.5) lib/action_controller/metal/renderers.rb:37:in `render_to_body'
+  actionpack (4.2.5) lib/abstract_controller/rendering.rb:25:in `render'
+  actionpack (4.2.5) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:44:in `block (2 levels) in render'
+  activesupport (4.2.5) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+   () Users/gregkrathwohl/.rvm/rubies/ruby-2.2.3/lib/ruby/2.2.0/benchmark.rb:303:in `realtime'
+  activesupport (4.2.5) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:44:in `block in render'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:87:in `cleanup_view_runtime'
+  activerecord (4.2.5) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:43:in `render'
+  actionpack (4.2.5) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (4.2.5) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (4.2.5) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.5) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.5) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.5) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.5) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.5) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.5) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.5) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.5) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.5) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.5) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.5) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:76:in `dispatch'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:45:in `serve'
+  actionpack (4.2.5) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.5) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  warden (1.2.3) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.3) lib/warden/manager.rb:34:in `call'
+  rack (1.6.4) lib/rack/etag.rb:24:in `call'
+  rack (1.6.4) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.4) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.5) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.5) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.5) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.5) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.2.1) lib/web_console/middleware.rb:39:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.2.5) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.5) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+   () Users/gregkrathwohl/.rvm/rubies/ruby-2.2.3/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+   () Users/gregkrathwohl/.rvm/rubies/ruby-2.2.3/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+   () Users/gregkrathwohl/.rvm/rubies/ruby-2.2.3/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+
+Started POST "/__better_errors/ef0e8231c0977c62/variables" for ::1 at 2016-06-11 09:21:06 -0400
+
+
+Started GET "/users/6" for ::1 at 2016-06-11 09:21:07 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 6]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 6]]
+  Rendered users/show.html.erb within layouts/application (2.9ms)
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.4ms)
+
+TypeError - no implicit conversion of nil into String:
+   () Users/gregkrathwohl/dev/summits/app/views/users/show.html.erb:27:in `_app_views_users_show_html_erb__3661263120228519574_70365966042000'
+  actionview (4.2.5) lib/action_view/template.rb:145:in `block in render'
+  activesupport (4.2.5) lib/active_support/notifications.rb:166:in `instrument'
+  actionview (4.2.5) lib/action_view/template.rb:333:in `instrument'
+  actionview (4.2.5) lib/action_view/template.rb:143:in `render'
+  actionview (4.2.5) lib/action_view/renderer/template_renderer.rb:54:in `block (2 levels) in render_template'
+  actionview (4.2.5) lib/action_view/renderer/abstract_renderer.rb:39:in `block in instrument'
+  activesupport (4.2.5) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.5) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.5) lib/active_support/notifications.rb:164:in `instrument'
+  actionview (4.2.5) lib/action_view/renderer/abstract_renderer.rb:39:in `instrument'
+  actionview (4.2.5) lib/action_view/renderer/template_renderer.rb:53:in `block in render_template'
+  actionview (4.2.5) lib/action_view/renderer/template_renderer.rb:61:in `render_with_layout'
+  actionview (4.2.5) lib/action_view/renderer/template_renderer.rb:52:in `render_template'
+  actionview (4.2.5) lib/action_view/renderer/template_renderer.rb:14:in `render'
+  actionview (4.2.5) lib/action_view/renderer/renderer.rb:42:in `render_template'
+  actionview (4.2.5) lib/action_view/renderer/renderer.rb:23:in `render'
+  actionview (4.2.5) lib/action_view/rendering.rb:100:in `_render_template'
+  actionpack (4.2.5) lib/action_controller/metal/streaming.rb:217:in `_render_template'
+  actionview (4.2.5) lib/action_view/rendering.rb:83:in `render_to_body'
+  actionpack (4.2.5) lib/action_controller/metal/rendering.rb:32:in `render_to_body'
+  actionpack (4.2.5) lib/action_controller/metal/renderers.rb:37:in `render_to_body'
+  actionpack (4.2.5) lib/abstract_controller/rendering.rb:25:in `render'
+  actionpack (4.2.5) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:44:in `block (2 levels) in render'
+  activesupport (4.2.5) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+   () Users/gregkrathwohl/.rvm/rubies/ruby-2.2.3/lib/ruby/2.2.0/benchmark.rb:303:in `realtime'
+  activesupport (4.2.5) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:44:in `block in render'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:87:in `cleanup_view_runtime'
+  activerecord (4.2.5) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:43:in `render'
+  actionpack (4.2.5) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (4.2.5) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (4.2.5) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.5) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.5) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.5) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.5) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.5) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.5) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.5) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.5) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.5) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.5) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.5) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:76:in `dispatch'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:45:in `serve'
+  actionpack (4.2.5) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.5) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  warden (1.2.3) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.3) lib/warden/manager.rb:34:in `call'
+  rack (1.6.4) lib/rack/etag.rb:24:in `call'
+  rack (1.6.4) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.4) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.5) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.5) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.5) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.5) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.2.1) lib/web_console/middleware.rb:39:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.2.5) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.5) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+   () Users/gregkrathwohl/.rvm/rubies/ruby-2.2.3/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+   () Users/gregkrathwohl/.rvm/rubies/ruby-2.2.3/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+   () Users/gregkrathwohl/.rvm/rubies/ruby-2.2.3/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+
+Started POST "/__better_errors/1ffc426016c4e7ea/variables" for ::1 at 2016-06-11 09:21:08 -0400
+
+
+Started GET "/users/6" for ::1 at 2016-06-11 09:34:49 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 6]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 6]]
+  [1m[35mSummitCompletion Load (0.2ms)[0m  SELECT "summit_completions".* FROM "summit_completions" WHERE "summit_completions"."user_id" = ?  [["user_id", 6]]
+  Rendered users/show.html.erb within layouts/application (139.6ms)
+  Rendered layouts/_navigation_links.html.erb (0.8ms)
+  Rendered layouts/_nav_links_for_auth.html.erb (0.6ms)
+  Rendered layouts/_navigation.html.erb (5.1ms)
+Completed 200 OK in 439ms (Views: 407.7ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/users/connect?state=&error=access_denied" for ::1 at 2016-06-11 09:35:05 -0400
+Processing by UsersController#connect as HTML
+  Parameters: {"state"=>"", "error"=>"access_denied"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 6]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mcommit transaction[0m
+[ActiveJob] [FindPeaksJob] [792615b9-1e9a-4f5e-8634-8bb7e7ae3212] Performing FindPeaksJob from Inline(default) with arguments: 6
+[ActiveJob] [FindPeaksJob] [792615b9-1e9a-4f5e-8634-8bb7e7ae3212]   [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 6]]
+[ActiveJob] [FindPeaksJob] [792615b9-1e9a-4f5e-8634-8bb7e7ae3212] Performed FindPeaksJob from Inline(default) in 499.86ms
+Completed 500 Internal Server Error in 686ms (ActiveRecord: 0.4ms)
+
+Strava::Api::V3::ClientError - {"message":"Authorization Error","errors":[{"resource":"Athlete","field":"access_token","code":"invalid"}]} [HTTP 401]:
+  strava-api-v3 (0.6.0) lib/strava/api/v3/common.rb:28:in `block in api_call'
+  strava-api-v3 (0.6.0) lib/strava/api/v3/common.rb:75:in `api'
+  strava-api-v3 (0.6.0) lib/strava/api/v3/common.rb:26:in `api_call'
+  strava-api-v3 (0.6.0) lib/strava/api/v3/activity.rb:32:in `list_athlete_activities'
+   () Users/gregkrathwohl/dev/summits/app/helpers/strava_helper.rb:9:in `all_activities'
+   () Users/gregkrathwohl/dev/summits/app/jobs/find_peaks_job.rb:13:in `perform'
+  activejob (4.2.5) lib/active_job/execution.rb:32:in `block in perform_now'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:498:in `block (2 levels) in around'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:343:in `block (2 levels) in simple'
+  i18n (0.7.0) lib/i18n.rb:257:in `with_locale'
+  activejob (4.2.5) lib/active_job/translation.rb:7:in `block (2 levels) in <module:Translation>'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:441:in `block in make_lambda'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:342:in `block in simple'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:497:in `block in around'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:498:in `block (2 levels) in around'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:343:in `block (2 levels) in simple'
+  activejob (4.2.5) lib/active_job/logging.rb:23:in `block (4 levels) in <module:Logging>'
+  activesupport (4.2.5) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.5) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.5) lib/active_support/notifications.rb:164:in `instrument'
+  activejob (4.2.5) lib/active_job/logging.rb:22:in `block (3 levels) in <module:Logging>'
+  activejob (4.2.5) lib/active_job/logging.rb:43:in `block in tag_logger'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `tagged'
+  activejob (4.2.5) lib/active_job/logging.rb:43:in `tag_logger'
+  activejob (4.2.5) lib/active_job/logging.rb:19:in `block (2 levels) in <module:Logging>'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:441:in `block in make_lambda'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:342:in `block in simple'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:497:in `block in around'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:778:in `_run_perform_callbacks'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  activejob (4.2.5) lib/active_job/execution.rb:31:in `perform_now'
+  activejob (4.2.5) lib/active_job/execution.rb:21:in `execute'
+  activejob (4.2.5) lib/active_job/queue_adapters/inline_adapter.rb:14:in `enqueue'
+  activejob (4.2.5) lib/active_job/enqueuing.rb:71:in `block in enqueue'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:498:in `block (2 levels) in around'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:343:in `block (2 levels) in simple'
+  activejob (4.2.5) lib/active_job/logging.rb:14:in `block (3 levels) in <module:Logging>'
+  activejob (4.2.5) lib/active_job/logging.rb:43:in `block in tag_logger'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `tagged'
+  activejob (4.2.5) lib/active_job/logging.rb:43:in `tag_logger'
+  activejob (4.2.5) lib/active_job/logging.rb:13:in `block (2 levels) in <module:Logging>'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:441:in `block in make_lambda'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:342:in `block in simple'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:497:in `block in around'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:778:in `_run_enqueue_callbacks'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  activejob (4.2.5) lib/active_job/enqueuing.rb:67:in `enqueue'
+  activejob (4.2.5) lib/active_job/enqueuing.rb:17:in `perform_later'
+   () Users/gregkrathwohl/dev/summits/app/controllers/users_controller.rb:23:in `connect'
+  actionpack (4.2.5) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (4.2.5) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.5) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.5) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.5) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.5) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.5) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.5) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.5) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.5) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.5) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.5) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.5) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.5) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.5) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:76:in `dispatch'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:45:in `serve'
+  actionpack (4.2.5) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.5) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.5) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  warden (1.2.3) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.3) lib/warden/manager.rb:34:in `call'
+  rack (1.6.4) lib/rack/etag.rb:24:in `call'
+  rack (1.6.4) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.4) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.5) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.5) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.5) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.5) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.5) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.2.1) lib/web_console/middleware.rb:39:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.5) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.5) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.5) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.2.5) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.5) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.5) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.5) lib/rails/engine.rb:518:in `call'
+  railties (4.2.5) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+   () Users/gregkrathwohl/.rvm/rubies/ruby-2.2.3/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+   () Users/gregkrathwohl/.rvm/rubies/ruby-2.2.3/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+   () Users/gregkrathwohl/.rvm/rubies/ruby-2.2.3/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+
+Started POST "/__better_errors/f8bd6e64a2e1473c/variables" for ::1 at 2016-06-11 09:35:06 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateDelayedJobs (20160611141018)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "delayed_jobs" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "priority" integer DEFAULT 0 NOT NULL, "attempts" integer DEFAULT 0 NOT NULL, "handler" text NOT NULL, "last_error" text, "run_at" datetime, "locked_at" datetime, "failed_at" datetime, "locked_by" varchar, "queue" varchar, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.4ms)[0m  select sqlite_version(*)
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "delayed_jobs_priority" ON "delayed_jobs" ("priority", "run_at")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160611141018"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='delayed_jobs_priority' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='delayed_jobs_priority' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_indexed_activities_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_indexed_activities_on_user_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_summit_completions_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_summit_completions_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+[ActiveJob]   [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+[ActiveJob]   [1m[35mSQL (1.4ms)[0m  INSERT INTO "delayed_jobs" ("queue", "handler", "run_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["queue", "default"], ["handler", "--- !ruby/object:ActiveJob::QueueAdapters::DelayedJobAdapter::JobWrapper\njob_data:\n  job_class: TestJob\n  job_id: ad63b3f4-7926-4406-b04b-f73c6c1cf69c\n  queue_name: default\n  arguments:\n  - 1\n  - 2\n  - 3\n  locale: :en\n"], ["run_at", "2016-06-11 14:15:30.194878"], ["created_at", "2016-06-11 14:15:30.195314"], ["updated_at", "2016-06-11 14:15:30.195314"]]
+[ActiveJob]   [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+[ActiveJob] Enqueued TestJob (Job ID: ad63b3f4-7926-4406-b04b-f73c6c1cf69c) to DelayedJob(default) with arguments: 1, 2, 3
+[ActiveJob]   [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+[ActiveJob]   [1m[35mSQL (0.4ms)[0m  INSERT INTO "delayed_jobs" ("queue", "handler", "run_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["queue", "default"], ["handler", "--- !ruby/object:ActiveJob::QueueAdapters::DelayedJobAdapter::JobWrapper\njob_data:\n  job_class: TestJob\n  job_id: b7cca687-5c0d-4a3c-83e4-ee96fb3e4cf4\n  queue_name: default\n  arguments:\n  - 1\n  - 2\n  - 3\n  locale: :en\n"], ["run_at", "2016-06-11 14:15:48.907740"], ["created_at", "2016-06-11 14:15:48.907902"], ["updated_at", "2016-06-11 14:15:48.907902"]]
+[ActiveJob]   [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+[ActiveJob] Enqueued TestJob (Job ID: b7cca687-5c0d-4a3c-83e4-ee96fb3e4cf4) to DelayedJob(default) with arguments: 1, 2, 3
+[ActiveJob]   [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+[ActiveJob]   [1m[35mSQL (0.4ms)[0m  INSERT INTO "delayed_jobs" ("queue", "handler", "run_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["queue", "default"], ["handler", "--- !ruby/object:ActiveJob::QueueAdapters::DelayedJobAdapter::JobWrapper\njob_data:\n  job_class: TestJob\n  job_id: 9a55e151-eff9-468f-9153-0726ea607c6f\n  queue_name: default\n  arguments:\n  - 1\n  - 2\n  - 3\n  locale: :en\n"], ["run_at", "2016-06-11 14:15:59.460057"], ["created_at", "2016-06-11 14:15:59.460205"], ["updated_at", "2016-06-11 14:15:59.460205"]]
+[ActiveJob]   [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+[ActiveJob] Enqueued TestJob (Job ID: 9a55e151-eff9-468f-9153-0726ea607c6f) to DelayedJob(default) with arguments: 1, 2, 3
+[ActiveJob]   [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+[ActiveJob]   [1m[35mSQL (1.5ms)[0m  INSERT INTO "delayed_jobs" ("queue", "handler", "run_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["queue", "default"], ["handler", "--- !ruby/object:ActiveJob::QueueAdapters::DelayedJobAdapter::JobWrapper\njob_data:\n  job_class: TestJob\n  job_id: e4c4f003-a590-41b5-952e-e856b8ffa65a\n  queue_name: default\n  arguments:\n  - 1\n  - 2\n  - 3\n  locale: :en\n"], ["run_at", "2016-06-11 14:16:14.492181"], ["created_at", "2016-06-11 14:16:14.492339"], ["updated_at", "2016-06-11 14:16:14.492339"]]
+[ActiveJob]   [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+[ActiveJob] Enqueued TestJob (Job ID: e4c4f003-a590-41b5-952e-e856b8ffa65a) to DelayedJob(default) with arguments: 1, 2, 3
+[ActiveJob]   [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+[ActiveJob]   [1m[35mSQL (0.3ms)[0m  INSERT INTO "delayed_jobs" ("queue", "handler", "run_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["queue", "default"], ["handler", "--- !ruby/object:ActiveJob::QueueAdapters::DelayedJobAdapter::JobWrapper\njob_data:\n  job_class: TestJob\n  job_id: 3db28413-37dd-4783-bce6-cad418da9fe4\n  queue_name: default\n  arguments:\n  - 1\n  - 2\n  - 3\n  locale: :en\n"], ["run_at", "2016-06-11 14:17:02.880315"], ["created_at", "2016-06-11 14:17:02.880486"], ["updated_at", "2016-06-11 14:17:02.880486"]]
+[ActiveJob]   [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+[ActiveJob] Enqueued TestJob (Job ID: 3db28413-37dd-4783-bce6-cad418da9fe4) to DelayedJob(default) with arguments: 1, 2, 3
+[ActiveJob]   [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+[ActiveJob]   [1m[35mSQL (0.3ms)[0m  INSERT INTO "delayed_jobs" ("queue", "handler", "run_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["queue", "default"], ["handler", "--- !ruby/object:ActiveJob::QueueAdapters::DelayedJobAdapter::JobWrapper\njob_data:\n  job_class: TestJob\n  job_id: 0b938ec9-fc91-476c-928a-bb4b314e9c23\n  queue_name: default\n  arguments:\n  - 1\n  - 2\n  - 3\n  locale: :en\n"], ["run_at", "2016-06-11 14:17:19.045287"], ["created_at", "2016-06-11 14:17:19.045452"], ["updated_at", "2016-06-11 14:17:19.045452"]]
+[ActiveJob]   [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+[ActiveJob] Enqueued TestJob (Job ID: 0b938ec9-fc91-476c-928a-bb4b314e9c23) to DelayedJob(default) with arguments: 1, 2, 3
+  [1m[36mDelayed::Backend::ActiveRecord::Job Load (2.1ms)[0m  [1mSELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:17:39.026799' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:12:39.026832') OR locked_by = 'host:Gregs-MBP.home pid:51879') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10[0m
+  [1m[35mSQL (1.4ms)[0m  UPDATE "delayed_jobs" SET "locked_at" = '2016-06-11 14:17:39.033425', "locked_by" = 'host:Gregs-MBP.home pid:51879' WHERE "delayed_jobs"."id" IN (SELECT "delayed_jobs"."id" FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:17:39.026799' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:12:39.026832') OR locked_by = 'host:Gregs-MBP.home pid:51879') AND failed_at IS NULL) AND "delayed_jobs"."id" = ?  ORDER BY priority ASC, run_at ASC)  [["id", 1]]
+  [1m[36mDelayed::Backend::ActiveRecord::Job Load (0.1ms)[0m  [1mSELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE "delayed_jobs"."id" = ? LIMIT 1[0m  [["id", 1]]
+[ActiveJob] [TestJob] [ad63b3f4-7926-4406-b04b-f73c6c1cf69c] Performing TestJob from DelayedJob(default) with arguments: 1, 2, 3
+[ActiveJob] [TestJob] [ad63b3f4-7926-4406-b04b-f73c6c1cf69c] TestJob: I'm performing my job with arguments: [1, 2, 3]
+[ActiveJob] [TestJob] [ad63b3f4-7926-4406-b04b-f73c6c1cf69c] Performed TestJob from DelayedJob(default) in 309.86ms
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM "delayed_jobs" WHERE "delayed_jobs"."id" = ?[0m  [["id", 1]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36mDelayed::Backend::ActiveRecord::Job Load (0.2ms)[0m  [1mSELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:17:39.388982' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:12:39.389001') OR locked_by = 'host:Gregs-MBP.home pid:51879') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10[0m
+  [1m[35mSQL (0.9ms)[0m  UPDATE "delayed_jobs" SET "locked_at" = '2016-06-11 14:17:39.389285', "locked_by" = 'host:Gregs-MBP.home pid:51879' WHERE "delayed_jobs"."id" IN (SELECT "delayed_jobs"."id" FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:17:39.388982' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:12:39.389001') OR locked_by = 'host:Gregs-MBP.home pid:51879') AND failed_at IS NULL) AND "delayed_jobs"."id" = ?  ORDER BY priority ASC, run_at ASC)  [["id", 2]]
+  [1m[36mDelayed::Backend::ActiveRecord::Job Load (0.1ms)[0m  [1mSELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE "delayed_jobs"."id" = ? LIMIT 1[0m  [["id", 2]]
+[ActiveJob] [TestJob] [b7cca687-5c0d-4a3c-83e4-ee96fb3e4cf4] Performing TestJob from DelayedJob(default) with arguments: 1, 2, 3
+[ActiveJob] [TestJob] [b7cca687-5c0d-4a3c-83e4-ee96fb3e4cf4] TestJob: I'm performing my job with arguments: [1, 2, 3]
+[ActiveJob] [TestJob] [b7cca687-5c0d-4a3c-83e4-ee96fb3e4cf4] Performed TestJob from DelayedJob(default) in 0.13ms
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mDELETE FROM "delayed_jobs" WHERE "delayed_jobs"."id" = ?[0m  [["id", 2]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36mDelayed::Backend::ActiveRecord::Job Load (0.2ms)[0m  [1mSELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:17:39.395155' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:12:39.395175') OR locked_by = 'host:Gregs-MBP.home pid:51879') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10[0m
+  [1m[35mSQL (0.8ms)[0m  UPDATE "delayed_jobs" SET "locked_at" = '2016-06-11 14:17:39.395431', "locked_by" = 'host:Gregs-MBP.home pid:51879' WHERE "delayed_jobs"."id" IN (SELECT "delayed_jobs"."id" FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:17:39.395155' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:12:39.395175') OR locked_by = 'host:Gregs-MBP.home pid:51879') AND failed_at IS NULL) AND "delayed_jobs"."id" = ?  ORDER BY priority ASC, run_at ASC)  [["id", 3]]
+  [1m[36mDelayed::Backend::ActiveRecord::Job Load (0.1ms)[0m  [1mSELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE "delayed_jobs"."id" = ? LIMIT 1[0m  [["id", 3]]
+[ActiveJob] [TestJob] [9a55e151-eff9-468f-9153-0726ea607c6f] Performing TestJob from DelayedJob(default) with arguments: 1, 2, 3
+[ActiveJob] [TestJob] [9a55e151-eff9-468f-9153-0726ea607c6f] TestJob: I'm performing my job with arguments: [1, 2, 3]
+[ActiveJob] [TestJob] [9a55e151-eff9-468f-9153-0726ea607c6f] Performed TestJob from DelayedJob(default) in 0.1ms
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mDELETE FROM "delayed_jobs" WHERE "delayed_jobs"."id" = ?[0m  [["id", 3]]
+  [1m[35m (2.8ms)[0m  commit transaction
+  [1m[36mDelayed::Backend::ActiveRecord::Job Load (0.2ms)[0m  [1mSELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:17:39.402689' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:12:39.402730') OR locked_by = 'host:Gregs-MBP.home pid:51879') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10[0m
+  [1m[35mSQL (0.9ms)[0m  UPDATE "delayed_jobs" SET "locked_at" = '2016-06-11 14:17:39.403004', "locked_by" = 'host:Gregs-MBP.home pid:51879' WHERE "delayed_jobs"."id" IN (SELECT "delayed_jobs"."id" FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:17:39.402689' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:12:39.402730') OR locked_by = 'host:Gregs-MBP.home pid:51879') AND failed_at IS NULL) AND "delayed_jobs"."id" = ?  ORDER BY priority ASC, run_at ASC)  [["id", 4]]
+  [1m[36mDelayed::Backend::ActiveRecord::Job Load (0.1ms)[0m  [1mSELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE "delayed_jobs"."id" = ? LIMIT 1[0m  [["id", 4]]
+[ActiveJob] [TestJob] [e4c4f003-a590-41b5-952e-e856b8ffa65a] Performing TestJob from DelayedJob(default) with arguments: 1, 2, 3
+[ActiveJob] [TestJob] [e4c4f003-a590-41b5-952e-e856b8ffa65a] TestJob: I'm performing my job with arguments: [1, 2, 3]
+[ActiveJob] [TestJob] [e4c4f003-a590-41b5-952e-e856b8ffa65a] Performed TestJob from DelayedJob(default) in 0.2ms
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mDELETE FROM "delayed_jobs" WHERE "delayed_jobs"."id" = ?[0m  [["id", 4]]
+  [1m[35m (1.0ms)[0m  commit transaction
+  [1m[36mDelayed::Backend::ActiveRecord::Job Load (0.3ms)[0m  [1mSELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:17:39.410191' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:12:39.410214') OR locked_by = 'host:Gregs-MBP.home pid:51879') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10[0m
+  [1m[35mSQL (1.1ms)[0m  UPDATE "delayed_jobs" SET "locked_at" = '2016-06-11 14:17:39.410603', "locked_by" = 'host:Gregs-MBP.home pid:51879' WHERE "delayed_jobs"."id" IN (SELECT "delayed_jobs"."id" FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:17:39.410191' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:12:39.410214') OR locked_by = 'host:Gregs-MBP.home pid:51879') AND failed_at IS NULL) AND "delayed_jobs"."id" = ?  ORDER BY priority ASC, run_at ASC)  [["id", 5]]
+  [1m[36mDelayed::Backend::ActiveRecord::Job Load (0.1ms)[0m  [1mSELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE "delayed_jobs"."id" = ? LIMIT 1[0m  [["id", 5]]
+[ActiveJob] [TestJob] [3db28413-37dd-4783-bce6-cad418da9fe4] Performing TestJob from DelayedJob(default) with arguments: 1, 2, 3
+[ActiveJob] [TestJob] [3db28413-37dd-4783-bce6-cad418da9fe4] TestJob: I'm performing my job with arguments: [1, 2, 3]
+[ActiveJob] [TestJob] [3db28413-37dd-4783-bce6-cad418da9fe4] Performed TestJob from DelayedJob(default) in 0.13ms
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM "delayed_jobs" WHERE "delayed_jobs"."id" = ?[0m  [["id", 5]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36mDelayed::Backend::ActiveRecord::Job Load (0.4ms)[0m  [1mSELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:17:39.416210' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:12:39.416253') OR locked_by = 'host:Gregs-MBP.home pid:51879') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10[0m
+  [1m[35mSQL (2.1ms)[0m  UPDATE "delayed_jobs" SET "locked_at" = '2016-06-11 14:17:39.416843', "locked_by" = 'host:Gregs-MBP.home pid:51879' WHERE "delayed_jobs"."id" IN (SELECT "delayed_jobs"."id" FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:17:39.416210' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:12:39.416253') OR locked_by = 'host:Gregs-MBP.home pid:51879') AND failed_at IS NULL) AND "delayed_jobs"."id" = ?  ORDER BY priority ASC, run_at ASC)  [["id", 6]]
+  [1m[36mDelayed::Backend::ActiveRecord::Job Load (0.5ms)[0m  [1mSELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE "delayed_jobs"."id" = ? LIMIT 1[0m  [["id", 6]]
+[ActiveJob] [TestJob] [0b938ec9-fc91-476c-928a-bb4b314e9c23] Performing TestJob from DelayedJob(default) with arguments: 1, 2, 3
+[ActiveJob] [TestJob] [0b938ec9-fc91-476c-928a-bb4b314e9c23] TestJob: I'm performing my job with arguments: [1, 2, 3]
+[ActiveJob] [TestJob] [0b938ec9-fc91-476c-928a-bb4b314e9c23] Performed TestJob from DelayedJob(default) in 0.1ms
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mDELETE FROM "delayed_jobs" WHERE "delayed_jobs"."id" = ?[0m  [["id", 6]]
+  [1m[35m (1.0ms)[0m  commit transaction
+  [1m[36mDelayed::Backend::ActiveRecord::Job Load (0.2ms)[0m  [1mSELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:17:39.429012' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:12:39.429030') OR locked_by = 'host:Gregs-MBP.home pid:51879') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10[0m
+  [1m[35mDelayed::Backend::ActiveRecord::Job Load (0.1ms)[0m  SELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:17:39.429871' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:12:39.429882') OR locked_by = 'host:Gregs-MBP.home pid:51879') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10
+[ActiveJob]   [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+[ActiveJob]   [1m[35mSQL (0.9ms)[0m  INSERT INTO "delayed_jobs" ("queue", "handler", "run_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["queue", "default"], ["handler", "--- !ruby/object:ActiveJob::QueueAdapters::DelayedJobAdapter::JobWrapper\njob_data:\n  job_class: TestJob\n  job_id: d88ffe4b-a522-4b18-bd64-d7dd3af0827c\n  queue_name: default\n  arguments:\n  - 1\n  - 2\n  - 3\n  locale: :en\n"], ["run_at", "2016-06-11 14:18:17.940836"], ["created_at", "2016-06-11 14:18:17.941282"], ["updated_at", "2016-06-11 14:18:17.941282"]]
+[ActiveJob]   [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+[ActiveJob] Enqueued TestJob (Job ID: d88ffe4b-a522-4b18-bd64-d7dd3af0827c) to DelayedJob(default) with arguments: 1, 2, 3
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "delayed_jobs" SET "locked_by" = NULL, "locked_at" = NULL WHERE "delayed_jobs"."locked_by" = ?[0m  [["locked_by", "host:Gregs-MBP.home pid:51879"]]
+  [1m[36mDelayed::Backend::ActiveRecord::Job Load (1.6ms)[0m  [1mSELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:18:47.259130' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:13:47.259155') OR locked_by = 'host:Gregs-MBP.home pid:51923') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10[0m
+  [1m[35mSQL (0.9ms)[0m  UPDATE "delayed_jobs" SET "locked_at" = '2016-06-11 14:18:47.263951', "locked_by" = 'host:Gregs-MBP.home pid:51923' WHERE "delayed_jobs"."id" IN (SELECT "delayed_jobs"."id" FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:18:47.259130' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:13:47.259155') OR locked_by = 'host:Gregs-MBP.home pid:51923') AND failed_at IS NULL) AND "delayed_jobs"."id" = ?  ORDER BY priority ASC, run_at ASC)  [["id", 7]]
+  [1m[36mDelayed::Backend::ActiveRecord::Job Load (0.1ms)[0m  [1mSELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE "delayed_jobs"."id" = ? LIMIT 1[0m  [["id", 7]]
+[ActiveJob] [TestJob] [d88ffe4b-a522-4b18-bd64-d7dd3af0827c] Performing TestJob from DelayedJob(default) with arguments: 1, 2, 3
+[ActiveJob] [TestJob] [d88ffe4b-a522-4b18-bd64-d7dd3af0827c] TestJob: I'm performing my job with arguments: [1, 2, 3]
+[ActiveJob] [TestJob] [d88ffe4b-a522-4b18-bd64-d7dd3af0827c] Performed TestJob from DelayedJob(default) in 291.92ms
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM "delayed_jobs" WHERE "delayed_jobs"."id" = ?[0m  [["id", 7]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36mDelayed::Backend::ActiveRecord::Job Load (0.1ms)[0m  [1mSELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:18:47.595327' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:13:47.595349') OR locked_by = 'host:Gregs-MBP.home pid:51923') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10[0m
+  [1m[35mDelayed::Backend::ActiveRecord::Job Load (0.1ms)[0m  SELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:18:47.596188' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:13:47.596199') OR locked_by = 'host:Gregs-MBP.home pid:51923') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10
+[ActiveJob]   [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+[ActiveJob]   [1m[35mSQL (0.4ms)[0m  INSERT INTO "delayed_jobs" ("queue", "handler", "run_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["queue", "default"], ["handler", "--- !ruby/object:ActiveJob::QueueAdapters::DelayedJobAdapter::JobWrapper\njob_data:\n  job_class: TestJob\n  job_id: 00ca3d62-dace-4312-ad75-597d2142f28f\n  queue_name: default\n  arguments:\n  - 1\n  - 2\n  - 3\n  locale: :en\n"], ["run_at", "2016-06-11 14:18:58.855769"], ["created_at", "2016-06-11 14:18:58.856172"], ["updated_at", "2016-06-11 14:18:58.856172"]]
+[ActiveJob]   [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+[ActiveJob] Enqueued TestJob (Job ID: 00ca3d62-dace-4312-ad75-597d2142f28f) to DelayedJob(default) with arguments: 1, 2, 3
+  [1m[36mDelayed::Backend::ActiveRecord::Job Load (0.3ms)[0m  [1mSELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:19:47.642979' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:14:47.643001') OR locked_by = 'host:Gregs-MBP.home pid:51923') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10[0m
+  [1m[35mSQL (8.9ms)[0m  UPDATE "delayed_jobs" SET "locked_at" = '2016-06-11 14:19:47.643841', "locked_by" = 'host:Gregs-MBP.home pid:51923' WHERE "delayed_jobs"."id" IN (SELECT "delayed_jobs"."id" FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:19:47.642979' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:14:47.643001') OR locked_by = 'host:Gregs-MBP.home pid:51923') AND failed_at IS NULL) AND "delayed_jobs"."id" = ?  ORDER BY priority ASC, run_at ASC)  [["id", 8]]
+  [1m[36mDelayed::Backend::ActiveRecord::Job Load (0.2ms)[0m  [1mSELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE "delayed_jobs"."id" = ? LIMIT 1[0m  [["id", 8]]
+[ActiveJob] [TestJob] [00ca3d62-dace-4312-ad75-597d2142f28f] Performing TestJob from DelayedJob(default) with arguments: 1, 2, 3
+[ActiveJob] [TestJob] [00ca3d62-dace-4312-ad75-597d2142f28f] TestJob: I'm performing my job with arguments: [1, 2, 3]
+[ActiveJob] [TestJob] [00ca3d62-dace-4312-ad75-597d2142f28f] Performed TestJob from DelayedJob(default) in 0.08ms
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM "delayed_jobs" WHERE "delayed_jobs"."id" = ?[0m  [["id", 8]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36mDelayed::Backend::ActiveRecord::Job Load (0.2ms)[0m  [1mSELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:19:47.658543' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:14:47.658561') OR locked_by = 'host:Gregs-MBP.home pid:51923') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10[0m
+  [1m[35mDelayed::Backend::ActiveRecord::Job Load (0.1ms)[0m  SELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:19:47.659446' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:14:47.659458') OR locked_by = 'host:Gregs-MBP.home pid:51923') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10
+[ActiveJob]   [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+[ActiveJob]   [1m[35mSQL (0.5ms)[0m  INSERT INTO "delayed_jobs" ("queue", "handler", "run_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["queue", "default"], ["handler", "--- !ruby/object:ActiveJob::QueueAdapters::DelayedJobAdapter::JobWrapper\njob_data:\n  job_class: TestJob\n  job_id: db309187-2238-4e15-9746-c89044c78399\n  queue_name: default\n  arguments:\n  - 1\n  - 2\n  - 3\n  locale: :en\n"], ["run_at", "2016-06-11 14:20:32.431911"], ["created_at", "2016-06-11 14:20:32.432259"], ["updated_at", "2016-06-11 14:20:32.432259"]]
+[ActiveJob]   [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+[ActiveJob] Enqueued TestJob (Job ID: db309187-2238-4e15-9746-c89044c78399) to DelayedJob(default) with arguments: 1, 2, 3
+  [1m[36mDelayed::Backend::ActiveRecord::Job Load (0.4ms)[0m  [1mSELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:20:47.705131' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:15:47.705153') OR locked_by = 'host:Gregs-MBP.home pid:51923') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10[0m
+  [1m[35mSQL (1.4ms)[0m  UPDATE "delayed_jobs" SET "locked_at" = '2016-06-11 14:20:47.705721', "locked_by" = 'host:Gregs-MBP.home pid:51923' WHERE "delayed_jobs"."id" IN (SELECT "delayed_jobs"."id" FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:20:47.705131' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:15:47.705153') OR locked_by = 'host:Gregs-MBP.home pid:51923') AND failed_at IS NULL) AND "delayed_jobs"."id" = ?  ORDER BY priority ASC, run_at ASC)  [["id", 9]]
+  [1m[36mDelayed::Backend::ActiveRecord::Job Load (0.1ms)[0m  [1mSELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE "delayed_jobs"."id" = ? LIMIT 1[0m  [["id", 9]]
+[ActiveJob] [TestJob] [db309187-2238-4e15-9746-c89044c78399] Performing TestJob from DelayedJob(default) with arguments: 1, 2, 3
+[ActiveJob] [TestJob] [db309187-2238-4e15-9746-c89044c78399] TestJob: I'm performing my job with arguments: [1, 2, 3]
+[ActiveJob] [TestJob] [db309187-2238-4e15-9746-c89044c78399] Performed TestJob from DelayedJob(default) in 0.08ms
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM "delayed_jobs" WHERE "delayed_jobs"."id" = ?[0m  [["id", 9]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36mDelayed::Backend::ActiveRecord::Job Load (0.3ms)[0m  [1mSELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:20:47.713214' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:15:47.713235') OR locked_by = 'host:Gregs-MBP.home pid:51923') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10[0m
+  [1m[35mDelayed::Backend::ActiveRecord::Job Load (0.1ms)[0m  SELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:20:47.714205' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:15:47.714216') OR locked_by = 'host:Gregs-MBP.home pid:51923') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10
+[ActiveJob]   [1m[35m (0.1ms)[0m  begin transaction
+[ActiveJob]   [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "delayed_jobs" ("queue", "handler", "run_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["queue", "default"], ["handler", "--- !ruby/object:ActiveJob::QueueAdapters::DelayedJobAdapter::JobWrapper\njob_data:\n  job_class: TestJob\n  job_id: b73cf969-d5fc-40b5-81f7-b7e16df05c63\n  queue_name: default\n  arguments:\n  - 1\n  - 2\n  - 3\n  locale: :en\n"], ["run_at", "2016-06-11 14:20:47.903538"], ["created_at", "2016-06-11 14:20:47.903730"], ["updated_at", "2016-06-11 14:20:47.903730"]]
+[ActiveJob]   [1m[35m (9.1ms)[0m  commit transaction
+[ActiveJob] Enqueued TestJob (Job ID: b73cf969-d5fc-40b5-81f7-b7e16df05c63) to DelayedJob(default) with arguments: 1, 2, 3
+[ActiveJob]   [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+[ActiveJob]   [1m[35mSQL (0.2ms)[0m  INSERT INTO "delayed_jobs" ("queue", "handler", "run_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["queue", "default"], ["handler", "--- !ruby/object:ActiveJob::QueueAdapters::DelayedJobAdapter::JobWrapper\njob_data:\n  job_class: TestJob\n  job_id: a261826f-fbff-4419-a518-97c812c8a47e\n  queue_name: default\n  arguments:\n  - 1\n  - 2\n  - 3\n  locale: :en\n"], ["run_at", "2016-06-11 14:20:52.496114"], ["created_at", "2016-06-11 14:20:52.496387"], ["updated_at", "2016-06-11 14:20:52.496387"]]
+[ActiveJob]   [1m[36m (9.1ms)[0m  [1mcommit transaction[0m
+[ActiveJob] Enqueued TestJob (Job ID: a261826f-fbff-4419-a518-97c812c8a47e) to DelayedJob(default) with arguments: 1, 2, 3
+[ActiveJob]   [1m[35m (0.1ms)[0m  begin transaction
+[ActiveJob]   [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "delayed_jobs" ("queue", "handler", "run_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["queue", "default"], ["handler", "--- !ruby/object:ActiveJob::QueueAdapters::DelayedJobAdapter::JobWrapper\njob_data:\n  job_class: TestJob\n  job_id: ca04f1f6-8aa6-47c4-acbc-9c1c4049745b\n  queue_name: default\n  arguments:\n  - 6\n  - 6\n  - 6\n  locale: :en\n"], ["run_at", "2016-06-11 14:21:07.080649"], ["created_at", "2016-06-11 14:21:07.080916"], ["updated_at", "2016-06-11 14:21:07.080916"]]
+[ActiveJob]   [1m[35m (8.9ms)[0m  commit transaction
+[ActiveJob] Enqueued TestJob (Job ID: ca04f1f6-8aa6-47c4-acbc-9c1c4049745b) to DelayedJob(default) with arguments: 6, 6, 6
+  [1m[36mDelayed::Backend::ActiveRecord::Job Load (0.4ms)[0m  [1mSELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:21:47.760502' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:16:47.760524') OR locked_by = 'host:Gregs-MBP.home pid:51923') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10[0m
+  [1m[35mSQL (1.4ms)[0m  UPDATE "delayed_jobs" SET "locked_at" = '2016-06-11 14:21:47.761082', "locked_by" = 'host:Gregs-MBP.home pid:51923' WHERE "delayed_jobs"."id" IN (SELECT "delayed_jobs"."id" FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:21:47.760502' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:16:47.760524') OR locked_by = 'host:Gregs-MBP.home pid:51923') AND failed_at IS NULL) AND "delayed_jobs"."id" = ?  ORDER BY priority ASC, run_at ASC)  [["id", 10]]
+  [1m[36mDelayed::Backend::ActiveRecord::Job Load (0.1ms)[0m  [1mSELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE "delayed_jobs"."id" = ? LIMIT 1[0m  [["id", 10]]
+[ActiveJob] [TestJob] [b73cf969-d5fc-40b5-81f7-b7e16df05c63] Performing TestJob from DelayedJob(default) with arguments: 1, 2, 3
+[ActiveJob] [TestJob] [b73cf969-d5fc-40b5-81f7-b7e16df05c63] TestJob: I'm performing my job with arguments: [1, 2, 3]
+[ActiveJob] [TestJob] [b73cf969-d5fc-40b5-81f7-b7e16df05c63] Performed TestJob from DelayedJob(default) in 0.08ms
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM "delayed_jobs" WHERE "delayed_jobs"."id" = ?[0m  [["id", 10]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36mDelayed::Backend::ActiveRecord::Job Load (0.2ms)[0m  [1mSELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:21:47.769134' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:16:47.769156') OR locked_by = 'host:Gregs-MBP.home pid:51923') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10[0m
+  [1m[35mSQL (0.8ms)[0m  UPDATE "delayed_jobs" SET "locked_at" = '2016-06-11 14:21:47.769453', "locked_by" = 'host:Gregs-MBP.home pid:51923' WHERE "delayed_jobs"."id" IN (SELECT "delayed_jobs"."id" FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:21:47.769134' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:16:47.769156') OR locked_by = 'host:Gregs-MBP.home pid:51923') AND failed_at IS NULL) AND "delayed_jobs"."id" = ?  ORDER BY priority ASC, run_at ASC)  [["id", 11]]
+  [1m[36mDelayed::Backend::ActiveRecord::Job Load (0.1ms)[0m  [1mSELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE "delayed_jobs"."id" = ? LIMIT 1[0m  [["id", 11]]
+[ActiveJob] [TestJob] [a261826f-fbff-4419-a518-97c812c8a47e] Performing TestJob from DelayedJob(default) with arguments: 1, 2, 3
+[ActiveJob] [TestJob] [a261826f-fbff-4419-a518-97c812c8a47e] TestJob: I'm performing my job with arguments: [1, 2, 3]
+[ActiveJob] [TestJob] [a261826f-fbff-4419-a518-97c812c8a47e] Performed TestJob from DelayedJob(default) in 0.08ms
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM "delayed_jobs" WHERE "delayed_jobs"."id" = ?[0m  [["id", 11]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36mDelayed::Backend::ActiveRecord::Job Load (0.2ms)[0m  [1mSELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:21:47.774305' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:16:47.774324') OR locked_by = 'host:Gregs-MBP.home pid:51923') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10[0m
+  [1m[35mSQL (0.8ms)[0m  UPDATE "delayed_jobs" SET "locked_at" = '2016-06-11 14:21:47.774588', "locked_by" = 'host:Gregs-MBP.home pid:51923' WHERE "delayed_jobs"."id" IN (SELECT "delayed_jobs"."id" FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:21:47.774305' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:16:47.774324') OR locked_by = 'host:Gregs-MBP.home pid:51923') AND failed_at IS NULL) AND "delayed_jobs"."id" = ?  ORDER BY priority ASC, run_at ASC)  [["id", 12]]
+  [1m[36mDelayed::Backend::ActiveRecord::Job Load (0.1ms)[0m  [1mSELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE "delayed_jobs"."id" = ? LIMIT 1[0m  [["id", 12]]
+[ActiveJob] [TestJob] [ca04f1f6-8aa6-47c4-acbc-9c1c4049745b] Performing TestJob from DelayedJob(default) with arguments: 6, 6, 6
+[ActiveJob] [TestJob] [ca04f1f6-8aa6-47c4-acbc-9c1c4049745b] TestJob: I'm performing my job with arguments: [6, 6, 6]
+[ActiveJob] [TestJob] [ca04f1f6-8aa6-47c4-acbc-9c1c4049745b] Performed TestJob from DelayedJob(default) in 0.13ms
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM "delayed_jobs" WHERE "delayed_jobs"."id" = ?[0m  [["id", 12]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36mDelayed::Backend::ActiveRecord::Job Load (0.1ms)[0m  [1mSELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:21:47.779246' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:16:47.779262') OR locked_by = 'host:Gregs-MBP.home pid:51923') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10[0m
+  [1m[35mDelayed::Backend::ActiveRecord::Job Load (0.1ms)[0m  SELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:21:47.780239' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:16:47.780254') OR locked_by = 'host:Gregs-MBP.home pid:51923') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10
+  [1m[36mDelayed::Backend::ActiveRecord::Job Load (0.3ms)[0m  [1mSELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:22:47.827627' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:17:47.827647') OR locked_by = 'host:Gregs-MBP.home pid:51923') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10[0m
+  [1m[35mSQL (0.3ms)[0m  UPDATE "delayed_jobs" SET "locked_by" = NULL, "locked_at" = NULL WHERE "delayed_jobs"."locked_by" = ?  [["locked_by", "host:Gregs-MBP.home pid:51923"]]
+  [1m[36mDelayed::Backend::ActiveRecord::Job Load (1.9ms)[0m  [1mSELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:24:04.652470' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:19:04.652496') OR locked_by = 'host:Gregs-MBP.home pid:52086') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10[0m
+[ActiveJob]   [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+[ActiveJob]   [1m[35mSQL (0.4ms)[0m  INSERT INTO "delayed_jobs" ("queue", "handler", "run_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["queue", "default"], ["handler", "--- !ruby/object:ActiveJob::QueueAdapters::DelayedJobAdapter::JobWrapper\njob_data:\n  job_class: TestJob\n  job_id: ea205277-cbfb-4397-ac0d-c1f09f72a6c1\n  queue_name: default\n  arguments:\n  - 1\n  - 2\n  - 3\n  locale: :en\n"], ["run_at", "2016-06-11 14:24:23.230650"], ["created_at", "2016-06-11 14:24:23.231132"], ["updated_at", "2016-06-11 14:24:23.231132"]]
+[ActiveJob]   [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+[ActiveJob] Enqueued TestJob (Job ID: ea205277-cbfb-4397-ac0d-c1f09f72a6c1) to DelayedJob(default) with arguments: 1, 2, 3
+  [1m[35mDelayed::Backend::ActiveRecord::Job Load (0.4ms)[0m  SELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:25:04.717242' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:20:04.717270') OR locked_by = 'host:Gregs-MBP.home pid:52086') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10
+  [1m[36mSQL (1.1ms)[0m  [1mUPDATE "delayed_jobs" SET "locked_at" = '2016-06-11 14:25:04.718482', "locked_by" = 'host:Gregs-MBP.home pid:52086' WHERE "delayed_jobs"."id" IN (SELECT "delayed_jobs"."id" FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:25:04.717242' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:20:04.717270') OR locked_by = 'host:Gregs-MBP.home pid:52086') AND failed_at IS NULL) AND "delayed_jobs"."id" = ?  ORDER BY priority ASC, run_at ASC)[0m  [["id", 13]]
+  [1m[35mDelayed::Backend::ActiveRecord::Job Load (0.2ms)[0m  SELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE "delayed_jobs"."id" = ? LIMIT 1  [["id", 13]]
+[ActiveJob] [TestJob] [ea205277-cbfb-4397-ac0d-c1f09f72a6c1] Performing TestJob from DelayedJob(default) with arguments: 1, 2, 3
+[ActiveJob] [TestJob] [ea205277-cbfb-4397-ac0d-c1f09f72a6c1] TestJob: I'm performing my job with arguments: [1, 2, 3]
+[ActiveJob] [TestJob] [ea205277-cbfb-4397-ac0d-c1f09f72a6c1] Performed TestJob from DelayedJob(default) in 372.27ms
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  DELETE FROM "delayed_jobs" WHERE "delayed_jobs"."id" = ?  [["id", 13]]
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+  [1m[35mDelayed::Backend::ActiveRecord::Job Load (0.5ms)[0m  SELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:25:05.131346' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:20:05.131373') OR locked_by = 'host:Gregs-MBP.home pid:52086') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10
+  [1m[36mDelayed::Backend::ActiveRecord::Job Load (0.5ms)[0m  [1mSELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:25:05.133186' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:20:05.133207') OR locked_by = 'host:Gregs-MBP.home pid:52086') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10[0m
+  [1m[35mDelayed::Backend::ActiveRecord::Job Load (0.3ms)[0m  SELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:26:05.168577' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:21:05.168596') OR locked_by = 'host:Gregs-MBP.home pid:52086') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10
+[ActiveJob]   [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+[ActiveJob]   [1m[35mSQL (0.4ms)[0m  INSERT INTO "delayed_jobs" ("queue", "handler", "run_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["queue", "default"], ["handler", "--- !ruby/object:ActiveJob::QueueAdapters::DelayedJobAdapter::JobWrapper\njob_data:\n  job_class: TestJob\n  job_id: 9331e8e4-4976-416c-8d8c-02ff24888d25\n  queue_name: default\n  arguments:\n  - test\n  locale: :en\n"], ["run_at", "2016-06-11 14:27:01.804971"], ["created_at", "2016-06-11 14:27:01.805454"], ["updated_at", "2016-06-11 14:27:01.805454"]]
+[ActiveJob]   [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+[ActiveJob] Enqueued TestJob (Job ID: 9331e8e4-4976-416c-8d8c-02ff24888d25) to DelayedJob(default) with arguments: "test"
+  [1m[36mDelayed::Backend::ActiveRecord::Job Load (0.3ms)[0m  [1mSELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:27:05.205071' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:22:05.205090') OR locked_by = 'host:Gregs-MBP.home pid:52086') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10[0m
+  [1m[35mSQL (9.1ms)[0m  UPDATE "delayed_jobs" SET "locked_at" = '2016-06-11 14:27:05.205659', "locked_by" = 'host:Gregs-MBP.home pid:52086' WHERE "delayed_jobs"."id" IN (SELECT "delayed_jobs"."id" FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:27:05.205071' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:22:05.205090') OR locked_by = 'host:Gregs-MBP.home pid:52086') AND failed_at IS NULL) AND "delayed_jobs"."id" = ?  ORDER BY priority ASC, run_at ASC)  [["id", 14]]
+  [1m[36mDelayed::Backend::ActiveRecord::Job Load (0.2ms)[0m  [1mSELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE "delayed_jobs"."id" = ? LIMIT 1[0m  [["id", 14]]
+[ActiveJob] [TestJob] [9331e8e4-4976-416c-8d8c-02ff24888d25] Performing TestJob from DelayedJob(default) with arguments: "test"
+[ActiveJob] [TestJob] [9331e8e4-4976-416c-8d8c-02ff24888d25] TestJob: I'm performing my job with arguments: ["test"]
+[ActiveJob] [TestJob] [9331e8e4-4976-416c-8d8c-02ff24888d25] Performed TestJob from DelayedJob(default) in 0.08ms
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mDELETE FROM "delayed_jobs" WHERE "delayed_jobs"."id" = ?[0m  [["id", 14]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36mDelayed::Backend::ActiveRecord::Job Load (0.2ms)[0m  [1mSELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:27:05.226878' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:22:05.226901') OR locked_by = 'host:Gregs-MBP.home pid:52086') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10[0m
+  [1m[35mDelayed::Backend::ActiveRecord::Job Load (0.1ms)[0m  SELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:27:05.227856' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:22:05.227868') OR locked_by = 'host:Gregs-MBP.home pid:52086') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10
+  [1m[36mDelayed::Backend::ActiveRecord::Job Load (0.3ms)[0m  [1mSELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:28:05.265518' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:23:05.265537') OR locked_by = 'host:Gregs-MBP.home pid:52086') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10[0m
+  [1m[35mDelayed::Backend::ActiveRecord::Job Load (0.3ms)[0m  SELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:29:05.301027' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:24:05.301047') OR locked_by = 'host:Gregs-MBP.home pid:52086') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10
+  [1m[36mDelayed::Backend::ActiveRecord::Job Load (0.3ms)[0m  [1mSELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:30:05.335185' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:25:05.335203') OR locked_by = 'host:Gregs-MBP.home pid:52086') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10[0m
+  [1m[35mDelayed::Backend::ActiveRecord::Job Load (0.3ms)[0m  SELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:33:34.319592' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:28:34.319609') OR locked_by = 'host:Gregs-MBP.home pid:52086') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10
+  [1m[36mDelayed::Backend::ActiveRecord::Job Load (0.3ms)[0m  [1mSELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:34:34.353374' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:29:34.353392') OR locked_by = 'host:Gregs-MBP.home pid:52086') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10[0m
+  [1m[35mDelayed::Backend::ActiveRecord::Job Load (0.3ms)[0m  SELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:35:34.388296' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:30:34.388314') OR locked_by = 'host:Gregs-MBP.home pid:52086') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10
+  [1m[36mDelayed::Backend::ActiveRecord::Job Load (0.3ms)[0m  [1mSELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:36:34.424744' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:31:34.424764') OR locked_by = 'host:Gregs-MBP.home pid:52086') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10[0m
+  [1m[35mDelayed::Backend::ActiveRecord::Job Load (0.3ms)[0m  SELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:37:34.457315' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:32:34.457332') OR locked_by = 'host:Gregs-MBP.home pid:52086') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10
+
+
+Started DELETE "/users/sign_out" for ::1 at 2016-06-11 10:38:20 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"VcD1R6Am9wNGebN9Xz7PtCfOSeVgTrvr28hNDpSgHOIL5qQGDdQthmcK8U6kBebbIATrjKpsshgBslza9CtCrA=="}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 6]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  commit transaction
+Redirected to http://localhost:3000/
+Completed 302 Found in 322ms (ActiveRecord: 0.7ms)
+
+
+Started GET "/" for ::1 at 2016-06-11 10:38:20 -0400
+Processing by UsersController#home as HTML
+Completed 401 Unauthorized in 4ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for ::1 at 2016-06-11 10:38:20 -0400
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/sessions/new.html.erb within layouts/application (37.3ms)
+  Rendered layouts/_navigation_links.html.erb (0.8ms)
+  Rendered layouts/_nav_links_for_auth.html.erb (0.8ms)
+  Rendered layouts/_navigation.html.erb (5.7ms)
+Completed 200 OK in 516ms (Views: 514.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in" for ::1 at 2016-06-11 10:38:23 -0400
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"08tIM3AKunq2UqOKvLui5jG8TDITOh9zEdMLyZB6qNEhnVJ4j3I0bPCCtTqZj9ffSR/Qio6AyQa+xfZif6R2Pg==", "user"=>{"email"=>"greggo@test.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign in"}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["email", "greggo@test.com"]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mUPDATE "users" SET "last_sign_in_at" = ?, "current_sign_in_at" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["last_sign_in_at", "2016-06-11 12:18:03.110168"], ["current_sign_in_at", "2016-06-11 14:38:23.456937"], ["sign_in_count", 7], ["updated_at", "2016-06-11 14:38:23.457724"], ["id", 3]]
+  [1m[35m (0.7ms)[0m  commit transaction
+Redirected to http://localhost:3000/
+Completed 302 Found in 118ms (ActiveRecord: 1.6ms)
+
+
+Started GET "/" for ::1 at 2016-06-11 10:38:23 -0400
+Processing by UsersController#home as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 3]]
+Redirected to http://localhost:3000/users/3
+Completed 302 Found in 2ms (ActiveRecord: 0.1ms)
+
+
+Started GET "/users/3" for ::1 at 2016-06-11 10:38:23 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 3]]
+[ActiveJob]   [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+[ActiveJob]   [1m[35mSQL (0.3ms)[0m  INSERT INTO "delayed_jobs" ("queue", "handler", "run_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["queue", "default"], ["handler", "--- !ruby/object:ActiveJob::QueueAdapters::DelayedJobAdapter::JobWrapper\njob_data:\n  job_class: TestJob\n  job_id: 92703d8d-1114-4a9d-8585-590292f9829d\n  queue_name: default\n  arguments:\n  - 3\n  locale: :en\n"], ["run_at", "2016-06-11 14:38:23.522560"], ["created_at", "2016-06-11 14:38:23.522666"], ["updated_at", "2016-06-11 14:38:23.522666"]]
+[ActiveJob]   [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+[ActiveJob] Enqueued TestJob (Job ID: 92703d8d-1114-4a9d-8585-590292f9829d) to DelayedJob(default) with arguments: 3
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36m (1.6ms)[0m  [1mSELECT COUNT(*) FROM "indexed_activities" WHERE "indexed_activities"."user_id" = ?[0m  [["user_id", 3]]
+  [1m[35mSummitCompletion Load (0.8ms)[0m  SELECT "summit_completions".* FROM "summit_completions" WHERE "summit_completions"."user_id" = ?  [["user_id", 3]]
+  Rendered users/show.html.erb within layouts/application (15.2ms)
+  Rendered layouts/_navigation_links.html.erb (0.5ms)
+  Rendered layouts/_nav_links_for_auth.html.erb (0.2ms)
+  Rendered layouts/_navigation.html.erb (4.4ms)
+Completed 200 OK in 4874ms (Views: 116.1ms | ActiveRecord: 4.7ms)
+  [1m[36mDelayed::Backend::ActiveRecord::Job Load (0.3ms)[0m  [1mSELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:38:34.499372' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:33:34.499392') OR locked_by = 'host:Gregs-MBP.home pid:52086') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10[0m
+  [1m[35mSQL (0.9ms)[0m  UPDATE "delayed_jobs" SET "locked_at" = '2016-06-11 14:38:34.499918', "locked_by" = 'host:Gregs-MBP.home pid:52086' WHERE "delayed_jobs"."id" IN (SELECT "delayed_jobs"."id" FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:38:34.499372' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:33:34.499392') OR locked_by = 'host:Gregs-MBP.home pid:52086') AND failed_at IS NULL) AND "delayed_jobs"."id" = ?  ORDER BY priority ASC, run_at ASC)  [["id", 15]]
+  [1m[36mDelayed::Backend::ActiveRecord::Job Load (0.1ms)[0m  [1mSELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE "delayed_jobs"."id" = ? LIMIT 1[0m  [["id", 15]]
+[ActiveJob] [TestJob] [92703d8d-1114-4a9d-8585-590292f9829d] Performing TestJob from DelayedJob(default) with arguments: 3
+[ActiveJob] [TestJob] [92703d8d-1114-4a9d-8585-590292f9829d] TestJob: I'm performing my job with arguments: [3]
+[ActiveJob] [TestJob] [92703d8d-1114-4a9d-8585-590292f9829d] Performed TestJob from DelayedJob(default) in 0.08ms
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM "delayed_jobs" WHERE "delayed_jobs"."id" = ?[0m  [["id", 15]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36mDelayed::Backend::ActiveRecord::Job Load (0.2ms)[0m  [1mSELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:38:34.507050' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:33:34.507071') OR locked_by = 'host:Gregs-MBP.home pid:52086') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10[0m
+  [1m[35mDelayed::Backend::ActiveRecord::Job Load (0.1ms)[0m  SELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:38:34.507940' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:33:34.507954') OR locked_by = 'host:Gregs-MBP.home pid:52086') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10
+  [1m[36mDelayed::Backend::ActiveRecord::Job Load (0.3ms)[0m  [1mSELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:39:34.544707' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:34:34.544726') OR locked_by = 'host:Gregs-MBP.home pid:52086') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10[0m
+  [1m[35mDelayed::Backend::ActiveRecord::Job Load (0.3ms)[0m  SELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:40:34.578567' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:35:34.578586') OR locked_by = 'host:Gregs-MBP.home pid:52086') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10
+  [1m[36mDelayed::Backend::ActiveRecord::Job Load (0.4ms)[0m  [1mSELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:53:36.709778' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:48:36.709797') OR locked_by = 'host:Gregs-MBP.home pid:52086') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10[0m
+
+
+Started GET "/users/3" for ::1 at 2016-06-11 10:53:38 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 3]]
+[ActiveJob]   [1m[35m (0.1ms)[0m  begin transaction
+[ActiveJob]   [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "delayed_jobs" ("queue", "handler", "run_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["queue", "default"], ["handler", "--- !ruby/object:ActiveJob::QueueAdapters::DelayedJobAdapter::JobWrapper\njob_data:\n  job_class: FindPeaksJob\n  job_id: 768536e2-2bb6-4c11-9dce-93f220eb59dc\n  queue_name: default\n  arguments:\n  - 3\n  locale: :en\n"], ["run_at", "2016-06-11 14:53:38.766181"], ["created_at", "2016-06-11 14:53:38.766277"], ["updated_at", "2016-06-11 14:53:38.766277"]]
+[ActiveJob]   [1m[35m (0.6ms)[0m  commit transaction
+[ActiveJob] Enqueued FindPeaksJob (Job ID: 768536e2-2bb6-4c11-9dce-93f220eb59dc) to DelayedJob(default) with arguments: 3
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "indexed_activities" WHERE "indexed_activities"."user_id" = ?  [["user_id", 3]]
+  [1m[36mSummitCompletion Load (0.4ms)[0m  [1mSELECT "summit_completions".* FROM "summit_completions" WHERE "summit_completions"."user_id" = ?[0m  [["user_id", 3]]
+  Rendered users/show.html.erb within layouts/application (15.4ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_nav_links_for_auth.html.erb (0.2ms)
+  Rendered layouts/_navigation.html.erb (3.4ms)
+Completed 200 OK in 3156ms (Views: 190.1ms | ActiveRecord: 3.1ms)
+
+
+Started GET "/users/3" for ::1 at 2016-06-11 10:54:06 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 3]]
+[ActiveJob]   [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+[ActiveJob]   [1m[35mSQL (0.2ms)[0m  INSERT INTO "delayed_jobs" ("queue", "handler", "run_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["queue", "default"], ["handler", "--- !ruby/object:ActiveJob::QueueAdapters::DelayedJobAdapter::JobWrapper\njob_data:\n  job_class: FindPeaksJob\n  job_id: 29613634-6bb2-4990-97a7-03150762e78e\n  queue_name: default\n  arguments:\n  - 3\n  locale: :en\n"], ["run_at", "2016-06-11 14:54:06.281051"], ["created_at", "2016-06-11 14:54:06.281152"], ["updated_at", "2016-06-11 14:54:06.281152"]]
+[ActiveJob]   [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+[ActiveJob] Enqueued FindPeaksJob (Job ID: 29613634-6bb2-4990-97a7-03150762e78e) to DelayedJob(default) with arguments: 3
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "indexed_activities" WHERE "indexed_activities"."user_id" = ?[0m  [["user_id", 3]]
+  [1m[35mSummitCompletion Load (0.2ms)[0m  SELECT "summit_completions".* FROM "summit_completions" WHERE "summit_completions"."user_id" = ?  [["user_id", 3]]
+  Rendered users/show.html.erb within layouts/application (4.2ms)
+  Rendered layouts/_navigation_links.html.erb (0.4ms)
+  Rendered layouts/_nav_links_for_auth.html.erb (0.2ms)
+  Rendered layouts/_navigation.html.erb (4.2ms)
+Completed 200 OK in 2922ms (Views: 136.5ms | ActiveRecord: 1.7ms)
+  [1m[35mDelayed::Backend::ActiveRecord::Job Load (0.4ms)[0m  SELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:54:36.756270' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:49:36.756291') OR locked_by = 'host:Gregs-MBP.home pid:52086') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10
+  [1m[36mSQL (0.9ms)[0m  [1mUPDATE "delayed_jobs" SET "locked_at" = '2016-06-11 14:54:36.756968', "locked_by" = 'host:Gregs-MBP.home pid:52086' WHERE "delayed_jobs"."id" IN (SELECT "delayed_jobs"."id" FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:54:36.756270' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:49:36.756291') OR locked_by = 'host:Gregs-MBP.home pid:52086') AND failed_at IS NULL) AND "delayed_jobs"."id" = ?  ORDER BY priority ASC, run_at ASC)[0m  [["id", 16]]
+  [1m[35mDelayed::Backend::ActiveRecord::Job Load (0.1ms)[0m  SELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE "delayed_jobs"."id" = ? LIMIT 1  [["id", 16]]
+[ActiveJob] [FindPeaksJob] [768536e2-2bb6-4c11-9dce-93f220eb59dc] Performing FindPeaksJob from DelayedJob(default) with arguments: 3
+[ActiveJob] [FindPeaksJob] [768536e2-2bb6-4c11-9dce-93f220eb59dc]   [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+[ActiveJob] [FindPeaksJob] [768536e2-2bb6-4c11-9dce-93f220eb59dc]   [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "indexed_activities" WHERE "indexed_activities"."user_id" = ?  [["user_id", 3]]
+[ActiveJob] [FindPeaksJob] [768536e2-2bb6-4c11-9dce-93f220eb59dc] Performed FindPeaksJob from DelayedJob(default) in 3634.35ms
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  DELETE FROM "delayed_jobs" WHERE "delayed_jobs"."id" = ?  [["id", 16]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35mDelayed::Backend::ActiveRecord::Job Load (0.2ms)[0m  SELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:54:40.398414' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:49:40.398436') OR locked_by = 'host:Gregs-MBP.home pid:52086') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10
+  [1m[36mSQL (0.9ms)[0m  [1mUPDATE "delayed_jobs" SET "locked_at" = '2016-06-11 14:54:40.398770', "locked_by" = 'host:Gregs-MBP.home pid:52086' WHERE "delayed_jobs"."id" IN (SELECT "delayed_jobs"."id" FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:54:40.398414' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:49:40.398436') OR locked_by = 'host:Gregs-MBP.home pid:52086') AND failed_at IS NULL) AND "delayed_jobs"."id" = ?  ORDER BY priority ASC, run_at ASC)[0m  [["id", 17]]
+  [1m[35mDelayed::Backend::ActiveRecord::Job Load (0.1ms)[0m  SELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE "delayed_jobs"."id" = ? LIMIT 1  [["id", 17]]
+[ActiveJob] [FindPeaksJob] [29613634-6bb2-4990-97a7-03150762e78e] Performing FindPeaksJob from DelayedJob(default) with arguments: 3
+[ActiveJob] [FindPeaksJob] [29613634-6bb2-4990-97a7-03150762e78e]   [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+[ActiveJob] [FindPeaksJob] [29613634-6bb2-4990-97a7-03150762e78e]   [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "indexed_activities" WHERE "indexed_activities"."user_id" = ?  [["user_id", 3]]
+[ActiveJob] [FindPeaksJob] [29613634-6bb2-4990-97a7-03150762e78e] Performed FindPeaksJob from DelayedJob(default) in 3271.79ms
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  DELETE FROM "delayed_jobs" WHERE "delayed_jobs"."id" = ?  [["id", 17]]
+  [1m[36m (8.9ms)[0m  [1mcommit transaction[0m
+  [1m[35mDelayed::Backend::ActiveRecord::Job Load (0.2ms)[0m  SELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:54:43.684520' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:49:43.684545') OR locked_by = 'host:Gregs-MBP.home pid:52086') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10
+  [1m[36mDelayed::Backend::ActiveRecord::Job Load (0.3ms)[0m  [1mSELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:54:43.686230' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:49:43.686257') OR locked_by = 'host:Gregs-MBP.home pid:52086') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10[0m
+  [1m[35mDelayed::Backend::ActiveRecord::Job Load (0.3ms)[0m  SELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:55:43.748046' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:50:43.748065') OR locked_by = 'host:Gregs-MBP.home pid:52086') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10
+  [1m[36mDelayed::Backend::ActiveRecord::Job Load (0.3ms)[0m  [1mSELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:56:43.811548' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:51:43.811569') OR locked_by = 'host:Gregs-MBP.home pid:52086') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10[0m
+  [1m[35mDelayed::Backend::ActiveRecord::Job Load (0.3ms)[0m  SELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:57:43.873059' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:52:43.873079') OR locked_by = 'host:Gregs-MBP.home pid:52086') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10
+  [1m[36mDelayed::Backend::ActiveRecord::Job Load (0.3ms)[0m  [1mSELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:58:43.921393' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:53:43.921416') OR locked_by = 'host:Gregs-MBP.home pid:52086') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10[0m
+  [1m[35mDelayed::Backend::ActiveRecord::Job Load (0.5ms)[0m  SELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 14:59:43.971652' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:54:43.971683') OR locked_by = 'host:Gregs-MBP.home pid:52086') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10
+  [1m[36mDelayed::Backend::ActiveRecord::Job Load (0.3ms)[0m  [1mSELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 15:00:44.011648' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:55:44.011667') OR locked_by = 'host:Gregs-MBP.home pid:52086') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10[0m
+  [1m[35mDelayed::Backend::ActiveRecord::Job Load (0.3ms)[0m  SELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 15:01:44.050852' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:56:44.050870') OR locked_by = 'host:Gregs-MBP.home pid:52086') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10
+  [1m[36mDelayed::Backend::ActiveRecord::Job Load (0.4ms)[0m  [1mSELECT  "delayed_jobs".* FROM "delayed_jobs" WHERE ((run_at <= '2016-06-11 15:02:44.090768' AND (locked_at IS NULL OR locked_at < '2016-06-11 14:57:44.090786') OR locked_by = 'host:Gregs-MBP.home pid:52086') AND failed_at IS NULL)  ORDER BY priority ASC, run_at ASC LIMIT 10[0m

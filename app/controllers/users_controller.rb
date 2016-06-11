@@ -33,6 +33,9 @@ class UsersController < ApplicationController
   end
 
   def show
+
+    FindPeaksJob.perform_later current_user.id    
+
     @user = User.find(params[:id])
     unless @user == current_user
       redirect_to :back, :alert => "Access denied."
