@@ -18,11 +18,7 @@
 <div class="container content">
   <div class="row">
     <% if @user.token %>
-      <% if @activities.count == @indexed_activities.count %>
-        <p class="text-center" style="color: green" ><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Strava sync complete (<%= @activities.count %> activities)</p>
-      <% else %>
-        <p class="text-center" style="color: red"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Syncing <%= @activities.count - @indexed_activities.count %> <%= "activity".pluralize(@activities.count - @indexed_activities.count)%>. Refresh page to see progress.</p>
-      <% end %>
+        <p class="text-center" style="color: green" ><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Connected to Strava. <%= @indexed_activities.count %> activities synced. </p>
     <% else %>
       <%= link_to(image_tag("ConnectWithStrava.png", size: "171x31", ), "https://www.strava.com/oauth/authorize?client_id=3764&response_type=code&redirect_uri=" + ENV['DOMAIN'] + "/users/connect&approval_prompt=force") %>
     <% end %>

@@ -21,6 +21,8 @@ class UsersController < ApplicationController
     @result = current_user.save
     
     FindPeaksJob.perform_later current_user.id
+
+    redirect_to :root
     
   end
 
@@ -46,15 +48,40 @@ class UsersController < ApplicationController
     end
    
    @summits = @user.summit_completions
-   @activities = StravaHelper.all_activities(@user.token)
+   #@activities = StravaHelper.all_activities(@user.token)
+   @indexed_activities = IndexedActivity.where(user_id: @user.id)
+    
+    # @client = Strava::Api::V3::Client.new(:access_token => @user.token)
+    # @activities = @client.list_athlete_activities({'per_page' => 200})
+
+  end
+
+  def map
+
+    @user = User.find(current_user.id)
+    unless @user == current_user
+      redirect_to :back, :alert => "Access denied."
+    end
+
+    if @user.token.nil?
+      return #redirect_to action: "connect", :alert => "Please Connect to Strava."
+    end
+   
+   @summits = @user.summit_completions
+   #@activities = StravaHelper.all_activities(@user.token)
    @indexed_activities = IndexedActivity.where(user_id: @user.id)
     
     # @client = Strava::Api::V3::Client.new(:access_token => @user.token)
     # @activities = @client.list_athlete_activities({'per_page' => 200})
     
-    
   end
   
+
+  def get_summits
+    @user = User.find(params[:id])
+
+    render json: @user.summit_completions
+  end
 
 
 end
