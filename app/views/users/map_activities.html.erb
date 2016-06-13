@@ -1,0 +1,103 @@
+
+<!--mapbox.js-->
+<script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
+
+<link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' />
+
+<style>
+  #map { position:absolute; top:0; bottom:0; width:100%; }
+</style>
+
+<div id='map'></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+<script>
+  
+var a;
+
+  setTimeout(function(){
+    
+    L.mapbox.accessToken = 'pk.eyJ1IjoiZ2tyYXRod29obCIsImEiOiJ5bXlHNXJJIn0.gjNMPWKFNso_Z5EmEjsFGA';
+    var map = L.mapbox.map('map', null, {
+        zoomControl: false
+    }).setView([37.8, -96], 4);
+
+    var layers = {
+        Streets: L.mapbox.tileLayer('mapbox.streets'),
+        Outdoors: L.mapbox.tileLayer('mapbox.outdoors'),
+        Satellite: L.mapbox.tileLayer('mapbox.satellite'),
+        Strava: L.tileLayer('http://globalheat.strava.com/tiles/both/color7/{z}/{x}/{y}.png')
+    };
+
+    map.addLayer(layers.Outdoors);
+
+    // get data
+    $.ajax("/users/get_activities/<%= @user.id %>", {
+      success: function(data) {
+        a = data;
+
+        
+        $.each(data, function(i, activity){
+          if(activity.start_latlng != null){
+            marker = new L.marker([activity.start_latlng[0], activity.start_latlng[1]])
+              .bindPopup("<h2>"+ activity.name +"</h2><p><a href=https://www.strava.com/activities/"+ activity.id +" target='_blank'>Strava Link</a></p><p>" + activity.start_latlng + "</p>")
+              .addTo(map);
+          }
+        });        
+
+      },
+      error: function() {
+        console.log("error");
+      }
+   });
+
+
+    //layers.Strava.setZIndex(2).addTo(map);
+    
+    // add strava toggle
+    // document.getElementById('checkbox1').onclick = function (e) {
+    //   if (map.hasLayer(layers.Strava)) {
+    //       map.removeLayer(layers.Strava);
+    //   } else {
+    //     layers.Strava.setZIndex(2).addTo(map);
+    //   }
+    // };
+    
+    // add basemap toggle
+    // var options = document.getElementsByName('options');
+    // options[0].onchange = toggleBaseMap;
+    // options[1].onchange = toggleBaseMap;
+    
+    // // basemap toggle function
+    // function toggleBaseMap(){ 
+    //   var options = document.getElementsByName('options');
+    //   if(options[1].checked){
+    //     map.removeLayer(layers.Outdoors)
+    //     map.addLayer(layers.Satellite);
+    //   }else{         
+    //     map.removeLayer(layers.Satellite);
+    //     map.addLayer(layers.Outdoors);
+    //   }
+    // }    
+    
+    
+    // L.control.locate({
+    //   icon: 'fa fa-map-marker',
+    //   iconElementTag: 'span',
+    //   iconLoading: 'fa fa-spinner fa-spin',
+    //   drawCircle: false,
+    //   //follow: true,
+    //   position: 'topright',
+    //   locateOptions: {
+    //     maxZoom: 14
+    //   }
+    // }).addTo(map).start();  
+    
+    // // Initialize the geocoder control and add it to the map.
+    // var geocoderControl = L.mapbox.geocoderControl('mapbox.places', { position: 'topright' });
+    // geocoderControl.addTo(map);
+
+
+  
+  }, 100);
+
+</script>

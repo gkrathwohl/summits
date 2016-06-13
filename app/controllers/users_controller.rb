@@ -75,12 +75,29 @@ class UsersController < ApplicationController
     # @activities = @client.list_athlete_activities({'per_page' => 200})
     
   end
-  
 
   def get_summits
     @user = User.find(params[:id])
-
     render json: @user.summit_completions
+  end
+
+  def map_activities
+    @user = User.find(params[:id])
+    #render json: @activities = StravaHelper.all_activities(@user.token)
+  end
+
+  def get_activities
+    @user = User.find(params[:id])
+    @activities = StravaHelper.all_activities(@user.token)
+    render json: @activities
+  end
+
+  def get_status
+    @user = User.find(params[:id])
+    @activities = StravaHelper.all_activities(@user.token)
+    @indexed_activities = IndexedActivity.where(user_id: @user.id)
+    @status = {"activity_count" => @activities.count, "indexed_count" => @indexed_activities.count }
+    render json: @status
   end
 
 
