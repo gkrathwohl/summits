@@ -5,9 +5,14 @@ require './app/jobs/find_peaks_job'
 require './app/helpers/strava_helper.rb'
 
 class UsersController < ApplicationController
-  before_action :authenticate_user!
+  #before_action :authenticate_user!
 
   def connect
+
+    unless @user == current_user
+      redirect_to :root
+    end
+
     client_id = "3764"
     client_secret = "e0b897e6bc461b774c73fbff6936f656d2e376f3"
     code = params[:code]
@@ -31,17 +36,26 @@ class UsersController < ApplicationController
   end
 
   def home
-    redirect_to current_user
+    if (current_user)
+      redirect_to current_user
+    else
+      redirect_to new_user_session_path
+    end
   end
 
   def show
 
-    FindPeaksJob.perform_later current_user.id    
+    if(current_user)
+      @user = User.find(current_user.id)
+    elsif(params[:id])
+      @user = User.find(params[:id])
+    else
+      return redirect_to :root
+    end
+
+    FindPeaksJob.perform_later params[:id]    
 
     @user = User.find(params[:id])
-    unless @user == current_user
-      redirect_to :back, :alert => "Access denied."
-    end
 
     if @user.token.nil?
       return #redirect_to action: "connect", :alert => "Please Connect to Strava."
@@ -57,10 +71,12 @@ class UsersController < ApplicationController
   end
 
   def map
-
-    @user = User.find(current_user.id)
-    unless @user == current_user
-      redirect_to :back, :alert => "Access denied."
+    if(current_user)
+      @user = User.find(current_user.id)
+    elsif(params[:id])
+      @user = User.find(params[:id])
+    else
+      return redirect_to :root
     end
 
     if @user.token.nil?
