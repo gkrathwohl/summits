@@ -57,7 +57,7 @@
         console.log(data);
         if(data.activity_count == data.indexed_count){
           console.log("equal");
-          $("#status").html('<p class="text-center" style="color: green" ><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Strava sync complete (' + data.indexed_count + 'activities)</p>');
+          $("#status").html('<p class="text-center" style="color: green" ><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Strava sync complete (' + data.indexed_count + ' activities)</p>');
         }else{
           $("#status").html('<p class="text-center" style="color: red"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Syncing activities with Strava (' + data.indexed_count + ' / ' + data.activity_count + ' complete). Refresh page to see progress.</p>');
         }
