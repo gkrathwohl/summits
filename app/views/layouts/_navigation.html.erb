@@ -30,8 +30,8 @@
     </div>
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li><%= link_to 'My Summits', :controller => '/users', :action => 'show' %></li>
-        <li><%= link_to("Map", :controller => '/users', :action => 'map') %></li>
+        <li><%= link_to 'My Summits', summit_path %></li>
+        <li><%= link_to 'Map', map_path %></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <%= render 'layouts/navigation_links' %>

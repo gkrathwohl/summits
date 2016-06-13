@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get "/users/:id/map" => "users#map"
   get "/users/map" => "users#map"
   get "/users/show" => "users#show"
+  get "/map" => "users#map", as: "map"
+  get "/summits" => "users#show", as: "summit"
   get "/users/get_summits/:id" => "users#get_summits"
   get "/users/get_activities/:id" => "users#get_activities"
   get "/map_activities/:id" => "users#map_activities"
