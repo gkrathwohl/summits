@@ -45,18 +45,17 @@ class UsersController < ApplicationController
 
   def show
 
-    if(current_user)
-      @user = User.find(current_user.id)
-    elsif(params[:id])
+
+    if(params[:id])
       @user = User.find(params[:id])
+    elsif(current_user)
+      @user = User.find(current_user.id)
     else
       return redirect_to :root
     end
 
-    FindPeaksJob.perform_later params[:id]    
-
-    @user = User.find(params[:id])
-
+    FindPeaksJob.perform_later @user.id    
+    
     if @user.token.nil?
       return #redirect_to action: "connect", :alert => "Please Connect to Strava."
     end
@@ -71,10 +70,10 @@ class UsersController < ApplicationController
   end
 
   def map
-    if(current_user)
-      @user = User.find(current_user.id)
-    elsif(params[:id])
+    if(params[:id])
       @user = User.find(params[:id])
+    elsif(current_user)
+      @user = User.find(current_user.id)
     else
       return redirect_to :root
     end
