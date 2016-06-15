@@ -10,7 +10,7 @@ class SummitListController < ApplicationController
     rows = doc.css('table.gray tr')
 
     #create summit_list
-    @summit_list = SummitList.new(indexed_activity_params)
+    @summit_list = SummitList.create("list_name" => "New Hampshire 4000 Footers")
 
     rows.each do |row|
       if (row.xpath('td')[1])
@@ -30,8 +30,7 @@ class SummitListController < ApplicationController
         end
 
         #create summit
-        #create summits_in_list 
-
+        #create summits_in_list
 
         puts @name 
         puts @elevation

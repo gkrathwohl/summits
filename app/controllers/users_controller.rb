@@ -32,7 +32,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
+    @users = User.all.sort_by(&:unique_summits_count).reverse
   end
 
   def home
@@ -55,7 +55,7 @@ class UsersController < ApplicationController
     end
 
     FindPeaksJob.perform_later @user.id    
-    
+
     if @user.token.nil?
       return #redirect_to action: "connect", :alert => "Please Connect to Strava."
     end
