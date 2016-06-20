@@ -46,6 +46,7 @@ class FindPeaksJob < ActiveJob::Base
             summit_completion.osm_summit_elevation = peak[:tags]['ele']
             summit_completion.osm_summit_lat = peak[:lat]
             summit_completion.osm_summit_lon = peak[:lon]
+            summit_completion.date = activity['start_date_local']
             summit_completion.save
 
             puts user[:name] + " summited " + peak[:tags]['name']

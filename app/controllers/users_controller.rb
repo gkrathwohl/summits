@@ -43,9 +43,8 @@ class UsersController < ApplicationController
     end
   end
 
+
   def show
-
-
     if(params[:id])
       @user = User.find(params[:id])
     elsif(current_user)
@@ -60,13 +59,19 @@ class UsersController < ApplicationController
       return #redirect_to action: "connect", :alert => "Please Connect to Strava."
     end
    
-   @summits = @user.summit_completions
-   #@activities = StravaHelper.all_activities(@user.token)
-   @indexed_activities = IndexedActivity.where(user_id: @user.id)
-    
-    # @client = Strava::Api::V3::Client.new(:access_token => @user.token)
-    # @activities = @client.list_athlete_activities({'per_page' => 200})
+    if params[:sorted] == "elevation"
+      @sort_string = "osm_summit_elevation DESC"
+      @sort_by = "elevation"
+    elsif params[:sorted] == "name"
+      @sort_string = "summit ASC"
+      @sort_by = "name"
+    else
+      @sort_string = "date DESC"
+      @sort_by = "date"
+    end
 
+    @summits = @user.summit_completions.order(@sorted_by)
+    @indexed_activities = IndexedActivity.where(user_id: @user.id)
   end
 
   def map
@@ -81,7 +86,12 @@ class UsersController < ApplicationController
     if @user.token.nil?
       return #redirect_to action: "connect", :alert => "Please Connect to Strava."
     end
-   
+
+    if(params[:peak])
+      summit_completion = SummitCompletion.find(params[:peak])
+      @start_location = [summit_completion.osm_summit_lat, summit_completion.osm_summit_lon]
+    end
+
    @summits = @user.summit_completions
    #@activities = StravaHelper.all_activities(@user.token)
    @indexed_activities = IndexedActivity.where(user_id: @user.id)
@@ -99,6 +109,10 @@ class UsersController < ApplicationController
   def map_activities
     @user = User.find(params[:id])
     #render json: @activities = StravaHelper.all_activities(@user.token)
+  end
+
+  def get_activity
+    
   end
 
   def get_activities

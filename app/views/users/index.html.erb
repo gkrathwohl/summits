@@ -21,13 +21,14 @@
       <table class="table text-center">
         <tbody>
           <tr>
+            <th></th>
             <th>Name</th>
             <th>Total Summits</th>
             <th>Unique Summits</th>
           </tr>
-          <% @users.each do |user| %>
+          <% @users.each_with_index do |user, index| %>
             <tr>
-              <%= render user %>
+              <td><%= index + 1 %>. </td><%= render user %>
             </tr>
           <% end %>
         </tbody>
@@ -37,3 +38,8 @@
 </div>
 
 
+<script>  
+  $(document).ready(function () {
+      $('#athletes-nav').addClass('active');
+  });
+</script>

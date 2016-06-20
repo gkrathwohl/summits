@@ -5,7 +5,7 @@
    text-align: center;   
 }
 .center_table {
-  padding-top: 30px;
+  padding-top: 0px;
 }
 .content {
   padding-top: 5%;
@@ -13,6 +13,20 @@
 .number-align{
   text-align: right;
 }
+
+.inactive span{
+  visibility:hidden;
+}
+
+.inactive:hover span{
+  visibility:visible;
+}
+
+.table th a{
+  color: #333;
+  //text-decoration: none;
+}
+
 </style>
 
 <div class="container content">
@@ -23,19 +37,25 @@
       <%= link_to(image_tag("ConnectWithStrava.png", size: "171x31", ), "https://www.strava.com/oauth/authorize?client_id=3764&response_type=code&redirect_uri=" + ENV['DOMAIN'] + "/users/connect&approval_prompt=force") %>
     <% end %>
     <div class="column col-md-offset-3 center_table">
-      <h3>Summit Completions</h3>
+      <h2 class="text-center" style="padding-bottom:15px;">Summit Completions</h2>
+
+  <!--    <div>
+        <p style="float:right">View Map</p>
+        <p>Elevation | Most Recent</p>
+      </div> -->
       <table class="table">
         <tbody>
           <tr>
-            <th>Name</th>
-            <th>Elevation</th>
-            <th>Strava Link</th>
+            <th id="name-th" style="text-align:left"><a class="<%= (@sort_by == "name")? '' : 'inactive'%>"  href="?sorted=name">Name <span class="caret"></span></a></th>
+            <th id="date-th" style="text-align:left"><a class="<%= (@sort_by == "date")? '' : 'inactive'%>" href="?sorted=date">Date <span class="caret"></span></a></th>
+            <th id="elev-th" style="text-align:right"><a class="<%= (@sort_by == "elevation")? '' : 'inactive'%>" href="?sorted=elevation">Elevation <span class="caret"></span></a></th>
           </tr>
-          <% @user.summit_completions.each do |summit| %>
+          <% @user.summit_completions.order(@sort_string).each do |summit| %>
             <tr>
-              <td><%= summit.summit %></td>
+              <td><a href="./map?peak=<%= summit.id %>"><%= summit.summit %></a></td>
+              <td><%= summit.date.strftime("%b %-d '%y") %></td>
               <td class="number-align"><%= summit.osm_summit_elevation ? (summit.osm_summit_elevation * 3.28084).to_i : "-" %> ft</td>
-              <td class="text-center"><a href="https://www.strava.com/activities/<%= summit.activity_id %> " target='_blank'>Activity</a></td>
+              <!---<td class="text-center"><a href="https://www.strava.com/activities/<%= summit.activity_id %> " target='_blank'>Activity</a></td> -->
             </tr>
           <% end %>
           <% if !@user.token %>
@@ -52,6 +72,13 @@
 </div>
 
 <script>
+
+        $(document).ready(function () {
+            $('#summits-nav').addClass('active');
+        });
+
+
+
     $.ajax("/users/get_status/<%= @user.id %>", {
       success: function(data) {
         console.log(data);

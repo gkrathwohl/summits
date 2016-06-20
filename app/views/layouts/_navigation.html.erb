@@ -22,17 +22,27 @@
     z-index: -1;
     
 }
+
+
+.active{
+  background-color: #e2e1e1;
+}
+
+.navbar-nav > li:hover{
+  background-color: #e2e1e1;
+}
+
 </style>
 
 
-    <div class="navbar-brand"><a href="/">Summiter</a></div>
+    <div class="navbar-brand"><a href="/"><img src="/assets/mountain_icon.png" height="30" width="30" alt="Summiter"></a></div>
 
     </div>
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li><%= link_to 'My Summits', summit_path %></li>
-        <li><%= link_to 'My Map', map_path %></li>
-        <li><%= link_to 'Athletes', users_path %></li>
+        <li id="summits-nav"><%= link_to 'My Summits', summit_path %></li>
+        <li id="map-nav" ><%= link_to 'My Map', map_path %></li>
+        <li id="athletes-nav" ><%= link_to 'Athletes', users_path %></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <%= render 'layouts/navigation_links' %>

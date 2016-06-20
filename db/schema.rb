@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160612192824) do
+ActiveRecord::Schema.define(version: 20160615225906) do
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20160612192824) do
     t.float    "osm_summit_lat"
     t.float    "osm_summit_lon"
     t.integer  "user_id"
+    t.datetime "date"
   end
 
   add_index "summit_completions", ["user_id"], name: "index_summit_completions_on_user_id"

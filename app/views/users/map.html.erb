@@ -1,8 +1,10 @@
 
 <!--mapbox.js-->
 <script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
-
 <link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' />
+
+  <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/3.15/themes/css/cartodb.css" />
+    <script src="http://libs.cartocdn.com/cartodb.js/v3/3.15/cartodb.js"></script>
 
 <style>
   #map { position:absolute; top:0; bottom:0; width:100%; }
@@ -12,6 +14,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 <script>
   
+        $(document).ready(function () {
+            $('#map-nav').addClass('active');
+        });
+
 var a;
 
   setTimeout(function(){
@@ -19,7 +25,13 @@ var a;
     L.mapbox.accessToken = 'pk.eyJ1IjoiZ2tyYXRod29obCIsImEiOiJ5bXlHNXJJIn0.gjNMPWKFNso_Z5EmEjsFGA';
     var map = L.mapbox.map('map', null, {
         zoomControl: false
-    }).setView([37.8, -96], 4);
+    })
+    
+    <% if @start_location %>
+      map.setView(<%= @start_location %>, 13)
+    <% else %>
+      map.setView([37.8, -96], 4);
+    <% end %>
 
     var layers = {
         Streets: L.mapbox.tileLayer('mapbox.streets'),
@@ -29,26 +41,42 @@ var a;
     };
 
     map.addLayer(layers.Outdoors);
+    //map.addLayer(L.tileLayer('http://ashbu.cartocdn.com/gkrathwohl/api/v1/map/251a910f9605dea3bacfa59daa15bde2:1466311017205/{z}/{x}/{y}.png'));
+
+
+
+    function showActivity(id){
+      console.log(id);
+      $.ajax("/users/get_activity/" + id, {
+        success: function(data) {
+          console.log(data);
+        },
+        error: function() {
+          console.log("error");
+        }
+      });
+    }
 
     // get data
     $.ajax("/users/get_summits/<%= @user.id %>", {
       success: function(data) {
-        a = data;
-
-        
         $.each(data, function(i, summit){
-          console.log(summit.osm_summit_lat);
-          console.log(summit.osm_summit_lon);
+          var popup = $("<div><h2 class='text-center'>"+summit.summit+"</h2><p>Elevation: "+ summit.osm_summit_elevation +" ft</p><p><a href=https://www.strava.com/activities/"+ summit.activity_id +" target='_blank'>View on Strava</a></p></div>")
+          var link = $('').click(function(){showActivity(summit.activity_id)});
           marker = new L.marker([summit.osm_summit_lat, summit.osm_summit_lon])
-            .bindPopup("<h2>"+summit.summit+"</h2><p>Elevation: "+ summit.osm_summit_elevation +" ft</p><p><a href=https://www.strava.com/activities/"+ summit.activity_id +" target='_blank'>Strava Activity</a></p>")
+            .bindPopup(popup.append(link)[0])
             .addTo(map);
         });        
+
+//<a href="#" class="speciallink">TestLink</a>
 
       },
       error: function() {
         console.log("error");
       }
    });
+
+
 
 
     //layers.Strava.setZIndex(2).addTo(map);
