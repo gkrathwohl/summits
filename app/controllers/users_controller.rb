@@ -112,7 +112,9 @@ class UsersController < ApplicationController
   end
 
   def get_activity
-    
+    @activity = StravaHelper.get_activity("cef80412c4e6894a8caa3f847e5fc48168baa0dc", params[:id])
+    @decoded_polyline = StravaHelper.decode_polyline(@activity['map']['polyline'])
+    render json: @decoded_polyline.inspect
   end
 
   def get_activities

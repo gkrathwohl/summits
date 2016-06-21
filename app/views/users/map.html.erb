@@ -50,6 +50,15 @@ var a;
       $.ajax("/users/get_activity/" + id, {
         success: function(data) {
           console.log(data);
+
+          var polyline = L.polyline(data,
+            {
+                color: 'red',
+                weight: 2,
+                opacity: .7,
+                lineJoin: 'round'
+            }
+            ).addTo(map);
         },
         error: function() {
           console.log("error");
@@ -62,13 +71,11 @@ var a;
       success: function(data) {
         $.each(data, function(i, summit){
           var popup = $("<div><h2 class='text-center'>"+summit.summit+"</h2><p>Elevation: "+ summit.osm_summit_elevation +" ft</p><p><a href=https://www.strava.com/activities/"+ summit.activity_id +" target='_blank'>View on Strava</a></p></div>")
-          var link = $('').click(function(){showActivity(summit.activity_id)});
+          var link = $('<p><a href="#" class="speciallink">Show Activity</a></p>').click(function(){showActivity(summit.activity_id)});
           marker = new L.marker([summit.osm_summit_lat, summit.osm_summit_lon])
             .bindPopup(popup.append(link)[0])
             .addTo(map);
         });        
-
-//<a href="#" class="speciallink">TestLink</a>
 
       },
       error: function() {

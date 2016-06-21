@@ -16,6 +16,11 @@ module StravaHelper
     return activities
   end
 
+  def StravaHelper.get_activity(token, id)
+    client = Strava::Api::V3::Client.new(:access_token => token)
+    return client.retrieve_an_activity(id)
+  end
+
   def StravaHelper.decode_polyline(polylineString)
     return Polylines::Decoder.decode_polyline(polylineString)
   end

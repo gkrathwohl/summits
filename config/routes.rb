@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get "/users" => "users#index", as: "users"
   get "/users/get_summits/:id" => "users#get_summits"
   get "/users/get_activities/:id" => "users#get_activities"
+  get "/users/get_activity/:id" => "users#get_activity"
   get "/map_activities/:id" => "users#map_activities"
   get "/users/get_status/:id" => "users#get_status"
   get "/summit_lists" => "summit_list#index"
