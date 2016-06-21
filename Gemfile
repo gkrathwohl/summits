@@ -14,6 +14,7 @@ gem 'polylines'
 gem 'dotenv-rails'
 gem 'delayed_job_active_record'
 gem "daemons"
+gem 'rails_12factor'
 group :development, :test do
   gem 'byebug'
   gem 'sqlite3'
