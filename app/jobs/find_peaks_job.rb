@@ -25,7 +25,10 @@ class FindPeaksJob < ActiveJob::Base
 
       polyline = activity['map']['summary_polyline']
       next if polyline == nil
-      decoded_polyline = StravaHelper.decode_polyline(polyline)
+      #decoded_polyline = StravaHelper.decode_polyline(polyline)
+      client = Strava::Api::V3::Client.new(:access_token => user.token)
+      stream = client.retrieve_activity_streams(activity['id'], 'latlng', {"resolution"=>"medium"})
+      decoded_polyline = stream[0]["data"]
 
       bounding_box = StravaHelper.get_buffered_bounding_box(decoded_polyline)
       peaks_in_bbox = StravaHelper.find_peaks(bounding_box)
