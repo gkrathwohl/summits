@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.2.3'
+ruby '2.3.1'
 gem 'rails', '4.2.5'
 gem "pg"
 gem 'sass-rails', '~> 5.0'
@@ -15,6 +15,15 @@ gem 'dotenv-rails'
 gem 'delayed_job_active_record'
 gem "daemons"
 gem 'rails_12factor'
+
+gem 'capistrano', '~> 3.4.0'
+gem 'capistrano-bundler', '~> 1.1.2'
+gem 'capistrano-rails', '~> 1.1.1'
+
+# Add this if you're using rbenv
+gem 'capistrano-rbenv', github: "capistrano/rbenv"
+
+
 group :development, :test do
   gem 'byebug'
   gem 'sqlite3'
