@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="strava-api-v3 : This gem provides a wrapper around the Strava API V3" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>strava-api-v3</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/jaredholdcroft/strava-api-v3">View on GitHub</a>
+
+          <h1 id="project_title">strava-api-v3</h1>
+          <h2 id="project_tagline">This gem provides a wrapper around the Strava API V3</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/jaredholdcroft/strava-api-v3/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/jaredholdcroft/strava-api-v3/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="strava-api-v3" class="anchor" href="#strava-api-v3"><span class="octicon octicon-link"></span></a>strava-api-v3</h1>
+
+<p><a href="http://travis-ci.org/jaredholdcroft/strava-api-v3"><img src="https://secure.travis-ci.org/jaredholdcroft/strava-api-v3.png" alt="Build Status"></a> <a href="https://codeclimate.com/github/jaredholdcroft/strava-api-v3"><img src="https://codeclimate.com/github/jaredholdcroft/strava-api-v3.png" alt="Code Climate"></a></p>
+
+<p>This gem provides a wrapper around the Strava API V3 - <a href="http://strava.github.io/api/">http://strava.github.io/api/</a></p>
+
+<h2>
+<a name="install" class="anchor" href="#install"><span class="octicon octicon-link"></span></a>Install</h2>
+
+<p>gem install 'strava-api-v3'</p>
+
+<h2>
+<a name="create-a-client" class="anchor" href="#create-a-client"><span class="octicon octicon-link"></span></a>Create a client</h2>
+
+<p>At this point you will need to have the user authorise your application using OAuth2.  </p>
+
+<div class="highlight highlight-ruby"><pre>
+<span class="vi">@client</span> <span class="o">=</span> <span class="no">Strava</span><span class="o">::</span><span class="no">Api</span><span class="o">::</span><span class="no">V3</span><span class="o">::</span><span class="no">Client</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:access_token</span> <span class="o">=&gt;</span> <span class="s2">"MY_ACCESS_TOKEN"</span><span class="p">)</span>
+</pre></div>
+
+<h2>
+<a name="call-api-methods" class="anchor" href="#call-api-methods"><span class="octicon octicon-link"></span></a>Call API methods</h2>
+
+<h3>
+<a name="athlete" class="anchor" href="#athlete"><span class="octicon octicon-link"></span></a>Athlete</h3>
+
+<p>Each method returns a JSON object - see <a href="http://strava.github.io/api/v3/athlete/">http://strava.github.io/api/v3/athlete/</a> for more info</p>
+
+<div class="highlight highlight-ruby"><pre>
+<span class="vi">@client</span><span class="o">.</span><span class="n">retrieve_current_athlete</span> <span class="c1"># fetch the authenticated athlete</span>
+
+<span class="vi">@client</span><span class="o">.</span><span class="n">retrieve_another_athlete</span><span class="p">(</span><span class="ss">:some_id</span><span class="p">)</span> <span class="c1"># fetch another athlete by id</span>
+
+<span class="vi">@client</span><span class="o">.</span><span class="n">list_athlete_segment_efforts</span><span class="p">(</span><span class="ss">:some_id</span><span class="p">)</span> <span class="c1"># fetch K/QOMs/CRs for another athlete by id</span>
+
+</pre></div>
+
+<h2>
+<a name="contributors" class="anchor" href="#contributors"><span class="octicon octicon-link"></span></a>Contributors</h2>
+
+<ul>
+<li>Jared Holdcroft</li>
+</ul>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">strava-api-v3 maintained by <a href="https://github.com/jaredholdcroft">jaredholdcroft</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
