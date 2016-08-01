@@ -33,7 +33,7 @@ group :development do
   gem 'spring'
 end
 gem 'bootstrap-sass'
-gem 'devise'
+gem 'devise', '3.5.1'
 gem 'high_voltage'
 group :development do
   gem 'better_errors'
