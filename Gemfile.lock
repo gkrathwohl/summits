@@ -299,7 +299,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   overpass-api-ruby
-  pg
+  pg (~> 0.18.4)
   polylines
   quiet_assets
   rails (= 4.2.5)
