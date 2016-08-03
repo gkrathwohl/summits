@@ -14,7 +14,7 @@ class FindPeaksJob < ActiveJob::Base
     
     activities.each do |activity|
 
-      # check if all activity are already indexed
+      # check if all activities are already indexed
       break if IndexedActivity.where(user_id: user_id).count == activities.count
       # check if activity is already indexed 
       next if IndexedActivity.where(activity_id: activity['id']).exists?

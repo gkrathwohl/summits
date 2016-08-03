@@ -9,10 +9,6 @@ class UsersController < ApplicationController
 
   def connect
 
-    unless @user == current_user
-      redirect_to :root
-    end
-
     client_id = "3764"
     client_secret = "e0b897e6bc461b774c73fbff6936f656d2e376f3"
     code = params[:code]

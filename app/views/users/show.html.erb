@@ -34,7 +34,7 @@
     <% if @user.token %>
       <p id="status" class="text-center">Loading...</p>
     <% else %>
-      <%= link_to(image_tag("ConnectWithStrava.png", size: "171x31", ), "https://www.strava.com/oauth/authorize?client_id=3764&response_type=code&redirect_uri=" + ENV['DOMAIN'] + "/users/connect&approval_prompt=force") %>
+      <%= link_to(image_tag("ConnectWithStrava.png", size: "171x31", ), "https://www.strava.com/oauth/authorize?client_id=3764&response_type=code&redirect_uri=" + Rails.application.config.domain_root + "/users/connect&approval_prompt=force") %>
     <% end %>
     <div class="column col-md-offset-3 center_table">
       <h2 class="text-center" style="padding-bottom:15px;">Summit Completions</h2>
