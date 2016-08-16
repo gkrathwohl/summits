@@ -5,9 +5,12 @@ Rails.application.routes.draw do
   get "/users/:id/map" => "users#map"
   get "/users/map" => "users#map"
   get "/users/show" => "users#show"
+  get "/users" => "users#index", as: "users"
+
+
   get "/map" => "users#map", as: "map"
   get "/summits" => "users#show", as: "summit"
-  get "/users" => "users#index", as: "users"
+
   get "/users/get_summits/:id" => "users#get_summits"
   get "/users/get_activities/:id" => "users#get_activities"
   get "/users/get_activity/:id" => "users#get_activity"

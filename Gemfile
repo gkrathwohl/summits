@@ -13,7 +13,7 @@ gem 'overpass-api-ruby'
 gem 'polylines'
 gem 'dotenv-rails'
 gem 'delayed_job_active_record'
-gem "daemons"
+gem 'daemons'
 gem 'rails_12factor'
 
 gem 'capistrano', '~> 3.4.0'
