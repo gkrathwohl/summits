@@ -39,6 +39,21 @@ class UsersController < ApplicationController
     end
   end
 
+  def profile
+
+    if(User.exists?(params[:id]))
+      @user = User.find(params[:id])
+    else
+      return redirect_to :root
+    end
+
+    client = Strava::Api::V3::Client.new(:access_token => @user.token)
+    athlete = client.retrieve_another_athlete(3825076)
+
+    @profile_url = athlete['profile']
+
+  end
+
 
   def show
     if(params[:id])

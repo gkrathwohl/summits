@@ -1176,3 +1176,20 @@ I, [2016-08-16T14:47:40.930816 #2386]  INFO -- : 2016-08-16T14:47:40-0400: [Work
 E, [2016-08-16T14:47:41.046874 #2386] ERROR -- : 2016-08-16T14:47:41-0400: [Worker(delayed_job host:Gregs-MBP.home pid:2386)] Job ActiveJob::QueueAdapters::DelayedJobAdapter::JobWrapper (id=529) FAILED (2 prior attempts) with Strava::Api::V3::ClientError: {"message":"Authorization Error","errors":[{"resource":"Athlete","field":"access_token","code":"invalid"}]} [HTTP 401]
 E, [2016-08-16T14:47:41.047174 #2386] ERROR -- : 2016-08-16T14:47:41-0400: [Worker(delayed_job host:Gregs-MBP.home pid:2386)] Job ActiveJob::QueueAdapters::DelayedJobAdapter::JobWrapper (id=529) REMOVED permanently because of 3 consecutive failures
 I, [2016-08-16T14:47:41.060897 #2386]  INFO -- : 2016-08-16T14:47:41-0400: [Worker(delayed_job host:Gregs-MBP.home pid:2386)] 14 jobs processed at 7.2429 j/s, 14 failed
+I, [2016-08-17T11:56:03.207583 #733]  INFO -- : 2016-08-17T11:56:03-0400: [Worker(host:Gregs-MBP.home pid:733)] Starting job worker
+I, [2016-08-17T11:56:03.255255 #733]  INFO -- : 2016-08-17T11:56:03-0400: [Worker(host:Gregs-MBP.home pid:733)] Job ActiveJob::QueueAdapters::DelayedJobAdapter::JobWrapper (id=530) RUNNING
+E, [2016-08-17T11:58:09.858252 #733] ERROR -- : 2016-08-17T11:58:09-0400: [Worker(host:Gregs-MBP.home pid:733)] Job ActiveJob::QueueAdapters::DelayedJobAdapter::JobWrapper (id=530) FAILED (0 prior attempts) with Zlib::BufError: buffer error
+I, [2016-08-17T11:58:09.894549 #733]  INFO -- : 2016-08-17T11:58:09-0400: [Worker(host:Gregs-MBP.home pid:733)] Job ActiveJob::QueueAdapters::DelayedJobAdapter::JobWrapper (id=531) RUNNING
+I, [2016-08-17T12:11:16.015283 #733]  INFO -- : 2016-08-17T12:11:16-0400: [Worker(host:Gregs-MBP.home pid:733)] Job ActiveJob::QueueAdapters::DelayedJobAdapter::JobWrapper (id=531) COMPLETED after 786.0914
+I, [2016-08-17T12:11:16.029787 #733]  INFO -- : 2016-08-17T12:11:16-0400: [Worker(host:Gregs-MBP.home pid:733)] Job ActiveJob::QueueAdapters::DelayedJobAdapter::JobWrapper (id=532) RUNNING
+I, [2016-08-17T12:11:18.500952 #733]  INFO -- : 2016-08-17T12:11:18-0400: [Worker(host:Gregs-MBP.home pid:733)] Job ActiveJob::QueueAdapters::DelayedJobAdapter::JobWrapper (id=532) COMPLETED after 2.4710
+I, [2016-08-17T12:11:18.505212 #733]  INFO -- : 2016-08-17T12:11:18-0400: [Worker(host:Gregs-MBP.home pid:733)] Job ActiveJob::QueueAdapters::DelayedJobAdapter::JobWrapper (id=533) RUNNING
+I, [2016-08-17T12:11:21.023510 #733]  INFO -- : 2016-08-17T12:11:21-0400: [Worker(host:Gregs-MBP.home pid:733)] Job ActiveJob::QueueAdapters::DelayedJobAdapter::JobWrapper (id=533) COMPLETED after 2.5181
+I, [2016-08-17T12:11:21.027508 #733]  INFO -- : 2016-08-17T12:11:21-0400: [Worker(host:Gregs-MBP.home pid:733)] Job ActiveJob::QueueAdapters::DelayedJobAdapter::JobWrapper (id=534) RUNNING
+I, [2016-08-17T12:11:23.891463 #733]  INFO -- : 2016-08-17T12:11:23-0400: [Worker(host:Gregs-MBP.home pid:733)] Job ActiveJob::QueueAdapters::DelayedJobAdapter::JobWrapper (id=534) COMPLETED after 2.8637
+I, [2016-08-17T12:11:23.896721 #733]  INFO -- : 2016-08-17T12:11:23-0400: [Worker(host:Gregs-MBP.home pid:733)] Job ActiveJob::QueueAdapters::DelayedJobAdapter::JobWrapper (id=530) RUNNING
+I, [2016-08-17T12:11:27.161337 #733]  INFO -- : 2016-08-17T12:11:27-0400: [Worker(host:Gregs-MBP.home pid:733)] Job ActiveJob::QueueAdapters::DelayedJobAdapter::JobWrapper (id=530) COMPLETED after 3.2643
+I, [2016-08-17T12:11:27.168779 #733]  INFO -- : 2016-08-17T12:11:27-0400: [Worker(host:Gregs-MBP.home pid:733)] Job ActiveJob::QueueAdapters::DelayedJobAdapter::JobWrapper (id=535) RUNNING
+I, [2016-08-17T12:11:29.840719 #733]  INFO -- : 2016-08-17T12:11:29-0400: [Worker(host:Gregs-MBP.home pid:733)] Job ActiveJob::QueueAdapters::DelayedJobAdapter::JobWrapper (id=535) COMPLETED after 2.6717
+I, [2016-08-17T12:11:29.841942 #733]  INFO -- : 2016-08-17T12:11:29-0400: [Worker(host:Gregs-MBP.home pid:733)] 7 jobs processed at 0.0076 j/s, 1 failed
+I, [2016-08-17T19:55:18.436181 #733]  INFO -- : 2016-08-17T19:55:18-0400: [Worker(host:Gregs-MBP.home pid:733)] Exiting...

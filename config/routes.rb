@@ -1,10 +1,16 @@
 Rails.application.routes.draw do
   resources :indexed_activities
+  
+  get "/summits/:id" => "summits#show"
+  #get "/summits" => "summits#index"
+
+
   get "/users/connect/" => "users#connect"
   get "/users/home" => "users#home"
   get "/users/:id/map" => "users#map"
   get "/users/map" => "users#map"
   get "/users/show" => "users#show"
+  get "/users/:id/profile" => "users#profile"
   get "/users" => "users#index", as: "users"
 
 

@@ -1,0 +1,9 @@
+<h1><%= @summit_completions.first.summit %></h1>
+<h3>Recent:</h3>
+<table>    
+    <% @summit_completions.each_with_index do |completion, index| %>
+        <tr>
+            <td><%= index + 1 %>. </td><td><%= completion.activity_id %></td>
+        </tr>
+    <% end %>
+</table>

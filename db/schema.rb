@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160615225906) do
+ActiveRecord::Schema.define(version: 20160830191948) do
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -52,6 +52,32 @@ ActiveRecord::Schema.define(version: 20160615225906) do
   end
 
   add_index "summit_completions", ["user_id"], name: "index_summit_completions_on_user_id"
+
+  create_table "summit_in_lists", force: :cascade do |t|
+    t.integer  "summit_id"
+    t.integer  "summit_list_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "summit_in_lists", ["summit_id"], name: "index_summit_in_lists_on_summit_id"
+  add_index "summit_in_lists", ["summit_list_id"], name: "index_summit_in_lists_on_summit_list_id"
+
+  create_table "summit_lists", force: :cascade do |t|
+    t.string   "list_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "summits", force: :cascade do |t|
+    t.integer  "osm_id"
+    t.string   "name"
+    t.integer  "elevation"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
