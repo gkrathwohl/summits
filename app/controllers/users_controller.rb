@@ -9,6 +9,8 @@ class UsersController < ApplicationController
 
   def connect
 
+    logger.debug "connecting"
+
     client_id = "3764"
     client_secret = "e0b897e6bc461b774c73fbff6936f656d2e376f3"
     code = params[:code]
