@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
   def connect
 
-    logger.debug "connecting"
+    logger.debug "connectingconnectingconnectingconnectingconnectingconnectingconnectingconnectingconnectingconnectingconnectingconnectingconnectingconnectingconnectingconnectingconnectingconnectingconnectingconnectingconnectingconnectingconnectingconnectingconnectingconnectingconnectingconnectingconnectingconnectingconnectingconnecting"
 
     client_id = "3764"
     client_secret = "e0b897e6bc461b774c73fbff6936f656d2e376f3"
