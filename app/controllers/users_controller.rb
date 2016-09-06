@@ -21,6 +21,11 @@ class UsersController < ApplicationController
     strava_response = JSON.parse response.body
     
     current_user.token = strava_response['access_token']
+
+    if current_user.token == nil
+      raise "TOKEN ERROR: " + strava_response
+    end
+
     @result = current_user.save
     
     FindPeaksJob.perform_later current_user.id
