@@ -14,7 +14,7 @@ gem 'polylines'
 gem 'dotenv-rails'
 gem 'delayed_job_active_record'
 gem 'daemons'
-gem 'rails_12factor'
+#gem 'rails_12factor'
 
 gem 'capistrano', '~> 3.4.0'
 gem 'capistrano-bundler', '~> 1.1.2'
