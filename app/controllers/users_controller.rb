@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 
   def connect
 
+    logger.warn "!!!!!!!  connecting !!!!!!!!!!!"
     logger.debug "!!!!!!!  connecting !!!!!!!!!!!"
 
     client_id = "3764"
@@ -35,6 +36,8 @@ class UsersController < ApplicationController
   end
 
   def index
+    logger.warn "!!!!!!!  index  !!!!!!!!!!!"
+    logger.debug "!!!!!!!  warn index !!!!!!!!!!!"
     @users = User.all.sort_by(&:unique_summits_count).reverse
   end
 
