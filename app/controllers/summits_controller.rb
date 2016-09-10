@@ -9,7 +9,6 @@ class SummitsController < ApplicationController
             @id = params[:id]
 
             @summit_completions = SummitCompletion.where osm_summit_id: @id
-
         end
     end
 

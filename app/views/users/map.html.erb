@@ -1,18 +1,78 @@
 
+
+<style>
+.table th {
+   text-align: center;   
+}
+.center_table {
+  padding-top: 0px;
+}
+.content {
+  padding-top: 2%;
+}
+#profile-content {
+  padding-top: 2%;
+}
+#profile {
+  padding-top: 3%;
+}
+.number-align{
+  text-align: right;
+}
+
+.inactive span{
+  visibility:hidden;
+}
+
+.inactive:hover span{
+  visibility:visible;
+}
+
+.table th a{
+  //color: #333;
+  //text-decoration: none;
+}
+
+//.fixed { position: fixed; background:orange; }
+
+</style>
+
+<div class="container content">
+  <div class="row">
+    <div class="col-sm-3 fixed" id="profile">
+
+        <img src=<%=  @profile_url %>>
+        <h3><%= @first_name %> <%= @last_name %></h3>
+        <p><%= @city %>, <%= @state %></p>
+        <p><%= @unique_summits %> summits</p>
+        <% if @user.token %>
+          <p id="status" class="text-center"></p>
+        <% else %>
+          <%= link_to(image_tag("ConnectWithStrava.png", size: "171x31", ), "https://www.strava.com/oauth/authorize?client_id=3764&response_type=code&redirect_uri=" + Rails.application.config.domain_root + "/users/connect&approval_prompt=force") %>
+        <% end %>
+    </div>
+    <div class="col-sm-9">
+      <ul class="nav nav-tabs">
+        <li role="presentation"><a href="/users/<%= @id %>">Summits</a></li>
+        <li role="presentation" class="active"><a href="/users/<%= @id %>/map">Map</a></li>
+        <li role="presentation"><a href="/users/<%= @id %>/lists">Peak Lists</a></li>
+      </ul>
+      <div id="profile-content">
+
+
 <!--mapbox.js-->
 <script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
 <link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' />
 
 <style>
   #map { 
-    position:absolute; top:0; bottom:0; width:100%; 
+    position:relative; height:600px; width:100%; 
   }
 
   .leaflet-top.leaflet-right{
     padding-top: 50px;
   }
 </style>
-<input type="checkbox">
 <div id='map'></div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 <script>
@@ -144,4 +204,45 @@ var a;
   
   }, 200);
 
+</script>
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+
+        $(document).ready(function () {
+            $('#summits-nav').addClass('active');
+        });
+
+
+
+  //   $.ajax("/users/get_status/<%= @user.id %>", {
+  //     success: function(data) {
+  //       console.log(data);
+  //       if(data.activity_count == data.indexed_count){
+  //         console.log("equal");
+  //         $("#status").html('<p class="text-center" style="color: green" ><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Strava sync complete (' + data.indexed_count + ' activities)</p>');
+  //       }else{
+  //         $("#status").html('<p class="text-center" style="color: red"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Syncing activities with Strava (' + data.indexed_count + ' / ' + data.activity_count + ' complete). Refresh page to see progress.</p>');
+  //       }
+
+  //     },
+  //     error: function() {
+  //       console.log("error");
+  //     }
+  //  });
 </script>

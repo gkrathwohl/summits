@@ -1,0 +1,107 @@
+
+
+<style>
+.table th {
+   text-align: center;   
+}
+.center_table {
+  padding-top: 0px;
+}
+.content {
+  padding-top: 5%;
+}
+.number-align{
+  text-align: right;
+}
+
+.inactive span{
+  visibility:hidden;
+}
+
+.inactive:hover span{
+  visibility:visible;
+}
+
+.table th a{
+  color: #333;
+  //text-decoration: none;
+}
+
+//.fixed { position: fixed; background:orange; }
+
+</style>
+
+<div class="container content">
+  <div class="row">
+    <div class="col-sm-3 fixed">
+
+        <img src=<%=  @profile_url %>>
+        <h3><%= @first_name %> <%= @last_name %></h3>
+        <p><%= @city %>, <%= @state %></p>
+        <p><%= @unique_summits %> summits</p>
+    </div>
+    <div class="col-sm-9">
+    <% if @user.token %>
+      <p id="status" class="text-center">Loading...</p>
+    <% else %>
+      <%= link_to(image_tag("ConnectWithStrava.png", size: "171x31", ), "https://www.strava.com/oauth/authorize?client_id=3764&response_type=code&redirect_uri=" + Rails.application.config.domain_root + "/users/connect&approval_prompt=force") %>
+    <% end %>
+    <div class="column col-md-offset-3 center_table">
+      <h2 class="text-center" style="padding-bottom:15px;">Summit Completions</h2>
+
+      <table class="table">
+        <tbody>
+          <tr>
+            <th id="name-th" style="text-align:left"><a class="<%= (@sort_by == "name")? '' : 'inactive'%>"  href="?sorted=name">Summit<span class="caret"></span></a></th>
+            <td><a href="">Activity</a></td>
+            <th id="date-th" style="text-align:left"><a class="<%= (@sort_by == "date")? '' : 'inactive'%>" href="?sorted=date">Date <span class="caret"></span></a></th>
+            <th id="elev-th" style="text-align:right"><a class="<%= (@sort_by == "elevation")? '' : 'inactive'%>" href="?sorted=elevation">Elevation <span class="caret"></span></a></th>
+          </tr>
+          <% @user.summit_completions.order(@sort_string).each do |summit| %>
+            <tr>
+              <td><a href="/summits/<%= summit.osm_summit_id %>"><%= summit.summit %></a></td>
+              <!--<td><a href="/users/<%= summit.user_id %>/map?peak=<%= summit.id %>"><%= summit.summit %></a></td> -->
+              <td>activity name</td>
+              <td><%= summit.date.strftime("%b %-d '%y") %></td>
+              <td class="number-align"><%= summit.osm_summit_elevation ? (summit.osm_summit_elevation * 3.28084).to_i : "-" %> ft</td>
+              <!--<td class="text-center"><a href="https://www.strava.com/activities/<%= summit.activity_id %> " target='_blank'>Activity</a></td> -->
+            </tr>
+          <% end %>
+          <% if !@user.token %>
+            <tr>
+              <td colspan="3">
+                Connect with Strava to load activities
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<script>
+
+        $(document).ready(function () {
+            $('#summits-nav').addClass('active');
+        });
+
+
+
+    $.ajax("/users/get_status/<%= @user.id %>", {
+      success: function(data) {
+        console.log(data);
+        if(data.activity_count == data.indexed_count){
+          console.log("equal");
+          $("#status").html('<p class="text-center" style="color: green" ><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Strava sync complete (' + data.indexed_count + ' activities)</p>');
+        }else{
+          $("#status").html('<p class="text-center" style="color: red"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Syncing activities with Strava (' + data.indexed_count + ' / ' + data.activity_count + ' complete). Refresh page to see progress.</p>');
+        }
+
+      },
+      error: function() {
+        console.log("error");
+      }
+   });
+</script>

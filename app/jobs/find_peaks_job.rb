@@ -45,6 +45,8 @@ class FindPeaksJob < ActiveJob::Base
             summit_completion.summit = peak[:tags]['name']
             summit_completion.user_id = user[:id]
             summit_completion.activity_id = activity['id']
+            summit_completion.activity_name = activity['name']
+            #summit_completion.activity_id = activity['name']
             summit_completion.osm_summit_id = peak[:id]
             summit_completion.osm_summit_elevation = peak[:tags]['ele']
             summit_completion.osm_summit_lat = peak[:lat]

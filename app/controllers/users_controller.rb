@@ -23,6 +23,11 @@ class UsersController < ApplicationController
     
     current_user.token = strava_response['access_token']
 
+    client = Strava::Api::V3::Client.new(:access_token => current_user.token)
+    current_athlete = client.retrieve_current_athlete
+
+    current_user.strava_id = current_athlete['id']
+
     if current_user.token == nil
       raise "TOKEN ERROR: " + strava_response
     end
@@ -49,30 +54,68 @@ class UsersController < ApplicationController
     end
   end
 
-  def profile
-
-    if(User.exists?(params[:id]))
+  def show
+    if(params[:id] && User.exists?(params[:id]))
       @user = User.find(params[:id])
     else
       return redirect_to :root
     end
 
-    client = Strava::Api::V3::Client.new(:access_token => @user.token)
-    athlete = client.retrieve_another_athlete(3825076)
+    # use the current_user's token to get the strava client
+    client = Strava::Api::V3::Client.new(:access_token => current_user.token)
 
+    # retrieve the strava id of the requested profile.
+    athlete = client.retrieve_another_athlete(@user.strava_id)
+
+    @id = params[:id]
+    @first_name = athlete['firstname']
+    @last_name = athlete['lastname']
+    @city = athlete['city']
+    @state = athlete['state']
     @profile_url = athlete['profile']
+    @unique_summits = @user.unique_summits_count
 
+    FindPeaksJob.perform_later @user.id    
+
+    if @user.token.nil?
+      return #redirect_to action: "connect", :alert => "Please Connect to Strava."
+    end
+   
+    if params[:sorted] == "elevation"
+      @sort_string = "osm_summit_elevation DESC"
+      @sort_by = "elevation"
+    elsif params[:sorted] == "name"
+      @sort_string = "summit ASC"
+      @sort_by = "name"
+    else
+      @sort_string = "date DESC"
+      @sort_by = "date"
+    end
+
+    @summits = @user.summit_completions.order(@sorted_by)
+    @indexed_activities = IndexedActivity.where(user_id: @user.id)
   end
 
-
-  def show
-    if(params[:id])
+  def lists
+  if(params[:id] && User.exists?(params[:id]))
       @user = User.find(params[:id])
-    elsif(current_user)
-      @user = User.find(current_user.id)
     else
       return redirect_to :root
     end
+
+    # use the current_user's token to get the strava client
+    client = Strava::Api::V3::Client.new(:access_token => current_user.token)
+
+    # retrieve the strava id of the requested profile.
+    athlete = client.retrieve_another_athlete(@user.strava_id)
+
+    @id = params[:id]
+    @first_name = athlete['firstname']
+    @last_name = athlete['lastname']
+    @city = athlete['city']
+    @state = athlete['state']
+    @profile_url = athlete['profile']
+    @unique_summits = @user.unique_summits_count
 
     FindPeaksJob.perform_later @user.id    
 
@@ -108,11 +151,26 @@ class UsersController < ApplicationController
       return #redirect_to action: "connect", :alert => "Please Connect to Strava."
     end
 
+        # use the current_user's token to get the strava client
+    client = Strava::Api::V3::Client.new(:access_token => current_user.token)
+
+    # retrieve the strava id of the requested profile.
+    athlete = client.retrieve_another_athlete(@user.strava_id)
+
+    @id = params[:id]
+    @first_name = athlete['firstname']
+    @last_name = athlete['lastname']
+    @city = athlete['city']
+    @state = athlete['state']
+    @profile_url = athlete['profile']
+    @unique_summits = @user.unique_summits_count
+
     if(params[:peak])
       summit_completion = SummitCompletion.find(params[:peak])
       @start_location = [summit_completion.osm_summit_lat, summit_completion.osm_summit_lon]
     end
 
+    @id = params[:id]
    @summits = @user.summit_completions
    #@activities = StravaHelper.all_activities(@user.token)
    @indexed_activities = IndexedActivity.where(user_id: @user.id)

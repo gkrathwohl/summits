@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160830191948) do
+ActiveRecord::Schema.define(version: 20160910175251) do
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -38,6 +38,13 @@ ActiveRecord::Schema.define(version: 20160830191948) do
 
   add_index "indexed_activities", ["user_id"], name: "index_indexed_activities_on_user_id"
 
+  create_table "list_participations", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "list_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "summit_completions", force: :cascade do |t|
     t.string   "summit"
     t.datetime "created_at",                     null: false
@@ -49,6 +56,7 @@ ActiveRecord::Schema.define(version: 20160830191948) do
     t.float    "osm_summit_lon"
     t.integer  "user_id"
     t.datetime "date"
+    t.string   "activity_name"
   end
 
   add_index "summit_completions", ["user_id"], name: "index_summit_completions_on_user_id"
@@ -94,6 +102,7 @@ ActiveRecord::Schema.define(version: 20160830191948) do
     t.datetime "updated_at"
     t.string   "name"
     t.string   "token"
+    t.integer  "strava_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

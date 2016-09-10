@@ -8,7 +8,13 @@
   padding-top: 0px;
 }
 .content {
-  padding-top: 5%;
+  padding-top: 2%;
+}
+#profile-content {
+  padding-top: 2%;
+}
+#profile {
+  padding-top: 3%;
 }
 .number-align{
   text-align: right;
@@ -23,30 +29,40 @@
 }
 
 .table th a{
-  color: #333;
+  //color: #333;
   //text-decoration: none;
 }
+
+//.fixed { position: fixed; background:orange; }
 
 </style>
 
 <div class="container content">
   <div class="row">
-    <% if @user.token %>
-      <p id="status" class="text-center">Loading...</p>
-    <% else %>
-      <%= link_to(image_tag("ConnectWithStrava.png", size: "171x31", ), "https://www.strava.com/oauth/authorize?client_id=3764&response_type=code&redirect_uri=" + Rails.application.config.domain_root + "/users/connect&approval_prompt=force") %>
-    <% end %>
-    <div class="column col-md-offset-3 center_table">
-      <h2 class="text-center" style="padding-bottom:15px;">Summit Completions</h2>
+    <div class="col-sm-3 fixed" id="profile">
 
-  <!--    <div>
-        <p style="float:right">View Map</p>
-        <p>Elevation | Most Recent</p>
-      </div> -->
+        <img src=<%=  @profile_url %>>
+        <h3><%= @first_name %> <%= @last_name %></h3>
+        <p><%= @city %>, <%= @state %></p>
+        <p><%= @unique_summits %> summits</p>
+        <% if @user.token %>
+          <p id="status" class="text-center">Loading...</p>
+        <% else %>
+          <%= link_to(image_tag("ConnectWithStrava.png", size: "171x31", ), "https://www.strava.com/oauth/authorize?client_id=3764&response_type=code&redirect_uri=" + Rails.application.config.domain_root + "/users/connect&approval_prompt=force") %>
+        <% end %>
+    </div>
+    <div class="col-sm-9">
+          <ul class="nav nav-tabs">
+            <li role="presentation" class="active"><a href="#">Summits</a></li>
+            <li role="presentation"><a href="/users/<%= @id %>/map">Map</a></li>
+            <li role="presentation"><a href="/users/<%= @id %>/lists">Peak Lists</a></li>
+          </ul>
+          <div id="profile-content">
       <table class="table">
         <tbody>
           <tr>
-            <th id="name-th" style="text-align:left"><a class="<%= (@sort_by == "name")? '' : 'inactive'%>"  href="?sorted=name">Name <span class="caret"></span></a></th>
+            <th id="name-th" style="text-align:left"><a class="<%= (@sort_by == "name")? '' : 'inactive'%>"  href="?sorted=name">Summit<span class="caret"></span></a></th>
+            <td><a href="">Activity</a></td>
             <th id="date-th" style="text-align:left"><a class="<%= (@sort_by == "date")? '' : 'inactive'%>" href="?sorted=date">Date <span class="caret"></span></a></th>
             <th id="elev-th" style="text-align:right"><a class="<%= (@sort_by == "elevation")? '' : 'inactive'%>" href="?sorted=elevation">Elevation <span class="caret"></span></a></th>
           </tr>
@@ -54,6 +70,7 @@
             <tr>
               <td><a href="/summits/<%= summit.osm_summit_id %>"><%= summit.summit %></a></td>
               <!--<td><a href="/users/<%= summit.user_id %>/map?peak=<%= summit.id %>"><%= summit.summit %></a></td> -->
+              <td><%= summit.activity_name %></td>
               <td><%= summit.date.strftime("%b %-d '%y") %></td>
               <td class="number-align"><%= summit.osm_summit_elevation ? (summit.osm_summit_elevation * 3.28084).to_i : "-" %> ft</td>
               <!--<td class="text-center"><a href="https://www.strava.com/activities/<%= summit.activity_id %> " target='_blank'>Activity</a></td> -->
@@ -68,9 +85,13 @@
           <% end %>
         </tbody>
       </table>
+        </tbody>
+      </table>
+      </div>
     </div>
   </div>
 </div>
+
 
 <script>
 

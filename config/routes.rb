@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get "/users/connect/" => "users#connect"
   get "/users/home" => "users#home"
   get "/users/:id/map" => "users#map"
+  get "/users/:id/lists" => "users#lists"
   get "/users/map" => "users#map"
   get "/users/show" => "users#show"
   get "/users/:id/profile" => "users#profile"
