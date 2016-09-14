@@ -39,53 +39,49 @@
 
 <div class="container content">
   <div class="row">
-    <div class="col-sm-3 fixed" id="profile">
+    <div class="col-sm-3 fixed text-center" id="profile">
 
         <img src=<%=  @profile_url %>>
         <h3><%= @first_name %> <%= @last_name %></h3>
         <p><%= @city %>, <%= @state %></p>
         <p><%= @unique_summits %> summits</p>
         <% if @user.token %>
-          <p id="status" class="text-center">Loading...</p>
         <% else %>
           <%= link_to(image_tag("ConnectWithStrava.png", size: "171x31", ), "https://www.strava.com/oauth/authorize?client_id=3764&response_type=code&redirect_uri=" + Rails.application.config.domain_root + "/users/connect&approval_prompt=force") %>
         <% end %>
     </div>
     <div class="col-sm-9">
-          <ul class="nav nav-tabs">
-            <li role="presentation" ><a href="/users/<%= @id %>">Summits</a></li>
-            <li role="presentation"><a href="/users/<%= @id %>/map">Map</a></li>
-            <li role="presentation" class="active"><a href="/users/<%= @id %>/lists">Peak Lists</a></li>
-          </ul>
-          <div id="profile-content">
-   
+      <ul class="nav nav-tabs">
+        <li role="presentation" ><a href="/users/<%= @id %>">Summits</a></li>
+        <li role="presentation"><a href="/users/<%= @id %>/map">Map</a></li>
+        <li role="presentation" class="active"><a href="/users/<%= @id %>/lists">Peak Lists</a></li>
+      </ul>
+      <div id="profile-content">
+        <div class="panel-group" id="accordion">
+            <% @lists.each_with_index do |summit_list, index| %>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= index %>"><%= summit_list.list_name %></a>
+                  </h4>
+                </div>
+                <div id="collapse<%= index %>" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <ol>
+                    <% summit_list.summits.each do |summit| %>
+                      <% if @summits.find_by(osm_summit_id: summit.osm_id) != nil %>
+                        <li><span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span> <del><%= summit.name %></del></li>
+                      <% else %>
+                        <li><%= summit.name %></li>
+                      <% end %>
+                    <% end %>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+        </div>
       </div>
     </div>
   </div>
 </div>
-
-
-<script>
-
-        $(document).ready(function () {
-            $('#summits-nav').addClass('active');
-        });
-
-
-
-    $.ajax("/users/get_status/<%= @user.id %>", {
-      success: function(data) {
-        console.log(data);
-        if(data.activity_count == data.indexed_count){
-          console.log("equal");
-          $("#status").html('<p class="text-center" style="color: green" ><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Strava sync complete (' + data.indexed_count + ' activities)</p>');
-        }else{
-          $("#status").html('<p class="text-center" style="color: red"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Syncing activities with Strava (' + data.indexed_count + ' / ' + data.activity_count + ' complete). Refresh page to see progress.</p>');
-        }
-
-      },
-      error: function() {
-        console.log("error");
-      }
-   });
-</script>

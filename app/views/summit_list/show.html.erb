@@ -1,0 +1,17 @@
+<h1><%= @summit_list.list_name %></h1>
+<ol>
+<% @summit_list.summits.each do |summit| %>
+<li><a href="/summits/<%= summit.osm_id %>"><%= summit.name %></a></li>
+<% end %>
+</o>
+
+
+<script>    
+$(document).ready(function () {
+  $('#athletes-nav').removeClass('active');
+  $('#summits-nav').removeClass('active');
+  $('#lists-nav').addClass('active');
+});
+
+
+</script>

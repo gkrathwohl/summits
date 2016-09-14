@@ -4,19 +4,16 @@ Rails.application.routes.draw do
   get "/summits/:id" => "summits#show"
   #get "/summits" => "summits#index"
 
-
   get "/users/connect/" => "users#connect"
-  get "/users/home" => "users#home"
+
   get "/users/:id/map" => "users#map"
   get "/users/:id/lists" => "users#lists"
-  get "/users/map" => "users#map"
   get "/users/show" => "users#show"
   get "/users/:id/profile" => "users#profile"
   get "/users" => "users#index", as: "users"
-
-
-  get "/map" => "users#map", as: "map"
-  get "/summits" => "users#show", as: "summit"
+  get "/lists" => "summit_list#index", as: "lists"
+  get "/lists/:id" => "summit_list#show"
+  get "/summits" => "summits#index", as: "summits"
 
   get "/users/get_summits/:id" => "users#get_summits"
   get "/users/get_activities/:id" => "users#get_activities"

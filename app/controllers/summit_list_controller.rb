@@ -4,6 +4,16 @@ class SummitListController < ApplicationController
     @summit_lists = SummitList.all
   end
 
+  def show
+    if(params[:id] && SummitList.exists?(params[:id]))
+      @summit_list = SummitList.find(params[:id])
+    else
+      return redirect_to :root
+    end
+
+    
+  end
+
   def scrape_peaks
     require 'open-uri'
     doc = Nokogiri::HTML(open("http://www.peakbagger.com/list.aspx?lid=5167&u=ft&hu=0&pt=avg"))

@@ -39,8 +39,7 @@
 
 <div class="container content">
   <div class="row">
-    <div class="col-sm-3 fixed" id="profile">
-
+    <div class="col-sm-3 fixed text-center" id="profile">
         <img src=<%=  @profile_url %>>
         <h3><%= @first_name %> <%= @last_name %></h3>
         <p><%= @city %>, <%= @state %></p>
@@ -76,10 +75,14 @@
 <div id='map'></div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 <script>
+
+console.log(<%= @summit_id %>)
   
-        $(document).ready(function () {
-            $('#map-nav').addClass('active');
-        });
+$(document).ready(function () {
+  $('#athletes-nav').addClass('active');
+  $('#summits-nav').removeClass('active');
+  $('#lists-nav').removeClass('active');
+});
 
 var a;
 
@@ -105,8 +108,6 @@ var a;
 
     map.addLayer(layers.Outdoors);
     //map.addLayer(L.tileLayer('http://ashbu.cartocdn.com/gkrathwohl/api/v1/map/c88ab91531fda88477cd97ec51cfc4f3:1466311017205/{z}/{x}/{y}.png'));
-
-    //map.addLayer(layers.Strava);
 
     L.control.layers({}, {'Strava Heatmap': layers.Strava}).addTo(map);
 
@@ -151,98 +152,12 @@ var a;
         console.log("error");
       }
    });
-
-
-
-
-    //layers.Strava.setZIndex(2).addTo(map);
-    
-    // add strava toggle
-    // document.getElementById('checkbox1').onclick = function (e) {
-    //   if (map.hasLayer(layers.Strava)) {
-    //       map.removeLayer(layers.Strava);
-    //   } else {
-    //     layers.Strava.setZIndex(2).addTo(map);
-    //   }
-    // };
-    
-    // add basemap toggle
-    // var options = document.getElementsByName('options');
-    // options[0].onchange = toggleBaseMap;
-    // options[1].onchange = toggleBaseMap;
-    
-    // // basemap toggle function
-    // function toggleBaseMap(){ 
-    //   var options = document.getElementsByName('options');
-    //   if(options[1].checked){
-    //     map.removeLayer(layers.Outdoors)
-    //     map.addLayer(layers.Satellite);
-    //   }else{         
-    //     map.removeLayer(layers.Satellite);
-    //     map.addLayer(layers.Outdoors);
-    //   }
-    // }    
-    
-    
-    // L.control.locate({
-    //   icon: 'fa fa-map-marker',
-    //   iconElementTag: 'span',
-    //   iconLoading: 'fa fa-spinner fa-spin',
-    //   drawCircle: false,
-    //   //follow: true,
-    //   position: 'topright',
-    //   locateOptions: {
-    //     maxZoom: 14
-    //   }
-    // }).addTo(map).start();  
-    
-    // // Initialize the geocoder control and add it to the map.
-    // var geocoderControl = L.mapbox.geocoderControl('mapbox.places', { position: 'topright' });
-    // geocoderControl.addTo(map);
-
-
-  
   }, 200);
 
 </script>
-
-
-
-
-
-
-
-
-
 
 
       </div>
     </div>
   </div>
 </div>
-
-
-<script>
-
-        $(document).ready(function () {
-            $('#summits-nav').addClass('active');
-        });
-
-
-
-  //   $.ajax("/users/get_status/<%= @user.id %>", {
-  //     success: function(data) {
-  //       console.log(data);
-  //       if(data.activity_count == data.indexed_count){
-  //         console.log("equal");
-  //         $("#status").html('<p class="text-center" style="color: green" ><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Strava sync complete (' + data.indexed_count + ' activities)</p>');
-  //       }else{
-  //         $("#status").html('<p class="text-center" style="color: red"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Syncing activities with Strava (' + data.indexed_count + ' / ' + data.activity_count + ' complete). Refresh page to see progress.</p>');
-  //       }
-
-  //     },
-  //     error: function() {
-  //       console.log("error");
-  //     }
-  //  });
-</script>

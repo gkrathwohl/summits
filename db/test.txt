@@ -1,0 +1,21 @@
+@summit = Summit.create(osm_id: "356554629", name: "The Chin", elevation: 1335, latitude: -72.8142903, longitude: 44.5436627)
+@summit_id = @summit.id
+SummitInList.create(summit_id: @summit_id, summit_list_id: @list_id)
+@summit = Summit.create(osm_id: "356555375", name: "Mount Mansfield", elevation: 1335, latitude: -72.8142903, longitude: 44.5436627)
+@summit_id = @summit.id
+SummitInList.create(summit_id: @summit_id, summit_list_id: @list_id)
+@summit = Summit.create(osm_id: "356552395", name: "Adams Apple", elevation: 1257, latitude: -72.8104014, longitude: 44.5464405)
+@summit_id = @summit.id
+SummitInList.create(summit_id: @summit_id, summit_list_id: @list_id)
+@summit = Summit.create(osm_id: "356552748", name: "Camels Hump", elevation: 1239, latitude: -72.886231, longitude: 44.3195)
+@summit_id = @summit.id
+SummitInList.create(summit_id: @summit_id, summit_list_id: @list_id)
+@summit = Summit.create(osm_id: "356555022", name: "Mount Ellen", elevation: 1234, latitude: -72.9294109, longitude: 44.1604418)
+@summit_id = @summit.id
+SummitInList.create(summit_id: @summit_id, summit_list_id: @list_id)
+@summit = Summit.create(osm_id: "356554653", name: "The Nose", elevation: 1228, latitude: -72.8152217, longitude: 44.5263353)
+@summit_id = @summit.id
+SummitInList.create(summit_id: @summit_id, summit_list_id: @list_id)
+@summit = Summit.create(osm_id: "356554905", name: "Mount Abraham", elevation: 1205, latitude: -72.9360524, longitude: 44.1204146)
+@summit_id = @summit.id
+SummitInList.create(summit_id: @summit_id, summit_list_id: @list_id)

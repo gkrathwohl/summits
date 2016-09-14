@@ -84,9 +84,12 @@ class UsersController < ApplicationController
     if params[:sorted] == "elevation"
       @sort_string = "osm_summit_elevation DESC"
       @sort_by = "elevation"
-    elsif params[:sorted] == "name"
+    elsif params[:sorted] == "summit-name"
       @sort_string = "summit ASC"
-      @sort_by = "name"
+      @sort_by = "summit-name"
+    elsif params[:sorted] == "activity-name"
+      @sort_string = "activity_name ASC"
+      @sort_by = "activity-name"
     else
       @sort_string = "date DESC"
       @sort_by = "date"
@@ -97,7 +100,7 @@ class UsersController < ApplicationController
   end
 
   def lists
-  if(params[:id] && User.exists?(params[:id]))
+    if(params[:id] && User.exists?(params[:id]))
       @user = User.find(params[:id])
     else
       return redirect_to :root
@@ -136,6 +139,8 @@ class UsersController < ApplicationController
 
     @summits = @user.summit_completions.order(@sorted_by)
     @indexed_activities = IndexedActivity.where(user_id: @user.id)
+
+    @lists = SummitList.all
   end
 
   def map
@@ -165,8 +170,8 @@ class UsersController < ApplicationController
     @profile_url = athlete['profile']
     @unique_summits = @user.unique_summits_count
 
-    if(params[:peak])
-      summit_completion = SummitCompletion.find(params[:peak])
+    if(params[:summit_id])
+      summit_completion = SummitCompletion.find(params[:summit_id])
       @start_location = [summit_completion.osm_summit_lat, summit_completion.osm_summit_lon]
     end
 

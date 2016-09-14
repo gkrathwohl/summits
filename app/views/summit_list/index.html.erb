@@ -1,2 +1,12 @@
 <h1>Summit Lists</h1>
-<%= @summit_lists.inspect %>
+<ol>
+<% @summit_lists.each do |summit_list| %>
+<li><a href="/lists/<%= summit_list.id %>"><%= summit_list.list_name %></a></li>
+<% end %>
+</o>
+
+<script>  
+  $(document).ready(function () {
+      $('#lists-nav').addClass('active');
+  });
+</script>
