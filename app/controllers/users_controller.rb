@@ -65,6 +65,10 @@ class UsersController < ApplicationController
     #client = Strava::Api::V3::Client.new(:access_token => current_user.token)
     client = Strava::Api::V3::Client.new(:access_token => "cef80412c4e6894a8caa3f847e5fc48168baa0dc")
 
+    if @user.token.nil?
+      return #redirect_to action: "connect", :alert => "Please Connect to Strava."
+    end
+
     # retrieve the strava id of the requested profile.
     athlete = client.retrieve_another_athlete(@user.strava_id)
 
@@ -77,10 +81,6 @@ class UsersController < ApplicationController
     @unique_summits = @user.unique_summits_count
 
     FindPeaksJob.perform_later @user.id    
-
-    if @user.token.nil?
-      return #redirect_to action: "connect", :alert => "Please Connect to Strava."
-    end
    
     if params[:sorted] == "elevation"
       @sort_string = "osm_summit_elevation DESC"
