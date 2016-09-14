@@ -9,8 +9,9 @@ class UsersController < ApplicationController
 
   def connect
 
-    logger.warn "!!!!!!!  connecting !!!!!!!!!!!"
-    logger.debug "!!!!!!!  connecting !!!!!!!!!!!"
+    if params["error"] == "access_denied"
+      return redirect_to :root
+    end
 
     client_id = "3764"
     client_secret = "e0b897e6bc461b774c73fbff6936f656d2e376f3"

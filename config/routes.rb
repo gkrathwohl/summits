@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   resources :indexed_activities
+
+  devise_for :users, :controllers => {:registrations => "registrations"}
+  get "/connect_to_strava" => redirect("https://www.strava.com/oauth/authorize?client_id=3764&response_type=code&redirect_uri=" + Rails.application.config.domain_root + "/users/connect&approval_prompt=force"), :as => :connect
   
   get "/summits/:id" => "summits#show"
   #get "/summits" => "summits#index"
@@ -25,6 +28,6 @@ Rails.application.routes.draw do
   resources :summit_completions
   root to: 'users#home'
 
-  devise_for :users
+  #devise_for :users
   resources :users
 end
