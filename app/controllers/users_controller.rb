@@ -62,7 +62,8 @@ class UsersController < ApplicationController
     end
 
     # use the current_user's token to get the strava client
-    client = Strava::Api::V3::Client.new(:access_token => current_user.token)
+    #client = Strava::Api::V3::Client.new(:access_token => current_user.token)
+    client = Strava::Api::V3::Client.new(:access_token => cef80412c4e6894a8caa3f847e5fc48168baa0dc)
 
     # retrieve the strava id of the requested profile.
     athlete = client.retrieve_another_athlete(@user.strava_id)
