@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20160912153459) do
 
-  create_table "Summits", force: :cascade do |t|
+  create_table "summits", force: :cascade do |t|
     t.string   "osm_id"
     t.string   "name"
     t.integer  "elevation"
