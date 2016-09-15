@@ -51,7 +51,7 @@ class UsersController < ApplicationController
     if (current_user)
       redirect_to current_user
     else
-      redirect_to new_user_session_path
+      redirect_to new_user_registration_path
     end
   end
 
