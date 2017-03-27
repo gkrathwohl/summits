@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
-ruby '2.3.1'
+
+ruby '2.3.3'
+
 gem 'rails', '4.2.5'
 gem 'pg', '~> 0.18.4'
 gem 'sass-rails', '~> 5.0'
@@ -14,6 +16,10 @@ gem 'polylines'
 gem 'dotenv-rails'
 gem 'delayed_job_active_record'
 gem 'daemons'
+
+gem 'rspec'
+
+gem 'resque' 
 #gem 'rails_12factor'
 
 gem 'capistrano', '~> 3.4.0'

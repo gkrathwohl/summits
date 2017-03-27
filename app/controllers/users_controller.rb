@@ -34,16 +34,20 @@ class UsersController < ApplicationController
     end
 
     @result = current_user.save
-    
+
     FindPeaksJob.perform_later current_user.id
 
     redirect_to :root
     
   end
 
+  def index_activities
+    @user = User.find(params[:id])
+    FindPeaksJob.perform_later @user.id
+    render json: "indexing"
+  end
+
   def index
-    logger.warn "!!!!!!!  index  !!!!!!!!!!!"
-    logger.debug "!!!!!!!  warn index !!!!!!!!!!!"
     @users = User.all.sort_by(&:unique_summits_count).reverse
   end
 
@@ -80,8 +84,6 @@ class UsersController < ApplicationController
     @state = athlete['state']
     @profile_url = athlete['profile']
     @unique_summits = @user.unique_summits_count
-
-    FindPeaksJob.perform_later @user.id    
    
     if params[:sorted] == "elevation"
       @sort_string = "osm_summit_elevation DESC"
@@ -99,6 +101,9 @@ class UsersController < ApplicationController
 
     @summits = @user.summit_completions.order(@sorted_by)
     @indexed_activities = IndexedActivity.where(user_id: @user.id)
+
+    puts "summits \n\n\n\n\n\n\n  "
+    puts @summits
   end
 
   def lists
@@ -158,7 +163,7 @@ class UsersController < ApplicationController
       return #redirect_to action: "connect", :alert => "Please Connect to Strava."
     end
 
-        # use the current_user's token to get the strava client
+    # use the current_user's token to get the strava client
     client = Strava::Api::V3::Client.new(:access_token => "cef80412c4e6894a8caa3f847e5fc48168baa0dc")
 
     # retrieve the strava id of the requested profile.
@@ -178,13 +183,9 @@ class UsersController < ApplicationController
     end
 
     @id = params[:id]
-   @summits = @user.summit_completions
-   #@activities = StravaHelper.all_activities(@user.token)
-   @indexed_activities = IndexedActivity.where(user_id: @user.id)
-    
-    # @client = Strava::Api::V3::Client.new(:access_token => @user.token)
-    # @activities = @client.list_athlete_activities({'per_page' => 200})
-    
+    @summits = @user.summit_completions
+    @indexed_activities = IndexedActivity.where(user_id: @user.id)
+
   end
 
   def get_summits
@@ -218,6 +219,4 @@ class UsersController < ApplicationController
     @status = {"activity_count" => @activities.count, "indexed_count" => @indexed_activities.count }
     render json: @status
   end
-
-
 end

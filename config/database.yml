@@ -25,6 +25,8 @@ test:
   #database: db/production.sqlite3
 
 
+
+
 production:
   adapter: postgresql
   encoding: unicode

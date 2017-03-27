@@ -11,9 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160912153459) do
+ActiveRecord::Schema.define(version: 20170307083856) do
 
-  create_table "summits", force: :cascade do |t|
+  create_table "Summits", force: :cascade do |t|
     t.string   "osm_id"
     t.string   "name"
     t.integer  "elevation"
@@ -22,6 +22,19 @@ ActiveRecord::Schema.define(version: 20160912153459) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "climb_records", force: :cascade do |t|
+    t.decimal  "elevation_gain"
+    t.integer  "activity_id"
+    t.integer  "start_time"
+    t.integer  "end_time"
+    t.integer  "total_time"
+    t.integer  "user_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "climb_records", ["user_id"], name: "index_climb_records_on_user_id"
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false

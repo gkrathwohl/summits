@@ -1,11 +1,25 @@
 Rails.application.routes.draw do
+  require 'resque/server'
+  mount Resque::Server, at: '/jobs'
+
+  # get '*path' => "home#maintenance"
+
+  resources :climb_records
   resources :indexed_activities
+
 
   devise_for :users, :controllers => {:registrations => "registrations"}
   get "/connect_to_strava" => redirect("https://www.strava.com/oauth/authorize?client_id=3764&response_type=code&redirect_uri=" + Rails.application.config.domain_root + "/users/connect&approval_prompt=force"), :as => :connect
   
+  get "/users/:id/index_activities" => "users#index_activities"
+
   get "/summits/:id" => "summits#show"
   #get "/summits" => "summits#index"
+
+  get "users/:id/elevation" => "users#elevation"
+
+  #osm api
+  get "/osm/get_summits" => "osm#get_summits"
 
   get "/users/connect/" => "users#connect"
 

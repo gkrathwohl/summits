@@ -1,5 +1,3 @@
-
-
 <style>
 .table th {
    text-align: center;   
@@ -28,29 +26,12 @@
   visibility:visible;
 }
 
-.table th a{
-  //color: #333;
-  //text-decoration: none;
-}
-
-//.fixed { position: fixed; background:orange; }
 
 </style>
 
 <div class="container content">
   <div class="row">
-    <div class="col-sm-3 fixed text-center" id="profile">
-
-        <img src=<%=  @profile_url %>>
-        <h3><%= @first_name %> <%= @last_name %></h3>
-        <p><%= @city %>, <%= @state %></p>
-        <p><%= @unique_summits %> summits</p>
-        <% if @user.token %>
-          <p id="status" class="text-center">Syncing...</p>
-        <% else %>
-          <%= link_to(image_tag("ConnectWithStrava.png", size: "171x31", ), "https://www.strava.com/oauth/authorize?client_id=3764&response_type=code&redirect_uri=" + Rails.application.config.domain_root + "/users/connect&approval_prompt=force") %>
-        <% end %>
-    </div>
+    <%= render 'profile_sidebar' %>
     <div class="col-sm-9">
           <ul class="nav nav-tabs">
             <li role="presentation" class="active"><a href="#">Summits</a></li>
@@ -83,8 +64,6 @@
               </td>
             </tr>
           <% end %>
-        </tbody>
-      </table>
         </tbody>
       </table>
       </div>

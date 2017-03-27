@@ -1,0 +1,41 @@
+<%= form_for(@climb_record) do |f| %>
+  <% if @climb_record.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@climb_record.errors.count, "error") %> prohibited this climb_record from being saved:</h2>
+
+      <ul>
+      <% @climb_record.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :elevation_gain %><br>
+    <%= f.number_field :elevation_gain %>
+  </div>
+  <div class="field">
+    <%= f.label :activity_id %><br>
+    <%= f.number_field :activity_id %>
+  </div>
+  <div class="field">
+    <%= f.label :start_time %><br>
+    <%= f.number_field :start_time %>
+  </div>
+  <div class="field">
+    <%= f.label :end_time %><br>
+    <%= f.number_field :end_time %>
+  </div>
+  <div class="field">
+    <%= f.label :total_time %><br>
+    <%= f.number_field :total_time %>
+  </div>
+  <div class="field">
+    <%= f.label :User_id %><br>
+    <%= f.text_field :User_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

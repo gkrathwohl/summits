@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Climb Records</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Elevation gain</th>
+      <th>Activity</th>
+      <th>Start time</th>
+      <th>End time</th>
+      <th>Total time</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @climb_records.each do |climb_record| %>
+      <tr>
+        <td><%= climb_record.elevation_gain %></td>
+        <td><%= climb_record.activity_id %></td>
+        <td><%= climb_record.start_time %></td>
+        <td><%= climb_record.end_time %></td>
+        <td><%= climb_record.total_time %></td>
+        <td><%= climb_record.User %></td>
+        <td><%= link_to 'Show', climb_record %></td>
+        <td><%= link_to 'Edit', edit_climb_record_path(climb_record) %></td>
+        <td><%= link_to 'Destroy', climb_record, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Climb record', new_climb_record_path %>

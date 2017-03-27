@@ -27,29 +27,11 @@
 .inactive:hover span{
   visibility:visible;
 }
-
-.table th a{
-  //color: #333;
-  //text-decoration: none;
-}
-
-//.fixed { position: fixed; background:orange; }
-
 </style>
 
 <div class="container content">
   <div class="row">
-    <div class="col-sm-3 fixed text-center" id="profile">
-        <img src=<%=  @profile_url %>>
-        <h3><%= @first_name %> <%= @last_name %></h3>
-        <p><%= @city %>, <%= @state %></p>
-        <p><%= @unique_summits %> summits</p>
-        <% if @user.token %>
-          <p id="status" class="text-center"></p>
-        <% else %>
-          <%= link_to(image_tag("ConnectWithStrava.png", size: "171x31", ), "https://www.strava.com/oauth/authorize?client_id=3764&response_type=code&redirect_uri=" + Rails.application.config.domain_root + "/users/connect&approval_prompt=force") %>
-        <% end %>
-    </div>
+    <%= render 'profile_sidebar' %>
     <div class="col-sm-9">
       <ul class="nav nav-tabs">
         <li role="presentation"><a href="/users/<%= @id %>">Summits</a></li>
@@ -85,6 +67,8 @@ $(document).ready(function () {
 });
 
 var a;
+var show_summits = [];
+    var completed_summit_ids = {};
 
   setTimeout(function(){
     
@@ -92,6 +76,60 @@ var a;
     var map = L.mapbox.map('map', null, {
         zoomControl: false
     })
+
+    map.on('moveend', function(latlng){
+      console.log("dragged to:");
+      console.log(latlng);
+      console.log("map bounds: ");
+      var bounds = map.getBounds();
+      var west = bounds._southWest.lng.toFixed(3);
+      var south = bounds._southWest.lat.toFixed(3);
+      var east = bounds._northEast.lng.toFixed(3);
+      var north = bounds._northEast.lat.toFixed(3);
+
+      console.log(west, south, east, north);
+
+      //var url = "/osm/get_summits/?bbox=" + west + "," + south + "," + east + "," + north;
+
+      var myIcon = L.icon({
+        iconUrl: '/assets/mt_square_without_flag_bright.png',
+        // iconRetinaUrl: 'my-icon@2x.png',
+         iconSize: [20, 20],
+        // iconAnchor: [22, 94],
+        // popupAnchor: [-3, -76],
+        // shadowUrl: 'my-icon-shadow.png',
+        // shadowRetinaUrl: 'my-icon-shadow@2x.png',
+        // shadowSize: [68, 95],
+        // shadowAnchor: [22, 94]
+    });
+
+      <%#$.ajax(url, {
+          success: function(data) {
+            console.log(data);
+
+            $.each(show_summits, function(i, summit){
+              map.removeLayer(summit);
+            });
+
+            $.each(data, function(i, summit){
+              var popup = "<div><h2 class='text-center'>"+summit.name+"</h2><p>Elevation: "+ Math.round(summit.elevation_m * 3.28084) +" ft</p></div>"
+              //var link = $('<p><a href="#" class="speciallink">Show Activity</a></p>').click(function(event){
+               // event.preventDefault();
+                //map.setView([summit.osm_summit_lat, summit.osm_summit_lon], 16);
+                //showActivity(summit.activity_id)
+              //});
+              if(!completed_summit_ids[summit.id]){
+                marker = new L.marker([summit.st_y, summit.st_x], {icon: myIcon})
+                  .bindPopup(popup)
+                  .addTo(map);
+
+                show_summits.push(marker);
+              }
+            });
+          }
+      });%>
+
+    });
     
     <% if @start_location %>
       map.setView(<%= @start_location %>, 13)
@@ -132,17 +170,31 @@ var a;
       });
     }
 
+      var myMtIcon = L.icon({
+        iconUrl: '/assets/mt_square_with_flag_bright.png',
+        // iconRetinaUrl: 'my-icon@2x.png',
+         iconSize: [20, 20],
+        // iconAnchor: [22, 94],
+        // popupAnchor: [-3, -76],
+        // shadowUrl: 'my-icon-shadow.png',
+        // shadowRetinaUrl: 'my-icon-shadow@2x.png',
+        // shadowSize: [68, 95],
+        // shadowAnchor: [22, 94]
+    });
+
+
     // get data
     $.ajax("/users/get_summits/<%= @user.id %>", {
       success: function(data) {
         $.each(data, function(i, summit){
+          completed_summit_ids[summit.osm_summit_id] = true;
           var popup = $("<div><h2 class='text-center'>"+summit.summit+"</h2><p>Elevation: "+ Math.round(summit.osm_summit_elevation * 3.28084) +" ft</p><p><a href=https://www.strava.com/activities/"+ summit.activity_id +" target='_blank'>View on Strava</a></p></div>")
           var link = $('<p><a href="#" class="speciallink">Show Activity</a></p>').click(function(event){
             event.preventDefault();
             map.setView([summit.osm_summit_lat, summit.osm_summit_lon], 16);
             showActivity(summit.activity_id)
           });
-          marker = new L.marker([summit.osm_summit_lat, summit.osm_summit_lon])
+          marker = new L.marker([summit.osm_summit_lat, summit.osm_summit_lon], {icon: myMtIcon})
             .bindPopup(popup.append(link)[0])
             .addTo(map);
         });        

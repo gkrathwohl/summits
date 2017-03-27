@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Elevation gain:</strong>
+  <%= @climb_record.elevation_gain %>
+</p>
+
+<p>
+  <strong>Activity:</strong>
+  <%= @climb_record.activity_id %>
+</p>
+
+<p>
+  <strong>Start time:</strong>
+  <%= @climb_record.start_time %>
+</p>
+
+<p>
+  <strong>End time:</strong>
+  <%= @climb_record.end_time %>
+</p>
+
+<p>
+  <strong>Total time:</strong>
+  <%= @climb_record.total_time %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @climb_record.User %>
+</p>
+
+<%= link_to 'Edit', edit_climb_record_path(@climb_record) %> |
+<%= link_to 'Back', climb_records_path %>
