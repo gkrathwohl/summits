@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 ruby '2.3.1'
 
+gem 'foreman'
+
 gem 'rails', '4.2.5'
 gem 'pg', '~> 0.18.4'
 gem 'sass-rails', '~> 5.0'
