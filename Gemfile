@@ -14,7 +14,6 @@ gem 'strava-api-v3'
 gem 'overpass-api-ruby'
 gem 'polylines'
 gem 'dotenv-rails'
-gem 'delayed_job_active_record'
 gem 'daemons'
 
 gem 'rspec'
