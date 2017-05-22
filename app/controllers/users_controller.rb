@@ -102,8 +102,8 @@ class UsersController < ApplicationController
     @summits = @user.summit_completions.order(@sorted_by)
     @indexed_activities = IndexedActivity.where(user_id: @user.id)
 
-    puts "summits \n\n\n\n\n\n\n  "
-    puts @summits
+    FindPeaksJob.perform_later @user.id
+
   end
 
   def lists
@@ -127,7 +127,7 @@ class UsersController < ApplicationController
     @profile_url = athlete['profile']
     @unique_summits = @user.unique_summits_count
 
-    FindPeaksJob.perform_later @user.id    
+    FindPeaksJob.perform_later @user.id
 
     if @user.token.nil?
       return #redirect_to action: "connect", :alert => "Please Connect to Strava."
@@ -201,7 +201,6 @@ class UsersController < ApplicationController
   def get_activity
     @activity = StravaHelper.get_activity("cef80412c4e6894a8caa3f847e5fc48168baa0dc", params[:id])
     
-    #363bb4bcba39157d212a0fed956f126a0da39d81
     @decoded_polyline = StravaHelper.decode_polyline(@activity['map']['summary_polyline'])
     render json: @decoded_polyline
   end
@@ -218,5 +217,21 @@ class UsersController < ApplicationController
     @indexed_activities = IndexedActivity.where(user_id: @user.id)
     @status = {"activity_count" => @activities.count, "indexed_count" => @indexed_activities.count }
     render json: @status
+  end
+
+  # this is the recommended endpoint for polling for new activities,
+  # but might only include runs, rides, and swims. (not hikes)
+  def activity_count
+    user = User.find(params[:id])
+    count = StravaHelper.activity_count(user.token, user.strava_id)
+    @status = {"activity_count" => count}
+    render json: @status
+  end
+
+  def indexed_count
+    user = User.find(params[:id])
+    indexed_activities = IndexedActivity.where(user_id: user.id)
+    indexed_activities_count = {"indexed_count" => indexed_activities.count }
+    render json: indexed_activities_count
   end
 end

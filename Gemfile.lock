@@ -67,6 +67,8 @@ GEM
     capistrano-bundler (1.1.4)
       capistrano (~> 3.1)
       sshkit (~> 1.2)
+    capistrano-foreman-systemd (1.0.0)
+      capistrano (~> 3.4.1)
     capistrano-rails (1.1.7)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
@@ -298,6 +300,7 @@ DEPENDENCIES
   byebug
   capistrano (~> 3.4.0)
   capistrano-bundler (~> 1.1.2)
+  capistrano-foreman-systemd
   capistrano-rails (~> 1.1.1)
   capistrano-rbenv!
   capybara
@@ -333,7 +336,7 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 RUBY VERSION
-   ruby 2.3.1p112
+   ruby 2.3.3p222
 
 BUNDLED WITH
    1.14.3

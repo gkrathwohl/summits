@@ -1,44 +1,28 @@
-
-
-<style>
-.table th {
-   text-align: center;   
-}
-.center_table {
-  padding-top: 0px;
-}
-.content {
-  padding-top: 2%;
-}
-#profile-content {
-  padding-top: 2%;
-}
-#profile {
-  padding-top: 3%;
-}
-.number-align{
-  text-align: right;
-}
-
-.inactive span{
-  visibility:hidden;
-}
-
-.inactive:hover span{
-  visibility:visible;
-}
-</style>
-
 <div class="container content">
   <div class="row">
     <%= render 'profile_sidebar' %>
     <div class="col-sm-9">
-      <ul class="nav nav-tabs">
-        <li role="presentation"><a href="/users/<%= @id %>">Summits</a></li>
-        <li role="presentation" class="active"><a href="/users/<%= @id %>/map">Map</a></li>
-        <li role="presentation"><a href="/users/<%= @id %>/lists">Peak Lists</a></li>
-      </ul>
+      <%= render 'header_tabs' %>
       <div id="profile-content">
+
+<script>
+  $.ajax("/users/get_status/<%= @user.id %>", {
+    success: function(data) {
+      if(data.activity_count == data.indexed_count){
+        $("#status").html('<p class="text-center" style="color: green" ><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Strava sync complete (' + data.indexed_count + ' activities)</p>');
+      }else{
+        $("#status").html('<p class="text-center" style="color: red"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Syncing with Strava</p><p class="text-center" style="color: red">(' + data.indexed_count + ' / ' + data.activity_count + ' complete)</p>');
+      }
+    },
+    error: function() {
+      console.log("error");
+    }
+  });
+
+  $(document).ready(function () {
+      $('#map-nav-tab').addClass('active-tab');
+  });
+</script>
 
 
 <!--mapbox.js-->

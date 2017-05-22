@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.3.1'
+ruby '2.3.3'
 
 gem 'foreman'
 
@@ -21,13 +21,12 @@ gem 'daemons'
 gem 'rspec'
 
 gem 'resque' 
-#gem 'rails_12factor'
 
 gem 'capistrano', '~> 3.4.0'
+gem 'capistrano-foreman-systemd'
+
 gem 'capistrano-bundler', '~> 1.1.2'
 gem 'capistrano-rails', '~> 1.1.1'
-
-gem 'sqlite3'
 
 # Add this if you're using rbenv
 gem 'capistrano-rbenv', github: "capistrano/rbenv"

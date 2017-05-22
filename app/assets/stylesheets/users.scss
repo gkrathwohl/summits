@@ -1,0 +1,32 @@
+.table th {
+	text-align: center;
+}
+.center_table {
+	padding-top: 0px;
+}
+.content {
+	padding-top: 2%;
+}
+#profile-content {
+	padding-top: 2%;
+}
+#profile {
+	padding-top: 3%;
+}
+.number-align{
+	text-align: right;
+}
+.inactive span{
+	visibility:hidden;
+}
+.inactive:hover span{
+	visibility:visible;
+}
+.active-tab{
+	background-color:lightgray;
+}
+.nav-tabs > li > a {
+	margin: 0 !important;
+	border: 0 !important;
+	border-radius: 0 !important;
+}

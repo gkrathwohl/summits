@@ -39,23 +39,9 @@
 
 <div class="container content">
   <div class="row">
-    <div class="col-sm-3 fixed text-center" id="profile">
-
-        <img src=<%=  @profile_url %>>
-        <h3><%= @first_name %> <%= @last_name %></h3>
-        <p><%= @city %>, <%= @state %></p>
-        <p><%= @unique_summits %> summits</p>
-        <% if @user.token %>
-        <% else %>
-          <%= link_to(image_tag("ConnectWithStrava.png", size: "171x31", ), "https://www.strava.com/oauth/authorize?client_id=3764&response_type=code&redirect_uri=" + Rails.application.config.domain_root + "/users/connect&approval_prompt=force") %>
-        <% end %>
-    </div>
+    <%= render 'profile_sidebar' %>
     <div class="col-sm-9">
-      <ul class="nav nav-tabs">
-        <li role="presentation" ><a href="/users/<%= @id %>">Summits</a></li>
-        <li role="presentation"><a href="/users/<%= @id %>/map">Map</a></li>
-        <li role="presentation" class="active"><a href="/users/<%= @id %>/lists">Peak Lists</a></li>
-      </ul>
+      <%= render 'header_tabs' %>
       <div id="profile-content">
         <div class="panel-group" id="accordion">
             <% @lists.each_with_index do |summit_list, index| %>

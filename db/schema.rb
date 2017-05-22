@@ -13,15 +13,10 @@
 
 ActiveRecord::Schema.define(version: 20170307083856) do
 
-  create_table "Summits", force: :cascade do |t|
-    t.string   "osm_id"
-    t.string   "name"
-    t.integer  "elevation"
-    t.float    "latitude"
-    t.float    "longitude"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+  enable_extension "pg_stat_statements"
+  enable_extension "pg_buffercache"
 
   create_table "climb_records", force: :cascade do |t|
     t.decimal  "elevation_gain"
@@ -34,7 +29,7 @@ ActiveRecord::Schema.define(version: 20170307083856) do
     t.datetime "updated_at",     null: false
   end
 
-  add_index "climb_records", ["user_id"], name: "index_climb_records_on_user_id"
+  add_index "climb_records", ["user_id"], name: "index_climb_records_on_user_id", using: :btree
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -50,7 +45,7 @@ ActiveRecord::Schema.define(version: 20170307083856) do
     t.datetime "updated_at"
   end
 
-  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority"
+  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
   create_table "indexed_activities", force: :cascade do |t|
     t.integer  "activity_id"
@@ -59,7 +54,7 @@ ActiveRecord::Schema.define(version: 20170307083856) do
     t.integer  "user_id"
   end
 
-  add_index "indexed_activities", ["user_id"], name: "index_indexed_activities_on_user_id"
+  add_index "indexed_activities", ["user_id"], name: "index_indexed_activities_on_user_id", using: :btree
 
   create_table "list_participations", force: :cascade do |t|
     t.integer  "user_id"
@@ -82,23 +77,7 @@ ActiveRecord::Schema.define(version: 20170307083856) do
     t.string   "activity_name"
   end
 
-  add_index "summit_completions", ["user_id"], name: "index_summit_completions_on_user_id"
-
-  create_table "summit_in_lists", force: :cascade do |t|
-    t.integer  "summit_id"
-    t.integer  "summit_list_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-  end
-
-  add_index "summit_in_lists", ["summit_id"], name: "index_summit_in_lists_on_summit_id"
-  add_index "summit_in_lists", ["summit_list_id"], name: "index_summit_in_lists_on_summit_list_id"
-
-  create_table "summit_lists", force: :cascade do |t|
-    t.string   "list_name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+  add_index "summit_completions", ["user_id"], name: "index_summit_completions_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -118,7 +97,10 @@ ActiveRecord::Schema.define(version: 20170307083856) do
     t.integer  "strava_id"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "climb_records", "users"
+  add_foreign_key "indexed_activities", "users"
+  add_foreign_key "summit_completions", "users"
 end

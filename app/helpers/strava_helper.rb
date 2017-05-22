@@ -1,6 +1,13 @@
 module StravaHelper 
 
   require 'overpass_api_ruby'
+
+  def StravaHelper.activity_count(token, athlete_id)
+    client = Strava::Api::V3::Client.new(:access_token => token)
+    stats = client.totals_and_stats(athlete_id)
+    count = stats["all_run_totals"]["count"] + stats["all_ride_totals"]["count"]
+    return stats
+  end
   
   def StravaHelper.all_activities(token)
     client = Strava::Api::V3::Client.new(:access_token => token)

@@ -54,12 +54,12 @@ class FindPeaksJob < ActiveJob::Base
     peaks_in_bbox.each do |peak|
       peak_loc = [peak[:lat].to_f, peak[:lon].to_f]
       #for each point along line, check if distance to each peak is within radius
-      puts peak
+      # puts peak
       latlng_stream.each do |point|
-        puts point
+        # puts point
         point_loc = [point[0].to_f, point[1].to_f]
         distance_to_peak = StravaHelper.distance_haversine(peak_loc, point_loc)
-        puts "Distance to peak: " + distance_to_peak.to_s
+        # puts "Distance to peak: " + distance_to_peak.to_s
         if distance_to_peak < 60
 
           summit_completion = SummitCompletion.new

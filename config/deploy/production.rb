@@ -1,8 +1,8 @@
 set :stage, :production
 
 #server '40.117.194.53', user: 'deploy', roles: %w{web app}
-server '40.84.4.218', user: 'gkrathwohl', roles: %w{web app}
-
+# server '40.84.4.218', user: 'gkrathwohl', roles: %w{web app}
+server '40.83.190.120', user: 'gkrathwohl', roles: %w{web app}
 
 # Simple Role Syntax
 # ==================

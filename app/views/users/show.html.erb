@@ -1,44 +1,8 @@
-<style>
-.table th {
-   text-align: center;   
-}
-.center_table {
-  padding-top: 0px;
-}
-.content {
-  padding-top: 2%;
-}
-#profile-content {
-  padding-top: 2%;
-}
-#profile {
-  padding-top: 3%;
-}
-.number-align{
-  text-align: right;
-}
-
-.inactive span{
-  visibility:hidden;
-}
-
-.inactive:hover span{
-  visibility:visible;
-}
-
-
-</style>
-
 <div class="container content">
   <div class="row">
     <%= render 'profile_sidebar' %>
     <div class="col-sm-9">
-          <ul class="nav nav-tabs">
-            <li role="presentation" class="active"><a href="#">Summits</a></li>
-            <li role="presentation"><a href="/users/<%= @id %>/map">Map</a></li>
-            <li role="presentation"><a href="/users/<%= @id %>/lists">Peak Lists</a></li>
-          </ul>
-          <div id="profile-content">
+      <%= render 'header_tabs' %>
       <table class="table">
         <tbody>
           <tr>
@@ -73,26 +37,41 @@
 
 
 <script>
+  var pollInterval;
 
-    $.ajax("/users/get_status/<%= @user.id %>", {
-      success: function(data) {
-        console.log(data);
-        if(data.activity_count == data.indexed_count){
-          console.log("equal");
-          $("#status").html('<p class="text-center" style="color: green" ><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Strava sync complete (' + data.indexed_count + ' activities)</p>');
-        }else{
-          $("#status").html('<p class="text-center" style="color: red"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Syncing activities with Strava (' + data.indexed_count + ' / ' + data.activity_count + ' complete). Refresh page to see progress.</p>');
-        }
-
-      },
-      error: function() {
-        console.log("error");
+  $.ajax("/users/get_status/<%= @user.id %>", {
+    success: function(data) {
+      updateStatus(data.activity_count, data.indexed_count);
+      if(data.activity_count != data.indexed_count){
+        pollProgress(data.activity_count);
       }
-   });
-</script>
+    }
+  });
 
-<script>  
+  function updateStatus(activityCount, indexedCount){
+    if(activityCount == indexedCount){
+      $("#status").html('<p class="text-center" style="color: green" ><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Strava sync complete (' + indexedCount + ' activities)</p>');
+      if(typof(pollInterval) != "undefined"){
+        clearInterval(pollInterval);
+      }
+    }else{
+      $("#status").html('<p class="text-center" style="color: red"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Syncing with Strava</p><p class="text-center" style="color: red">(' + indexedCount + ' / ' + activityCount + ' activities)</p>');
+    }
+  }
+
+  function pollProgress(activityCount){
+    pollInterval = setInterval(function(){ 
+      $.ajax("/users/indexed_count/<%= @user.id %>", {
+        success: function(data) {
+          console.log(data);
+          updateStatus(activityCount, data.indexed_count);
+        }
+      });
+    }, 1000);
+  }
+
+
   $(document).ready(function () {
-      $('#athletes-nav').addClass('active');
+      $('#summits-nav-tab').addClass('active-tab');
   });
 </script>
