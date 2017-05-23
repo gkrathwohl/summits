@@ -23,9 +23,8 @@ gem 'rspec'
 gem 'resque' 
 
 gem 'capistrano-bundler', '~> 1.1.2'
-gem 'capistrano-rails', '~> 1.1.1'
 
-gem 'capistrano', '~> 3.7', '>= 3.7.1'
+gem 'capistrano', '~> 3.7'
 gem 'capistrano-rails', '~> 1.2'
 gem 'capistrano-passenger', '~> 0.2.0'
 
