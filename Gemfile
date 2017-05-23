@@ -22,15 +22,15 @@ gem 'rspec'
 
 gem 'resque' 
 
-gem 'capistrano', '~> 3.4.0'
-gem 'capistrano-foreman-systemd'
-
 gem 'capistrano-bundler', '~> 1.1.2'
 gem 'capistrano-rails', '~> 1.1.1'
 
-# Add this if you're using rbenv
-gem 'capistrano-rbenv', github: "capistrano/rbenv"
+gem 'capistrano', '~> 3.7', '>= 3.7.1'
+gem 'capistrano-rails', '~> 1.2'
+gem 'capistrano-passenger', '~> 0.2.0'
 
+# Add this if you're using rbenv
+gem 'capistrano-rbenv', '~> 2.1'
 
 group :development, :test do
   gem 'byebug'
