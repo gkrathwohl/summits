@@ -51,7 +51,7 @@
   function updateStatus(activityCount, indexedCount){
     if(activityCount == indexedCount){
       $("#status").html('<p class="text-center" style="color: green" ><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Strava sync complete (' + indexedCount + ' activities)</p>');
-      if(typof(pollInterval) != "undefined"){
+      if(typeof(pollInterval) != "undefined"){
         clearInterval(pollInterval);
       }
     }else{
