@@ -4,14 +4,14 @@ default: &default
   timeout: 5000
 
 development:
-  adapter: postgresql
-  encoding: unicode
-  database: summits-db
-  username: gkrathwohl@summit-postgresql
-  password: volar421!
-  host: summit-postgresql.postgres.database.azure.com
-  # <<: *default
-  # database: db/development.sqlite3
+  # adapter: postgresql
+  # encoding: unicode
+  # database: summits-db
+  # username: gkrathwohl@summit-postgresql
+  # password: volar421!
+  # host: summit-postgresql.postgres.database.azure.com
+  <<: *default
+  database: db/development.sqlite3
 
 test:
   <<: *default

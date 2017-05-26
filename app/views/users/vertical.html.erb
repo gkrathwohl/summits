@@ -1,0 +1,138 @@
+<link href="https://fonts.googleapis.com/css?family=Open+Sans|Sue+Ellen+Francisco" rel="stylesheet">
+<style>
+html, body{
+  height: 100%;
+ 
+}
+
+h3{
+    padding: 15pt;
+}
+
+.subunit{
+    font-size: 15pt;
+}
+
+th{
+    font-weight: bold;
+}
+
+th, td {
+	text-align: center;
+}
+
+.record-table{
+    padding-top: 10pt;
+}
+
+</style>
+
+<div class="container content">
+  <div class="row">
+    <%= render 'profile_sidebar' %>
+    <div class="col-sm-9">
+      <%= render 'header_tabs' %>
+      <h2 class="text-center">Vertical Personal Records</h2>
+      <div class="record-table">
+        <h3 class="text-center">1000 m <span class="subunit">(3280.84 ft)</span></h3>
+        <table class="table">
+            <tr>    
+                <th></th>
+                <th>Time</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>Strava</th>
+            </tr>
+            <% @climbs_1000.each_with_index do |record, i| %>
+            <tr>
+                <td><%= i + 1 %></td>
+                <td><%= format_secs(record.total_time) %></td>
+                <td><%= format_secs(record.start_time) %></td>
+                <td><%= format_secs(record.end_time) %></td>
+                <td><a target="blank" href="https://strava.com/activities/<%= record.activity_id %>"><%= record.activity_name %></a></td>
+            </tr>
+            <% end %>
+        </table>
+        <h3 class="text-center">1000 ft <span class="subunit">(304.8 m)</span></h3>
+        <table class="table">
+            <tr>    
+                <th></th>
+                <th>Time</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>Strava</th>
+            </tr>
+            <% @climbs_304.each_with_index do |record, i| %>
+            <tr>
+                <td><%= i + 1 %></td>
+                <td><%= format_secs(record.total_time) %></td>
+                <td><%= format_secs(record.start_time) %></td>
+                <td><%= format_secs(record.end_time) %></td>
+                <td><a target="blank" href="https://strava.com/activities/<%= record.activity_id %>"><%= record.activity_name %></a></td>
+            </tr>
+            <% end %>
+        </table>
+        <h3 class="text-center">500 ft <span class="subunit">(152.4 m)</span></h3>
+        <table class="table">
+            <tr>
+                <th></th>
+                <th>Time</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>Strava</th>
+            </tr>
+            <% @climbs_152.each_with_index do |record, i| %>
+            <tr>
+                <td><%= i + 1 %></td>
+                <td><%= format_secs(record.total_time) %></td>
+                <td><%= format_secs(record.start_time) %></td>
+                <td><%= format_secs(record.end_time) %></td>
+                <td><a target="blank" href="https://strava.com/activities/<%= record.activity_id %>"><%= record.activity_name %></a></td>
+            </tr>
+            <% end %>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  var pollInterval;
+
+  $.ajax("/users/get_status/<%= @user.id %>", {
+    success: function(data) {
+      updateStatus(data.activity_count, data.indexed_count);
+      if(data.activity_count != data.indexed_count){
+        pollProgress(data.activity_count);
+      }
+    }
+  });
+
+  function updateStatus(activityCount, indexedCount){
+    if(activityCount == indexedCount){
+      $("#status").html('<p class="text-center" style="color: green" ><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Strava sync complete (' + indexedCount + ' activities)</p>');
+      if(typeof(pollInterval) != "undefined"){
+        clearInterval(pollInterval);
+      }
+    }else{
+      $("#status").html('<p class="text-center" style="color: red"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Syncing with Strava</p><p class="text-center" style="color: red">(' + indexedCount + ' / ' + activityCount + ' activities)</p>');
+    }
+  }
+
+  function pollProgress(activityCount){
+    pollInterval = setInterval(function(){ 
+      $.ajax("/users/indexed_count/<%= @user.id %>", {
+        success: function(data) {
+          console.log(data);
+          updateStatus(activityCount, data.indexed_count);
+        }
+      });
+    }, 1000);
+  }
+
+
+  $(document).ready(function () {
+      $('#vertical-nav-tab').addClass('active-tab');
+  });
+</script>

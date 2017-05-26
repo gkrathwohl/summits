@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   get "/users/show" => "users#show"
   get "/users/:id/map" => "users#map"
   get "/users/:id/lists" => "users#lists"
-  get "/users/:id/records" => "users#records"
+  get "/users/:id/vertical" => "users#vertical"
 
   get "/users/:id/profile" => "users#profile"
   get "/users" => "users#index", as: "users"

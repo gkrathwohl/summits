@@ -38,8 +38,14 @@ class FindPeaksJob < ActiveJob::Base
 
       check_for_summits(user, activity, latlng_stream_data)
 
-      target_gain = 304.8 # 1000 ft
-      check_for_records(user, activity, ele_stream_data, time_stream_data, target_gain)
+      # 500 ft
+      check_for_records(user, activity, ele_stream_data, time_stream_data, 152.4)
+
+      # 1000 ft
+      check_for_records(user, activity, ele_stream_data, time_stream_data, 304.8)
+
+      # Vertical Km 
+      check_for_records(user, activity, ele_stream_data, time_stream_data, 1000)
     end
   end
 
@@ -48,7 +54,7 @@ class FindPeaksJob < ActiveJob::Base
     bounding_box = StravaHelper.get_buffered_bounding_box(latlng_stream)
     peaks_in_bbox = StravaHelper.find_peaks(bounding_box)
 
-    puts "Peaks in bbox: \n\n"
+    # puts "Peaks in bbox: \n\n"
     # puts peaks_in_bbox
 
     peaks_in_bbox.each do |peak|
@@ -83,19 +89,10 @@ class FindPeaksJob < ActiveJob::Base
 
   def check_for_records(user, activity, ele_stream, time_stream, target_gain) 
 
-    existing_record = user.climb_records.detect{ |e| e.elevation_gain == target_gain}
-    
-    puts "existing record \n\n\n"
-    puts existing_record
-
+    return if activity['type'] == "AlpineSki"
+    return if ele_stream.max - ele_stream.min < target_gain
 
     large_number = 9999999
-
-    if existing_record == nil 
-      existing_record_time = large_number
-    else
-      existing_record_time = existing_record.total_time
-    end
 
     activity_record = large_number
     record_start_index = nil
@@ -120,15 +117,12 @@ class FindPeaksJob < ActiveJob::Base
       end
     end
 
-    if activity_record < existing_record_time && activity_record != large_number
-      if existing_record == nil 
-        climb_record = ClimbRecord.new
-        climb_record.elevation_gain = target_gain
-        climb_record.user_id = user[:id]
-      else
-        climb_record = existing_record
-      end
+    if activity_record != large_number
+      climb_record = ClimbRecord.new
+      climb_record.elevation_gain = target_gain
+      climb_record.user_id = user[:id]
       climb_record.activity_id = activity['id']
+      climb_record.activity_name = activity['name']
       climb_record.start_time = time_stream[record_start_index]
       climb_record.end_time = time_stream[record_end_index]
       climb_record.total_time = time_stream[record_end_index] - time_stream[record_start_index]

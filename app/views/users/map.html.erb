@@ -1,34 +1,3 @@
-<div class="container content">
-  <div class="row">
-    <%= render 'profile_sidebar' %>
-    <div class="col-sm-9">
-      <%= render 'header_tabs' %>
-      <div id="profile-content">
-
-<script>
-  $.ajax("/users/get_status/<%= @user.id %>", {
-    success: function(data) {
-      if(data.activity_count == data.indexed_count){
-        $("#status").html('<p class="text-center" style="color: green" ><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Strava sync complete (' + data.indexed_count + ' activities)</p>');
-      }else{
-        $("#status").html('<p class="text-center" style="color: red"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Syncing with Strava</p><p class="text-center" style="color: red">(' + data.indexed_count + ' / ' + data.activity_count + ' complete)</p>');
-      }
-    },
-    error: function() {
-      console.log("error");
-    }
-  });
-
-  $(document).ready(function () {
-      $('#map-nav-tab').addClass('active-tab');
-  });
-</script>
-
-
-<!--mapbox.js-->
-<script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
-<link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' />
-
 <style>
   #map { 
     position:relative; height:600px; width:100%; 
@@ -38,12 +7,27 @@
     padding-top: 50px;
   }
 </style>
-<div id='map'></div>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+
+<link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' />
+
+
+<div class="container content">
+  <div class="row">
+    <%= render 'profile_sidebar' %>
+    <div class="col-sm-9">
+      <%= render 'header_tabs' %>
+      <div id="profile-content">
+        <div id='map'></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <script>
 
-console.log(<%= @summit_id %>)
-  
 $(document).ready(function () {
   $('#athletes-nav').addClass('active');
   $('#summits-nav').removeClass('active');
@@ -52,68 +36,14 @@ $(document).ready(function () {
 
 var a;
 var show_summits = [];
-    var completed_summit_ids = {};
+var completed_summit_ids = {};
 
-  setTimeout(function(){
-    
+function loadedMapbox(){
+
     L.mapbox.accessToken = 'pk.eyJ1IjoiZ2tyYXRod29obCIsImEiOiJ5bXlHNXJJIn0.gjNMPWKFNso_Z5EmEjsFGA';
     var map = L.mapbox.map('map', null, {
         zoomControl: false
     })
-
-    map.on('moveend', function(latlng){
-      console.log("dragged to:");
-      console.log(latlng);
-      console.log("map bounds: ");
-      var bounds = map.getBounds();
-      var west = bounds._southWest.lng.toFixed(3);
-      var south = bounds._southWest.lat.toFixed(3);
-      var east = bounds._northEast.lng.toFixed(3);
-      var north = bounds._northEast.lat.toFixed(3);
-
-      console.log(west, south, east, north);
-
-      //var url = "/osm/get_summits/?bbox=" + west + "," + south + "," + east + "," + north;
-
-    //   var myIcon = L.icon({
-    //     iconUrl: <%= image_url('mt_square_without_flag_bright.png') %>,  //'/assets/mt_square_without_flag_bright.png',
-    //     // iconRetinaUrl: 'my-icon@2x.png',
-    //      iconSize: [20, 20],
-    //     // iconAnchor: [22, 94],
-    //     // popupAnchor: [-3, -76],
-    //     // shadowUrl: 'my-icon-shadow.png',
-    //     // shadowRetinaUrl: 'my-icon-shadow@2x.png',
-    //     // shadowSize: [68, 95],
-    //     // shadowAnchor: [22, 94]
-    // });
-
-      <%#$.ajax(url, {
-          success: function(data) {
-            console.log(data);
-
-            $.each(show_summits, function(i, summit){
-              map.removeLayer(summit);
-            });
-
-            $.each(data, function(i, summit){
-              var popup = "<div><h2 class='text-center'>"+summit.name+"</h2><p>Elevation: "+ Math.round(summit.elevation_m * 3.28084) +" ft</p></div>"
-              //var link = $('<p><a href="#" class="speciallink">Show Activity</a></p>').click(function(event){
-               // event.preventDefault();
-                //map.setView([summit.osm_summit_lat, summit.osm_summit_lon], 16);
-                //showActivity(summit.activity_id)
-              //});
-              if(!completed_summit_ids[summit.id]){
-                marker = new L.marker([summit.st_y, summit.st_x], {icon: myIcon})
-                  .bindPopup(popup)
-                  .addTo(map);
-
-                show_summits.push(marker);
-              }
-            });
-          }
-      });%>
-
-    });
     
     <% if @start_location %>
       map.setView(<%= @start_location %>, 13)
@@ -134,11 +64,8 @@ var show_summits = [];
     L.control.layers({}, {'Strava Heatmap': layers.Strava}).addTo(map);
 
     function showActivity(id){
-      console.log(id);
       $.ajax("/users/get_activity/" + id, {
         success: function(data) {
-          console.log(data);
-
           var polyline = L.polyline(data,
             {
                 color: 'red',
@@ -147,53 +74,52 @@ var show_summits = [];
                 lineJoin: 'round'
             }
             ).addTo(map);
-        },
-        error: function() {
-          console.log("error");
         }
       });
     }
-
       var myMtIcon = L.icon({
         iconUrl: '/mt_square_with_flag_bright.png',
-        // iconRetinaUrl: 'my-icon@2x.png',
-         iconSize: [20, 20],
-        // iconAnchor: [22, 94],
-        // popupAnchor: [-3, -76],
-        // shadowUrl: 'my-icon-shadow.png',
-        // shadowRetinaUrl: 'my-icon-shadow@2x.png',
-        // shadowSize: [68, 95],
-        // shadowAnchor: [22, 94]
-    });
+        iconSize: [20, 20],
+      });
 
-
-    // get data
-    $.ajax("/users/get_summits/<%= @user.id %>", {
-      success: function(data) {
-        $.each(data, function(i, summit){
-          completed_summit_ids[summit.osm_summit_id] = true;
-          var popup = $("<div><h2 class='text-center'>"+summit.summit+"</h2><p>Elevation: "+ Math.round(summit.osm_summit_elevation * 3.28084) +" ft</p><p><a href=https://www.strava.com/activities/"+ summit.activity_id +" target='_blank'>View on Strava</a></p></div>")
-          var link = $('<p><a href="#" class="speciallink">Show Activity</a></p>').click(function(event){
-            event.preventDefault();
-            map.setView([summit.osm_summit_lat, summit.osm_summit_lon], 16);
-            showActivity(summit.activity_id)
-          });
-          marker = new L.marker([summit.osm_summit_lat, summit.osm_summit_lon], {icon: myMtIcon})
-            .bindPopup(popup.append(link)[0])
-            .addTo(map);
-        });        
-
-      },
-      error: function() {
-        console.log("error");
-      }
-   });
-  }, 200);
+  $.ajax("/users/get_summits/<%= @user.id %>", {
+    success: function(data) {
+      $.each(data, function(i, summit){
+        completed_summit_ids[summit.osm_summit_id] = true;
+        var popup = $("<div><h2 class='text-center'>"+summit.summit+"</h2><p>Elevation: "+ Math.round(summit.osm_summit_elevation * 3.28084) +" ft</p><p><a href=https://www.strava.com/activities/"+ summit.activity_id +" target='_blank'>View on Strava</a></p></div>")
+        var link = $('<p><a href="#" class="speciallink">Show Activity</a></p>').click(function(event){
+          event.preventDefault();
+          map.setView([summit.osm_summit_lat, summit.osm_summit_lon], 16);
+          showActivity(summit.activity_id)
+        });
+        marker = new L.marker([summit.osm_summit_lat, summit.osm_summit_lon], {icon: myMtIcon})
+          .bindPopup(popup.append(link)[0])
+          .addTo(map);
+      });
+    }
+  });
+}
 
 </script>
+<script>
 
 
-      </div>
-    </div>
-  </div>
-</div>
+
+
+  // $.ajax("/users/get_status/<%= @user.id %>", {
+  //   success: function(data) {
+  //     if(data.activity_count == data.indexed_count){
+  //       $("#status").html('<p class="text-center" style="color: green" ><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Strava sync complete (' + data.indexed_count + ' activities)</p>');
+  //     }else{
+  //       $("#status").html('<p class="text-center" style="color: red"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Syncing with Strava</p><p class="text-center" style="color: red">(' + data.indexed_count + ' / ' + data.activity_count + ' complete)</p>');
+  //     }
+  //   }
+  // });
+
+  $(document).ready(function () {
+      $('#map-nav-tab').addClass('active-tab');
+  });
+</script>
+
+<!--mapbox.js-->
+<script onload="loadedMapbox();" src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>

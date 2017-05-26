@@ -1,18 +1,38 @@
+<link href="https://fonts.googleapis.com/css?family=Open+Sans|Sue+Ellen+Francisco" rel="stylesheet">
+<style>
+html, body{
+  height: 100%;
+  font-family: 'Open Sans', sans-serif;
+}
+h1{
+    font-size: 70px; font-family: 'Sue Ellen Francisco', cursive;
+}
+h3{
+    padding-top: 10pt;
+}
+</style>
+
 <% content_for :title do %>About<% end %>
 
 <div class="container content">
     <div class="row">
         <div class="column col-md-offset-3">
-            <h3 class="text-left">Summit Strive - About</h3>
-            <p>
-                Summiter is a web application that connects to your Strava account to catalog all of the summits you've completed.
-            </p>
-            <p>
-                After you create an account and connect to Strava, we'll start checking all of your activities to see which mountains you've summited. There's a lot of mountains to check, so be patient.
-            </p>
-            <p>
-                It was built with Ruby on Rails. You can see the source code on <%= link_to  "GitHub", "https://github.com/gkrathwohl/summits/" %>. The summit data comes from <%= link_to "OpenStreetMap", "https://www.openstreetmap.org/about" %>.
-            </p>
+
+            <h1>Summit Strive</h1>
+            <p>Connect to your Strava account to catalog all of the summits you've completed and calculate your vertical PR's.</p>
+            <p>After you create an account and connect to Strava, we'll start checking all of your activities to see which mountains you've summited. There's a lot of mountains to check, so be patient.</p>
+            <p>SummitStrive is made possible by the <%= link_to "Strava API", "http://labs.strava.com/developers/" %> as well as the awesome <%= link_to "OpenStreetMap", "https://www.openstreetmap.org/about" %> community.</p>
+            <p>It was built with Ruby on Rails. You can see the source code on <%= link_to  "GitHub", "https://github.com/gkrathwohl/summits/" %>. The summit data comes from <%= link_to "OpenStreetMap", "https://www.openstreetmap.org/about" %>.</p>
+            <h3>How does it work?</h3>
+            <ol>
+                <li>Every time you visit SummitStrive, we'll check for any new Strava activities</li>
+                <li>For each new activity, we'll pull any summits within that activity's bounding box using the <%= link_to "OSM Overpass API", "http://wiki.openstreetmap.org/wiki/Overpass_API" %></li>
+                <li>For each of these nearby summits, we'll check if your GPS track got within 60 meters of the summit (because we're generous).</li>
+            </ol>
+            <h3>Vertical PR's</h3>
+            <p>We'll also keep track of your fastest vertical climbs for 500ft, 1000ft, and <%= link_to "1 km", "http://www.irunfar.com/2012/04/the-30-minute-kilometer-a-look-at-the-vertical-kilometer-record.html" %> </p>
+            <h3>What's a Summit?</h3>
+            <p>That's a good question! For SummitStrive, it's anything tagged as a <%= link_to "Peak on OpenStreetmap", "http://wiki.openstreetmap.org/wiki/Tag:natural%3Dpeak" %></p>
             <p>
                 - Greg Krathwohl
             </p>

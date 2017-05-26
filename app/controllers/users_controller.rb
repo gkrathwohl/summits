@@ -106,6 +106,37 @@ class UsersController < ApplicationController
 
   end
 
+  def vertical
+    if(params[:id] && User.exists?(params[:id]))
+      @user = User.find(params[:id])
+    else
+      return redirect_to :root
+    end
+
+    # use the current_user's token to get the strava client
+    #client = Strava::Api::V3::Client.new(:access_token => current_user.token)
+    client = Strava::Api::V3::Client.new(:access_token => "cef80412c4e6894a8caa3f847e5fc48168baa0dc")
+
+    if @user.token.nil?
+      return #redirect_to action: "connect", :alert => "Please Connect to Strava."
+    end
+
+    # retrieve the strava id of the requested profile.
+    athlete = client.retrieve_another_athlete(@user.strava_id)
+
+    @id = params[:id]
+    @first_name = athlete['firstname']
+    @last_name = athlete['lastname']
+    @city = athlete['city']
+    @state = athlete['state']
+    @profile_url = athlete['profile']
+    @unique_summits = @user.unique_summits_count
+
+    @climbs_152 = @user.climb_records.where(:elevation_gain =>  152.4).order(:total_time).first(3)
+    @climbs_304 = @user.climb_records.where(:elevation_gain =>  304.8).order(:total_time).first(3)
+    @climbs_1000 = @user.climb_records.where(:elevation_gain =>  1000).order(:total_time).first(3)
+  end
+
   def lists
     if(params[:id] && User.exists?(params[:id]))
       @user = User.find(params[:id])

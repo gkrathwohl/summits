@@ -63,7 +63,7 @@ module StravaHelper
 
     ba_query = '<osm-script><query into="_" type="node"><bbox-query e="' + bbox['maxLon'].to_s + '" into="_" n="' +  bbox['maxLat'].to_s + '" s="' + bbox['minLat'].to_s + '" w="' + bbox['minLon'].to_s + '"/><has-kv k="natural" modv="" v="peak"/></query><print e="" from="_" geometry="skeleton" limit="" mode="body" n="" order="id" s="" w=""/></osm-script>'
 
-    overpass = OverpassAPI.new() 
+    overpass = OverpassAPI.new()
 
     result_hash = overpass.raw_query(ba_query)
 
