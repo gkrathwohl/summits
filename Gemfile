@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 ruby '2.3.3'
 
+gem 'unicorn'
+
 gem 'foreman'
 
 gem 'rails', '4.2.5'
