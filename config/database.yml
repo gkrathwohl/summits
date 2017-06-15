@@ -17,10 +17,18 @@ test:
   <<: *default
   database: db/test.sqlite3
 
+# production:
+#   adapter: postgresql
+#   encoding: unicode
+#   database: summits-db
+#   username: gkrathwohl@summit-postgresql
+#   password: volar421!
+#   host: summit-postgresql.postgres.database.azure.com
+
 production:
   adapter: postgresql
+  host: 127.0.0.1
+  database: summits_production
+  username: deploy
   encoding: unicode
-  database: summits-db
-  username: gkrathwohl@summit-postgresql
-  password: volar421!
-  host: summit-postgresql.postgres.database.azure.com
+  pool: 5
