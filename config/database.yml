@@ -30,5 +30,6 @@ production:
   host: 127.0.0.1
   database: summits_production
   username: deploy
+  password:
   encoding: unicode
   pool: 5
