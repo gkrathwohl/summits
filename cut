@@ -1,0 +1,14 @@
+    <div id="feature-list">
+      <div class="feature">
+        <%= image_tag("mountain_icon_old.png", width:"50px", :class => "icon") %>
+        <p>Summit Log for Strava</p>
+      </div>
+      <div class="feature">
+        <%= image_tag("mountain_icon_old.png", width:"50px", :class => "icon") %>
+        <p>Peakbagging Lists</p>
+      </div>
+      <div class="feature">
+        <%= image_tag("mountain_icon_old.png", width:"50px", :class => "icon") %>
+        <p>Vertical PR's</p>
+      </div>
+    </div>

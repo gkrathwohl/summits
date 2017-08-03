@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170525221408) do
+ActiveRecord::Schema.define(version: 20170726184443) do
 
   create_table "Summits", force: :cascade do |t|
     t.string   "osm_id"
@@ -117,6 +117,8 @@ ActiveRecord::Schema.define(version: 20170525221408) do
     t.string   "name"
     t.string   "token"
     t.integer  "strava_id"
+    t.string   "provider"
+    t.string   "uid"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

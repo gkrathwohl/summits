@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Sue+Ellen+Francisco|Nunito" rel="stylesheet">
+    <%= stylesheet_link_tag 'home.css' %>
+  </head>
+  <body class="home-body">
+    <h1 class="title">SUMMIT STRIVE</h1>
+    <%= link_to(image_tag("ConnectWithStrava.png", width:"193pt" ), "/auth/strava", id: "connect-button") %>
+    <div class="features">
+      Connect with Strava to explore your:
+      <div class="feat">
+        Summit Logs
+      </div>
+      <div class="feat">
+        Peakbagging Lists
+      </div>
+      <div class="feat">
+        Vertical Climb PR's
+      </div>
+    </div>
+  </body>
+</html>

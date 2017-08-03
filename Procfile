@@ -1,1 +1,2 @@
-web: rails s -p 5000
+web: rails s
+worker: bundle exec resque-pool RAILS_ENV=development

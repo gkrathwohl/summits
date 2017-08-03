@@ -5,41 +5,6 @@ require './app/jobs/find_peaks_job'
 require './app/helpers/strava_helper.rb'
 
 class UsersController < ApplicationController
-  #before_action :authenticate_user!
-
-  def connect
-
-    if params["error"] == "access_denied"
-      return redirect_to :root
-    end
-
-    client_id = "3764"
-    client_secret = "e0b897e6bc461b774c73fbff6936f656d2e376f3"
-    code = params[:code]
-
-    post_params = {'client_id' => client_id, 'client_secret' => client_secret, 'code' => code}
-    response = Net::HTTP.post_form(URI.parse('https://www.strava.com/oauth/token'), post_params)
-
-    strava_response = JSON.parse response.body
-    
-    current_user.token = strava_response['access_token']
-
-    client = Strava::Api::V3::Client.new(:access_token => current_user.token)
-    current_athlete = client.retrieve_current_athlete
-
-    current_user.strava_id = current_athlete['id']
-
-    if current_user.token == nil
-      raise "TOKEN ERROR: " + strava_response
-    end
-
-    @result = current_user.save
-
-    FindPeaksJob.perform_later current_user.id
-
-    redirect_to :root
-    
-  end
 
   def index_activities
     @user = User.find(params[:id])
@@ -49,14 +14,6 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all.sort_by(&:unique_summits_count).reverse
-  end
-
-  def home
-    if (current_user)
-      redirect_to current_user
-    else
-      redirect_to new_user_registration_path
-    end
   end
 
   def show
@@ -75,7 +32,7 @@ class UsersController < ApplicationController
     end
 
     # retrieve the strava id of the requested profile.
-    athlete = client.retrieve_another_athlete(@user.strava_id)
+    athlete = client.retrieve_another_athlete(@user.uid)
 
     @id = params[:id]
     @first_name = athlete['firstname']
@@ -122,7 +79,7 @@ class UsersController < ApplicationController
     end
 
     # retrieve the strava id of the requested profile.
-    athlete = client.retrieve_another_athlete(@user.strava_id)
+    athlete = client.retrieve_another_athlete(@user.uid)
 
     @id = params[:id]
     @first_name = athlete['firstname']
@@ -148,7 +105,7 @@ class UsersController < ApplicationController
     client = Strava::Api::V3::Client.new(:access_token => "cef80412c4e6894a8caa3f847e5fc48168baa0dc")
 
     # retrieve the strava id of the requested profile.
-    athlete = client.retrieve_another_athlete(@user.strava_id)
+    athlete = client.retrieve_another_athlete(@user.uid)
 
     @id = params[:id]
     @first_name = athlete['firstname']
@@ -198,7 +155,7 @@ class UsersController < ApplicationController
     client = Strava::Api::V3::Client.new(:access_token => "cef80412c4e6894a8caa3f847e5fc48168baa0dc")
 
     # retrieve the strava id of the requested profile.
-    athlete = client.retrieve_another_athlete(@user.strava_id)
+    athlete = client.retrieve_another_athlete(@user.uid)
 
     @id = params[:id]
     @first_name = athlete['firstname']
@@ -242,13 +199,13 @@ class UsersController < ApplicationController
     render json: @activities
   end
 
-  def get_status
-    @user = User.find(params[:id])
-    @activities = StravaHelper.all_activities(@user.token)
-    @indexed_activities = IndexedActivity.where(user_id: @user.id)
-    @status = {"activity_count" => @activities.count, "indexed_count" => @indexed_activities.count }
-    render json: @status
-  end
+  # def get_status
+  #   @user = User.find(params[:id])
+  #   @activities = StravaHelper.all_activities(@user.token)
+  #   @indexed_activities = IndexedActivity.where(user_id: @user.id)
+  #   @status = {"activity_count" => @activities.count, "indexed_count" => @indexed_activities.count }
+  #   render json: @status
+  # end
 
   # this is the recommended endpoint for polling for new activities,
   # but might only include runs, rides, and swims. (not hikes)
@@ -259,10 +216,10 @@ class UsersController < ApplicationController
     render json: @status
   end
 
-  def indexed_count
+  def get_indexed_activity_count
     user = User.find(params[:id])
     indexed_activities = IndexedActivity.where(user_id: user.id)
-    indexed_activities_count = {"indexed_count" => indexed_activities.count }
+    indexed_activities_count = {"indexed_activity_count" => indexed_activities.count }
     render json: indexed_activities_count
   end
 end

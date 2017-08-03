@@ -100,25 +100,9 @@ function loadedMapbox(){
   });
 }
 
-</script>
-<script>
-
-
-
-
-  // $.ajax("/users/get_status/<%= @user.id %>", {
-  //   success: function(data) {
-  //     if(data.activity_count == data.indexed_count){
-  //       $("#status").html('<p class="text-center" style="color: green" ><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Strava sync complete (' + data.indexed_count + ' activities)</p>');
-  //     }else{
-  //       $("#status").html('<p class="text-center" style="color: red"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Syncing with Strava</p><p class="text-center" style="color: red">(' + data.indexed_count + ' / ' + data.activity_count + ' complete)</p>');
-  //     }
-  //   }
-  // });
-
-  $(document).ready(function () {
-      $('#map-nav-tab').addClass('active-tab');
-  });
+$(document).ready(function () {
+    $('#map-nav-tab').addClass('active-tab');
+});
 </script>
 
 <!--mapbox.js-->
