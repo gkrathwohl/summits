@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+
   def index
     authenticate()
     if (@current_user)
@@ -7,4 +8,10 @@ class HomeController < ApplicationController
       render "connect_to_strava", :layout => false
     end
   end
+
+  def mobile_redirect
+    return redirect_to "com.gkrathwohl.RunLog:/oauth2Callback"
+  end
+
+
 end

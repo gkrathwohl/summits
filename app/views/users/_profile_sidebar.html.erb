@@ -3,12 +3,4 @@
   <h3><%= @first_name %> <%= @last_name %></h3>
   <p><%= @city %>, <%= @state %></p>
   <p><%= @unique_summits %> summits</p>
-  <br>
-  <br>
-  <br>
-  <% if @user.token %>
-      <p id="status" class="text-center"></p>
-  <% else %>
-      <%= link_to(image_tag("ConnectWithStrava.png", size: "171x31", ), "https://www.strava.com/oauth/authorize?client_id=3764&response_type=code&redirect_uri=" + Rails.application.config.domain_root + "/users/connect&approval_prompt=force") %>
-  <% end %>
 </div>

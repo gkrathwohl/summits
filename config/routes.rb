@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   require 'resque/server'
   mount Resque::Server, at: '/jobs'
 
+  # mobile redirect
+  get '/mobileredirect' => 'home#mobile_redirect'
+
   # home controller
   root 'home#index'
   

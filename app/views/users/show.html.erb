@@ -11,7 +11,7 @@
             <th id="elev-th" style="text-align:right"><a class="<%= (@sort_by == "elevation")? '' : 'inactive'%>" href="?sorted=elevation">Elevation <span class="caret"></span></a></th>
             <th id="activity-name-th" style="text-align:left"><a class="<%= (@sort_by == "activity-name")? '' : 'inactive'%>" href="?sorted=activity-name">Activity <span class="caret"></span></a></th>
           </tr>
-          <% @user.summit_completions.order(@sort_string).each do |summit| %>
+          <% @show_user.summit_completions.order(@sort_string).each do |summit| %>
             <tr>
               <td><%= summit.date.strftime("%b %-d") %></td>
               <!--<td><a href="/summits/<%= summit.osm_summit_id %>"><%= summit.summit %></a></td> -->
@@ -69,7 +69,6 @@
       });
     }, 1000);
   }
-
 
   $(document).ready(function () {
       $('#summits-nav-tab').addClass('active-tab');

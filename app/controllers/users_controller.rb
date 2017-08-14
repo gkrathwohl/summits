@@ -16,7 +16,24 @@ class UsersController < ApplicationController
     @users = User.all.sort_by(&:unique_summits_count).reverse
   end
 
+  # /users/:id
   def show
+    # get user from :id parameter
+    if(params[:id] && User.exists?(params[:id]))
+      user = User.find(params[:id])
+    else
+      return redirect_to :root
+    end
+
+    @show_user = {}
+    @show_user['']
+
+  end
+
+
+  def show_old
+
+    # get user from :id parameter
     if(params[:id] && User.exists?(params[:id]))
       @user = User.find(params[:id])
     else
