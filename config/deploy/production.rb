@@ -1,6 +1,7 @@
 set :stage, :production
 
-server '23.99.90.105', user: 'gkrathwohl', roles: %w{web app}
+server '104.40.88.45', user: 'gkrathwohl', roles: %w{web app}
+# server '23.99.90.105', user: 'gkrathwohl', roles: %w{web app}
 # server '138.68.57.179', user: 'deploy', roles: %w{web app}
 # server '40.84.4.218', user: 'gkrathwohl', roles: %w{web app}
 # server '40.83.190.120', user: 'gkrathwohl', roles: %w{web app}

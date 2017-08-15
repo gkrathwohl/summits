@@ -10,7 +10,7 @@ class HomeController < ApplicationController
   end
 
   def mobile_redirect
-    return redirect_to "com.gkrathwohl.RunLog:/oauth2Callback"
+    return redirect_to "com.gkrathwohl.RunLog:/oauth2Callback/" + request.env["QUERY_STRING"]
   end
 
 
